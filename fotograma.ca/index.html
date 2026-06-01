@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotograma Studio | Roblox Cinematic Productions</title>
+    <meta name="description" content="Fotograma Studio is a Roblox-native animation and content studio based in British Columbia, Canada. Game trailers, social media content, and full production services.">
+    <meta name="keywords" content="Roblox animation, game trailer, 3D animation, Roblox cinematic, Roblox studio, game marketing, Fotograma Studio">
+    <link rel="icon" href="assets/images/logos/F_Icon.svg" type="image/svg+xml">
+
+    <style>
+        /* ===== FONT ===== */
+        @font-face {
+            font-family: 'Pagkaki';
+            src: url('assets/fonts/PAGKAKI-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black:      #000000;
+            --off-black:  #060606;
+            --white:      #ffffff;
+            --gray:       #777777;
+            --border:     rgba(255,255,255,0.08);
+            --border-mid: rgba(255,255,255,0.18);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ===== GRAIN OVERLAY ===== */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9990;
+            opacity: 0.25;
+        }
+
+        /* ===== TYPOGRAPHY UTILITIES ===== */
+        .pk { font-family: 'Pagkaki', sans-serif; }
+        .outlined {
+            color: transparent;
+            -webkit-text-stroke: 0.8px var(--white);
+        }
+        .filled { color: var(--white); }
+
+        /* ===== ALTERNATING SECTION BACKGROUNDS ===== */
+        #about      { background: var(--off-black); }
+        #services   { background: var(--black); }
+        #process    { background: var(--off-black); }
+        #reel       { background: var(--black); }
+        #trusted    { background: var(--off-black); }
+        #stats      { background: var(--black); }
+        #testimonials { background: var(--off-black); }
+        #bts        { background: var(--black); }
+        #contact    { background: var(--black); }
+
+        footer      { background: var(--off-black); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .reveal.d1 { transition-delay: 0.1s; }
+        .reveal.d2 { transition-delay: 0.2s; }
+        .reveal.d3 { transition-delay: 0.3s; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+
+        /* ============================================================
+           HEADER
+        ============================================================ */
+        #header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 22px 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.5s ease, border-bottom 0.5s ease;
+        }
+        #header.scrolled {
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hdr-nav {
+            display: flex; gap: 36px;
+        }
+        .hdr-nav a {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .hdr-nav a:hover { color: white; }
+
+        .hdr-icon {
+            position: absolute; left: 50%; transform: translateX(-50%);
+        }
+        .hdr-icon img {
+            height: 38px; width: auto;
+            display: block;
+        }
+
+        .hdr-socials {
+            display: flex; gap: 20px; align-items: center;
+        }
+        .hdr-socials a {
+            opacity: 0.55; transition: opacity 0.2s; display: flex;
+        }
+        .hdr-socials a:hover { opacity: 1; }
+        .hdr-socials svg { width: 17px; height: 17px; fill: white; }
+
+
+        /* ============================================================
+           HERO
+        ============================================================ */
+        #hero {
+            position: relative;
+            width: 100%; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-video {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.62);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center;
+            width: 100%;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center;
+            gap: 22px;
+        }
+
+        .hero-logo {
+            display: block;
+            width: min(580px, 82vw);
+            max-width: 580px;
+            margin: 0 auto;
+            height: auto;
+        }
+
+        .hero-tagline {
+            font-size: 15px;
+            letter-spacing: 0.3em;
+            text-transform: lowercase;
+            color: rgba(255,255,255,0.5);
+            margin-top: 14px;
+        }
+
+        .scroll-hint {
+            position: absolute; bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            opacity: 0.35;
+        }
+        .scroll-hint span {
+            font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px; height: 44px;
+            background: white;
+            transform-origin: top center;
+            animation: scrollDrop 2s ease-in-out infinite;
+        }
+        @keyframes scrollDrop {
+            0%   { transform: scaleY(0); opacity: 0; }
+            25%  { opacity: 1; }
+            75%  { transform: scaleY(1); opacity: 1; }
+            100% { transform: scaleY(1); opacity: 0; }
+        }
+
+
+        /* ============================================================
+           ABOUT US
+        ============================================================ */
+        #about {
+            padding: 140px 8vw;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 4vw;
+            align-items: start;
+        }
+
+        .about-image-wrap {
+            position: relative;
+        }
+
+        .about-image-wrap img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            display: block;
+            object-fit: cover;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 94% 100%, 0 100%);
+            background: #111;
+        }
+
+        /* Decorative corner accent */
+        .about-image-wrap::before {
+            content: '';
+            position: absolute;
+            top: -12px; left: -12px;
+            width: 60px; height: 60px;
+            border-top: 1.5px solid rgba(255,255,255,0.35);
+            border-left: 1.5px solid rgba(255,255,255,0.35);
+            pointer-events: none;
+        }
+        .about-image-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: -12px; right: -12px;
+            width: 60px; height: 60px;
+            border-bottom: 1.5px solid rgba(255,255,255,0.35);
+            border-right: 1.5px solid rgba(255,255,255,0.35);
+            pointer-events: none;
+        }
+
+        .about-text {
+            padding-top: 8px;
+        }
+
+        .about-text h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+            margin-bottom: 36px;
+        }
+
+        .about-text p {
+            font-size: 19px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 22px;
+        }
+
+        .about-text p:last-child { margin-bottom: 0; }
+
+        .about-text strong { color: white; font-weight: 500; }
+
+
+        /* ============================================================
+           SOCIAL MEDIA STRIP — single ultrawide video
+        ============================================================ */
+        #social-strip {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: clamp(250px, 42vw, 620px);
+            background: #0a0a0a;
+        }
+
+        .social-strip-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            /* Center the video — on mobile the sides will be cropped naturally */
+            object-position: center center;
+        }
+
+        .social-strip-dark {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.72);
+            z-index: 1;
+        }
+
+        .social-strip-label {
+            position: absolute; inset: 0;
+            z-index: 2;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            pointer-events: none;
+        }
+
+        .social-strip-label p {
+            font-size: clamp(13px, 1.6vw, 22px);
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            text-transform: lowercase;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            white-space: nowrap;
+        }
+
+
+        /* ============================================================
+           FULL PRODUCTION SERVICES
+        ============================================================ */
+        #services {
+            padding: 130px 52px;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--gray); display: block; margin-bottom: 20px;
+        }
+
+        .services-heading {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+            margin-bottom: 80px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--border);
+            margin: 0 auto;
+            width: 100%;
+            max-width: min(1400px, 96vw);
+        }
+
+        .svc-card {
+            padding: 72px 52px 68px;
+            border-right: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.4s;
+        }
+        .svc-card:last-child { border-right: none; }
+        .svc-card:hover { background: rgba(255,255,255,0.025); }
+
+        .svc-card::after {
+            content: '';
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: white;
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.45s ease;
+        }
+        .svc-card:hover::after { transform: scaleX(1); }
+
+        .svc-icon {
+            margin-bottom: 40px;
+            opacity: 0.6;
+        }
+        .svc-icon svg { width: 32px; height: 32px; }
+
+        .svc-label {
+            font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+            color: white; margin-bottom: 26px; display: block;
+            font-weight: 700;
+        }
+
+        .svc-list {
+            list-style: none; display: flex; flex-direction: column; gap: 13px;
+        }
+        .svc-list li {
+            font-size: 18px; color: rgba(255,255,255,0.5);
+            letter-spacing: 0.02em; line-height: 1.5;
+        }
+
+
+        /* ============================================================
+           WATCH THE REEL
+        ============================================================ */
+        #reel {
+            position: relative;
+            width: 100%; height: 62vh; min-height: 380px;
+            overflow: hidden;
+        }
+
+        .reel-bg-video {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; z-index: 0;
+        }
+
+        .reel-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.72);
+            z-index: 1;
+            transition: background 0.35s;
+        }
+        #reel:hover .reel-overlay { background: rgba(0,0,0,0.58); }
+
+        /* PLACEHOLDER: replace href with your Vimeo URL */
+        .reel-cta {
+            position: absolute; inset: 0; z-index: 2;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 18px;
+            text-decoration: none; color: white;
+        }
+
+        .reel-text {
+            font-size: 11px; letter-spacing: 0.28em; text-transform: lowercase;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .reel-btn {
+            width: 68px; height: 68px;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: border-color 0.3s, transform 0.35s, box-shadow 0.35s;
+        }
+        #reel:hover .reel-btn {
+            border-color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 36px rgba(255,255,255,0.12);
+        }
+        .reel-btn svg { width: 22px; height: 22px; fill: white; transform: translateX(2px); display: block; }
+
+
+        /* ============================================================
+           STATS
+        ============================================================ */
+        #stats {
+            padding: 110px 52px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 900px; margin: 0 auto;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px 32px;
+            border-right: 1px solid var(--border);
+        }
+        .stat:last-child { border-right: none; }
+
+        .stat-num {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(52px, 7vw, 88px);
+            line-height: 1;
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .stat-lbl {
+            font-size: 11px; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--gray);
+        }
+
+
+        /* ============================================================
+           TRUSTED BY
+        ============================================================ */
+        #trusted {
+            padding: 110px 52px;
+        }
+
+        .trusted-head {
+            text-align: center; margin-bottom: 70px;
+        }
+        /* ============================================================
+           TRUSTED BY — unified client grid
+        ============================================================ */
+        #trusted {
+            padding: 110px 52px;
+        }
+
+        .trusted-head {
+            text-align: center; margin-bottom: 70px;
+        }
+        .trusted-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 52px 32px;
+            max-width: min(900px, 96vw);
+            margin: 0 auto;
+        }
+
+        .client-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.25s;
+        }
+        .client-item:hover { opacity: 0.65; }
+
+        /* unified 72px image area for both logos and circles */
+        .client-visual {
+            width: 72px; height: 72px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .client-visual img {
+            max-width: 72px; max-height: 72px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+        .client-visual.circle img {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: none;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .client-name {
+            font-size: 14px;
+            letter-spacing: 0.07em;
+            text-align: center;
+            max-width: 120px;
+            line-height: 1.4;
+            color: white;
+        }
+
+        .client-subs {
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 0.04em;
+            text-align: center;
+            margin-top: -6px;
+        }
+
+
+        /* ============================================================
+           VIMEO LIGHTBOX
+        ============================================================ */
+        #vimeo-lightbox {
+            position: fixed; inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center; justify-content: center;
+        }
+        #vimeo-lightbox.open { display: flex; }
+
+        #vimeo-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.55);
+            cursor: pointer;
+        }
+
+        #vimeo-container {
+            position: relative; z-index: 1;
+            width: min(1100px, 94vw);
+            aspect-ratio: 16 / 9;
+        }
+
+        #vimeo-iframe {
+            width: 100%; height: 100%;
+            border: none;
+            display: block;
+        }
+
+        #vimeo-close {
+            position: absolute; top: -44px; right: 0;
+            background: none; border: none;
+            color: white; font-size: 32px;
+            cursor: pointer; opacity: 0.6;
+            transition: opacity 0.2s; line-height: 1;
+            font-family: 'Helvetica Neue', sans-serif;
+            padding: 0;
+        }
+        #vimeo-close:hover { opacity: 1; }
+
+        #reel { cursor: pointer; }
+        #testimonials {
+            padding: 130px 52px;
+        }
+
+        .testimonials-head {
+            text-align: center; margin-bottom: 80px;
+        }
+        .testimonials-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            max-width: min(960px, 96vw); margin: 0 auto;
+            border: 1px solid var(--border);
+        }
+
+        .tcard {
+            padding: 68px 52px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            gap: 40px;
+            border-right: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+        .tcard:last-child { border-right: none; }
+        .tcard:hover { background: rgba(255,255,255,0.02); }
+
+        .tcard-quote {
+            font-size: 19px; line-height: 1.8;
+            color: rgba(255,255,255,0.72);
+            font-style: italic;
+            position: relative;
+            padding-top: 44px;
+        }
+        .tcard-quote::before {
+            content: '"';
+            font-family: 'Pagkaki', sans-serif;
+            font-size: 60px; line-height: 1;
+            color: rgba(255,255,255,0.15);
+            position: absolute; top: 0; left: 0;
+        }
+
+        .tcard-author {
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .tcard-name {
+            font-size: 14px; font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+        .tcard-role {
+            font-size: 12px; color: var(--gray);
+            letter-spacing: 0.04em;
+        }
+
+
+        /* ============================================================
+           PRODUCTION PIPELINE — horizontal timeline
+        ============================================================ */
+        #process {
+            padding: 130px 52px;
+        }
+
+        .process-head {
+            text-align: center; margin-bottom: 80px;
+        }
+        .process-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+        }
+
+        .pipeline {
+            max-width: min(1400px, 96vw);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Horizontal connecting line */
+        .pipeline-track {
+            position: absolute;
+            top: 28px;
+            left: calc(12.5%);
+            right: calc(12.5%);
+            height: 1px;
+            background: rgba(255,255,255,0.15);
+            z-index: 0;
+        }
+
+        .pipeline-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pipe-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 28px;
+        }
+
+        .pipe-dot {
+            width: 56px; height: 56px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--black);
+            margin-bottom: 36px;
+            flex-shrink: 0;
+            font-family: 'Pagkaki', sans-serif;
+            font-size: 20px;
+            color: rgba(255,255,255,0.7);
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .pipe-step:hover .pipe-dot {
+            border-color: rgba(255,255,255,0.7);
+            color: white;
+        }
+
+        .pipe-title {
+            font-size: 13px; letter-spacing: 0.18em;
+            text-transform: uppercase; margin-bottom: 16px;
+            color: white;
+        }
+
+        .pipe-desc {
+            font-size: 18px; line-height: 1.75;
+            color: rgba(255,255,255,0.45);
+        }
+
+
+        /* ============================================================
+           CASE STUDY / BEHIND THE SCENES
+        ============================================================ */
+        #bts {
+            padding: 130px 52px;
+        }
+
+        .bts-head {
+            text-align: center; margin-bottom: 64px;
+        }
+        .bts-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+        }
+
+        .bts-frame {
+            max-width: 1000px; margin: 0 auto;
+            position: relative;
+            /* Diagonal frame effect */
+            clip-path: polygon(0 2%, 100% 0%, 100% 98%, 0% 100%);
+        }
+
+        .bts-frame video,
+        .bts-frame iframe,
+        .bts-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            background: #111;
+            border: none;
+        }
+
+        .bts-placeholder {
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bts-placeholder span {
+            font-size: 11px; letter-spacing: 0.22em;
+            text-transform: uppercase; color: rgba(255,255,255,0.18);
+        }
+
+
+        /* ============================================================
+           CONTACT
+        ============================================================ */
+        #contact {
+            padding: 160px 52px;
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1.3fr 0.6fr;
+            gap: 80px;
+            align-items: center;
+            max-width: min(1300px, 96vw);
+            margin: 0 auto;
+        }
+
+        .contact-text {}
+
+        .contact-eyebrow {
+            font-size: 13px; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--gray);
+            display: block; margin-bottom: 20px;
+        }
+
+        .contact-heading {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(42px, 5.2vw, 68px);
+            margin-bottom: 28px;
+        }
+
+        .contact-body {
+            font-size: 19px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 48px;
+        }
+
+        .contact-divider {
+            width: 40px; height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin-bottom: 48px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 900;
+            font-size: clamp(18px, 2.5vw, 38px);
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            position: relative;
+        }
+        .contact-email::after {
+            content: '';
+            position: absolute; bottom: -3px; left: 0;
+            width: 100%; height: 2px;
+            background: white;
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.45s ease;
+        }
+        .contact-email:hover::after { transform: scaleX(1); }
+
+        .contact-founder-wrap {
+            position: relative;
+        }
+        .contact-founder-wrap img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 94% 100%, 0 100%);
+            background: #111;
+        }
+        .contact-founder-wrap::before {
+            content: '';
+            position: absolute;
+            top: -12px; left: -12px;
+            width: 60px; height: 60px;
+            border-top: 1px solid rgba(255,255,255,0.25);
+            border-left: 1px solid rgba(255,255,255,0.25);
+            pointer-events: none;
+        }
+        .contact-founder-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: -12px; right: -12px;
+            width: 60px; height: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+            border-right: 1px solid rgba(255,255,255,0.25);
+            pointer-events: none;
+        }
+        .contact-founder-name {
+            margin-top: 20px;
+            font-size: 14px; font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .contact-founder-role {
+            font-size: 12px; color: var(--gray);
+            margin-top: 4px; letter-spacing: 0.05em;
+        }
+
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+        footer {
+            padding: 36px 52px;
+            border-top: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .footer-copy {
+            font-size: 11px; color: var(--gray); letter-spacing: 0.05em;
+        }
+
+        .footer-socials {
+            display: flex; gap: 24px; align-items: center;
+        }
+        .footer-socials a {
+            opacity: 0.4; transition: opacity 0.2s; display: flex;
+        }
+        .footer-socials a:hover { opacity: 1; }
+        .footer-socials svg { width: 17px; height: 17px; fill: white; }
+
+
+        /* ============================================================
+           MOBILE — TABLET (≤ 900px)
+        ============================================================ */
+        @media (max-width: 900px) {
+
+            #header { padding: 18px 24px; }
+            .hdr-nav { gap: 20px; }
+            .hdr-nav a { font-size: 11px; }
+            .hdr-socials { display: none; }
+
+            .hero-logo { width: min(420px, 88vw); }
+            .hero-tagline { font-size: 11px; letter-spacing: 0.18em; }
+
+            /* About Us */
+            #about {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                padding: 80px 24px;
+            }
+
+            /* Social strip — on mobile show center crop (3240/5400 = 60% of width) */
+            #social-strip { height: clamp(200px, 56vw, 380px); }
+            .social-strip-video { object-position: center center; }
+
+            #services { padding: 80px 24px; }
+            .services-heading { margin-bottom: 52px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .svc-card { border-right: none; border-bottom: 1px solid var(--border); }
+            .svc-card:last-child { border-bottom: none; }
+
+            #reel { height: 52vw; min-height: 260px; }
+
+            #stats { padding: 72px 24px; }
+            .stats-row { grid-template-columns: 1fr; }
+            .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
+            .stat:last-child { border-bottom: none; }
+
+            #trusted { padding: 80px 24px; }
+            .client-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+
+            #testimonials { padding: 80px 24px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .tcard { border-right: none; border-bottom: 1px solid var(--border); }
+            .tcard:last-child { border-bottom: none; }
+
+            #process { padding: 80px 24px; }
+            .pipeline-track { display: none; }
+            .pipeline-steps { grid-template-columns: 1fr; gap: 52px; }
+            .pipe-step {
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                gap: 0;
+                padding: 0 16px;
+            }
+            .pipe-dot { margin-bottom: 20px; }
+            .pipe-title { margin-bottom: 12px; }
+
+            #bts { padding: 80px 24px; }
+            .bts-frame { clip-path: none; }
+
+            #contact { padding: 100px 24px; }
+            .contact-inner { grid-template-columns: 1fr; gap: 52px; }
+            .contact-founder-wrap { max-width: 260px; margin: 0; }
+            .contact-founder-wrap::before, .contact-founder-wrap::after { display: none; }
+
+            footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
+        }
+
+
+        /* ============================================================
+           MOBILE — PHONE (≤ 540px)
+        ============================================================ */
+        @media (max-width: 540px) {
+
+            #header { padding: 16px 20px; }
+            .hdr-nav { display: none; }
+            .hdr-icon img { height: 30px; }
+
+            .hero-logo { width: 90vw; }
+
+            #about { padding: 64px 20px; gap: 36px; }
+            .about-image-wrap::before, .about-image-wrap::after { display: none; }
+
+            #social-strip { height: clamp(180px, 65vw, 340px); }
+
+            #services { padding: 64px 20px; }
+            .svc-card { padding: 40px 28px; }
+
+            .stat-num { font-size: clamp(48px, 14vw, 80px); }
+
+            .process-steps { grid-template-columns: 1fr; }
+            .pstep { border-right: none !important; }
+
+            .contact-email { font-size: clamp(18px, 6.5vw, 38px); word-break: break-all; }
+
+            #testimonials { padding: 64px 20px; }
+            .tcard { padding: 36px 28px; }
+
+            .reel-btn { width: 56px; height: 56px; }
+            .contact-founder-wrap { max-width: 220px; }
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+    <header id="header">
+        <nav class="hdr-nav">
+            <a href="#services">services</a>
+            <a href="#reel">our work</a>
+            <a href="#process">process</a>
+            <a href="#contact">contact</a>
+        </nav>
+
+        <!-- F Icon — center of header -->
+        <div class="hdr-icon">
+            <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio">
+        </div>
+
+        <div class="hdr-socials">
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/company/fotogramastudio" title="LinkedIn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <!-- X / Twitter -->
+            <a href="https://x.com/fotogramamedia" title="X / Twitter" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/fotogramamedia" title="Instagram" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@fotogramamedia" title="YouTube" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section id="hero">
+        <!-- fotograma-reel.mp4 — drop in same folder as index.html -->
+        <video class="hero-bg-video" autoplay muted loop playsinline src="assets/videos/fotograma-reel.mp4"></video>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio">
+            <p class="hero-tagline">roblox cinematic productions</p>
+        </div>
+
+        <div class="scroll-hint">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         ABOUT US
+    ============================================================ -->
+    <section id="about">
+        <div class="about-image-wrap reveal">
+            <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio — behind the scenes">
+        </div>
+
+        <div class="about-text reveal d1">
+            <h2>
+                <span class="pk outlined">about</span> <span class="pk filled">us</span>
+            </h2>
+            <p><strong>Fotograma Studio</strong> is a Roblox-native animation and content studio based in British Columbia, Canada.</p>
+            <p>Fotograma means <em>frame</em> in Spanish — and just like how frames are all the individual pieces that put together a video, we provide you with all the pieces you need to build your presence in the Roblox metaverse.</p>
+            <p>Our focus is on 3D animation, social media, and visual storytelling. Whether it's Roblox game trailers, promotional content, or short-form content — come to us with your idea, and we will bring it to life.</p> <!-- PLACEHOLDER: Update this copy -->
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         SOCIAL MEDIA STRIP
+    ============================================================ -->
+    <section id="social-strip">
+        <video class="social-strip-video" autoplay muted loop playsinline src="assets/videos/fotograma-social-media.mp4"></video>
+        <div class="social-strip-dark"></div>
+        <div class="social-strip-label">
+            <p>elevate your social media</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FULL PRODUCTION SERVICES
+    ============================================================ -->
+    <section id="services">
+        <div class="reveal">
+            <span class="section-eyebrow">what we offer</span>
+            <h2 class="services-heading">
+                <span class="outlined pk">production</span> <span class="filled pk">services</span>
+            </h2>
+        </div>
+
+        <div class="services-grid reveal">
+            <!-- PRE-PRODUCTION -->
+            <div class="svc-card">
+                <div class="svc-icon">
+                    <!-- document/script icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </div>
+                <span class="svc-label">Pre-Production</span>
+                <ul class="svc-list">
+                    <li>concept development</li>
+                    <li>script writing</li>
+                    <li>storyboarding</li>
+                    <li>asset planning</li>
+                </ul>
+            </div>
+
+            <!-- PRODUCTION -->
+            <div class="svc-card">
+                <div class="svc-icon">
+                    <!-- paintbrush icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 10-3-3z"/>
+                        <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/>
+                        <path d="M14.5 17.5L4.5 15"/>
+                    </svg>
+                </div>
+                <span class="svc-label">Production</span>
+                <ul class="svc-list">
+                    <li>CGI & 3D animation</li>
+                    <li>motion graphics</li>
+                    <li>gameplay capture</li>
+                    <li>rendering</li>
+                </ul>
+            </div>
+
+            <!-- POST-PRODUCTION -->
+            <div class="svc-card">
+                <div class="svc-icon">
+                    <!-- sparkle/VFX icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <span class="svc-label">Post-Production</span>
+                <ul class="svc-list">
+                    <li>video editing</li>
+                    <li>compositing & color grading</li>
+                    <li>sound design & music composition</li>
+                    <li>dubbing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PRODUCTION PIPELINE — temporarily hidden, uncomment when ready
+    <div style="display:none">
+    <section id="process">
+        <div class="process-head reveal">
+            <span class="section-eyebrow">the pipeline</span>
+            <h2>
+                <span class="pk outlined">production</span> <span class="pk filled">pipeline</span>
+            </h2>
+        </div>
+        <div class="pipeline reveal">
+            <div class="pipeline-track"></div>
+            <div class="pipeline-steps">
+                <div class="pipe-step">
+                    <div class="pipe-dot">1</div>
+                    <div class="pipe-title">Get in Touch</div>
+                    <p class="pipe-desc">Reach out with your idea or vision — whether it's fully formed or just a spark. Don't worry if you don't have it all figured out yet. We'll workshop the concept together and make sure we're aligned before anything begins.</p>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-dot">2</div>
+                    <div class="pipe-title">Production Plan</div>
+                    <p class="pipe-desc">Once the concept is locked in, we design a custom production timeline built around your project. You'll receive a quote, a clear scope, and a plan — so there are no surprises along the way.</p>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-dot">3</div>
+                    <div class="pipe-title">We Create</div>
+                    <p class="pipe-desc">Our team gets to work bringing your vision to life. We work closely with you throughout the entire production, sharing regular updates every step of the way so you're always in the loop.</p>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-dot">4</div>
+                    <div class="pipe-title">Final Delivery</div>
+                    <p class="pipe-desc">Your project is delivered broadcast-ready. Final files, promotional assets, and graphic materials — everything polished and ready to launch on your platform of choice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    END PRODUCTION PIPELINE -->
+
+
+    <!-- ============================================================
+         WATCH THE REEL
+    ============================================================ -->
+    <section id="reel">
+        <video class="reel-bg-video" autoplay muted loop playsinline src="assets/videos/fotograma-reel.mp4"></video>
+        <div class="reel-overlay"></div>
+        <div class="reel-cta">
+            <span class="reel-text">watch the reel</span>
+            <div class="reel-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         TRUSTED BY
+    ============================================================ -->
+    <section id="trusted">
+        <div class="trusted-head reveal">
+            <span class="section-eyebrow">our clients</span>
+            <h2>
+                <span class="pk outlined">trusted by</span> <span class="pk filled">studios &amp; creators</span>
+            </h2>
+        </div>
+
+        <div class="client-grid reveal">
+
+            <!-- Studios -->
+            <div class="client-item"> <!-- PLACEHOLDER: Wrap in <a href="URL"> when ready -->
+                <div class="client-visual">
+                    <img src="assets/images/logos/simple-games-logo.svg" alt="Simple Games">
+                </div>
+                <span class="client-name">Simple Games</span>
+            </div>
+            <div class="client-item">
+                <div class="client-visual">
+                    <img src="assets/images/logos/mockbyrd-logo.svg" alt="Mockbyrd">
+                </div>
+                <span class="client-name">Mockbyrd</span>
+            </div>
+            <div class="client-item">
+                <div class="client-visual">
+                    <img src="assets/images/logos/cr3ate-future-logo.svg" alt="Cr3ate Future">
+                </div>
+                <span class="client-name">Cr3ate Future</span>
+            </div>
+            <div class="client-item">
+                <div class="client-visual">
+                    <img src="assets/images/logos/slay-house-logo.svg" alt="Slay House Media">
+                </div>
+                <span class="client-name">Slay House Media</span>
+            </div>
+
+            <!-- Creators -->
+            <a href="https://www.youtube.com/@daniverdari" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/0wX0nJolWCRpYeDw9NTqom3oPGPt463w3PbN2v9eyKzkAI1JlfM0geN2t6uClEAt7PmgYrtd=s200-c-k-c0x00ffffff-no-rj" alt="Dani Verdari">
+                </div>
+                <span class="client-name">Dani Verdari</span>
+                <span class="client-subs">2.3M+</span>
+            </a>
+            <a href="https://www.youtube.com/@miraculous" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/ZQAwbEz2md0XdbHi96OUs-Wyco68dZ8hAtsICSY66vMRoewuKtjIXlHRRkj5f675XsDVKjC6=s200-c-k-c0x00ffffff-no-rj" alt="Miraculous Ladybug">
+                </div>
+                <span class="client-name">Miraculous Ladybug</span>
+                <span class="client-subs">11.2M+</span>
+            </a>
+            <a href="https://www.youtube.com/@furiousjumper" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/BgwYoE8jVPzK2jxhgYQrO944C7LzoYMrSVMuIqolRxwLXj1W5Ani7dILP8BD0j4sH4caeR1D1w=s200-c-k-c0x00ffffff-no-rj" alt="Furious Jumper">
+                </div>
+                <span class="client-name">Furious Jumper</span>
+                <span class="client-subs">10.3M+</span>
+            </a>
+            <a href="https://www.youtube.com/@lovelyela" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/2d8LvVbgfUfKWPJIAoYaqTEYZdiPCLWgeQurcOSSJiRb2Jv8kCSRgQY2ziHaPSpfF3VsORFA=s200-c-k-c0x00ffffff-no-rj" alt="Lovely Ela">
+                </div>
+                <span class="client-name">Lovely Ela</span>
+                <span class="client-subs">4.2M+</span>
+            </a>
+            <a href="https://www.youtube.com/@lumexx" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/n76317dbECXSeTS8S9wZQniFcMIZ8HGHG4TFfMOM0mnTWBR4PVVMGf5u-GhVu1PYyCe0IaDXSp8=s200-c-k-c0x00ffffff-no-rj" alt="Lumexx">
+                </div>
+                <span class="client-name">Lumexx</span>
+                <span class="client-subs">1.2M+</span>
+            </a>
+            <a href="https://www.youtube.com/@zaryee" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/f0DyjBYXon-zQW9F54e8hFm60VKv06VdFvz5AlR5daYuGSVFNGm-9vOXoWHHdnp_FauzELAu=s200-c-k-c0x00ffffff-no-rj" alt="Zaryee">
+                </div>
+                <span class="client-name">Zaryee</span>
+                <span class="client-subs">1.1M+</span>
+            </a>
+            <a href="https://www.youtube.com/@ukri-mc" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/m13C4AvYme5fTwef67EdK7eVWJqTkK0-pB6ztBKSUx-z0QFRil86nl8drkSSDUaesn2dCZKiNwg=s200-c-k-c0x00ffffff-no-rj" alt="Ukri">
+                </div>
+                <span class="client-name">Ukri</span>
+                <span class="client-subs">542K+</span>
+            </a>
+            <a href="https://www.youtube.com/@sheismara" class="client-item" target="_blank" rel="noopener">
+                <div class="client-visual circle">
+                    <img src="https://yt3.googleusercontent.com/NnjKENsUl0qWUXmMlG801mwO4xLBcUak3Bt_cKHDPG7Fnkht5W3r8XY4QjYHxEq-0lKsFdgtZjA=s200-c-k-c0x00ffffff-no-rj" alt="Mara">
+                </div>
+                <span class="client-name">Mara</span>
+                <span class="client-subs">450K+</span>
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         STATS
+    ============================================================ -->
+    <section id="stats">
+        <div class="stats-row">
+            <div class="stat reveal">
+                <span class="stat-num pk">
+                    <span class="filled">20</span><span class="outlined">+</span>
+                </span>
+                <span class="stat-lbl">projects completed</span>
+            </div>
+            <div class="stat reveal d1">
+                <span class="stat-num pk">
+                    <span class="filled">10</span><span class="outlined">+</span>
+                </span>
+                <span class="stat-lbl">happy clients</span>
+            </div>
+            <div class="stat reveal d2">
+                <span class="stat-num pk">
+                    <span class="filled">18</span><span class="filled">M</span><span class="outlined">+</span>
+                </span>
+                <span class="stat-lbl">views across platforms</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         TESTIMONIALS
+    ============================================================ -->
+    <section id="testimonials">
+        <div class="testimonials-head reveal">
+            <h2>
+                <span class="pk outlined">client</span> <span class="pk filled">testimonials</span>
+            </h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="tcard reveal">
+                <p class="tcard-quote">We're very grateful for this collaboration. Extremely responsible and highly efficient. Thank you again for your great work!</p>
+                <div class="tcard-author">
+                    <div class="tcard-name">Inaba</div>
+                    <div class="tcard-role">Mockbyrd Games</div>
+                </div>
+            </div>
+
+            <div class="tcard reveal d1">
+                <p class="tcard-quote">I am delighted with Francisco's work; he helped me find the perfect project plan that fit my budget.</p>
+                <div class="tcard-author">
+                    <div class="tcard-name">Lovely Ela</div>
+                    <div class="tcard-role">Content Creator</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BEHIND THE SCENES — temporarily hidden, uncomment when ready
+    <div style="display:none">
+    <section id="bts">
+        <div class="bts-head reveal">
+            <span class="section-eyebrow">behind the scenes</span>
+            <h2>
+                <span class="pk outlined">see how we</span> <span class="pk filled">work</span>
+            </h2>
+        </div>
+        <div class="bts-frame reveal">
+            <div class="bts-placeholder">
+                <span>behind the scenes - coming soon</span>
+            </div>
+        </div>
+    </section>
+    </div>
+    END BEHIND THE SCENES -->
+
+
+    <!-- ============================================================
+         CONTACT
+    ============================================================ -->
+    <section id="contact">
+        <div class="contact-inner">
+            <div class="contact-text reveal">
+                <span class="contact-eyebrow">get in touch</span>
+                <h2 class="contact-heading">
+                    <span class="pk filled">contact</span>
+                </h2>
+                <p class="contact-body">
+                    Have a project in mind? Reach out and let's chat about how we can make it happen. Don't worry if you're still developing your concept — whether it's a full idea or just a spark, we can work through it together and bring your vision to life.
+                </p>
+                <div class="contact-divider"></div>
+                <a href="mailto:francisco@fotograma.ca" class="contact-email">
+                    francisco@fotograma.ca
+                </a>
+            </div>
+
+            <div class="contact-founder-wrap reveal d1">
+                <!-- PLACEHOLDER: name this file fotograma-founder.jpg and put it in assets/images/ -->
+                <img src="assets/images/fotograma-founder.jpg" alt="Francisco Garcia — Founder, Fotograma Studio">
+                <div class="contact-founder-name">Francisco Garcia</div> <!-- PLACEHOLDER: Update if needed -->
+                <div class="contact-founder-role">Founder & Creative Director, Fotograma Studio</div> <!-- PLACEHOLDER -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIMEO LIGHTBOX
+    ============================================================ -->
+    <div id="vimeo-lightbox">
+        <div id="vimeo-overlay"></div>
+        <div id="vimeo-container">
+            <button id="vimeo-close">&#x2715;</button>
+            <iframe id="vimeo-iframe" src="" frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer>
+        <span class="footer-copy">© 2026 Fotograma Studio. All rights reserved.</span>
+
+        <div class="footer-socials">
+            <a href="https://www.linkedin.com/company/fotogramastudio" title="LinkedIn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://x.com/fotogramamedia" title="X / Twitter" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/fotogramamedia" title="Instagram" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fotogramamedia" title="YouTube" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+        </div>
+    </footer>
+
+
+    <script>
+        // ===== VIMEO LIGHTBOX =====
+        const VIMEO_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+        const lightbox    = document.getElementById('vimeo-lightbox');
+        const vimeoIframe = document.getElementById('vimeo-iframe');
+        const vimeoClose  = document.getElementById('vimeo-close');
+        const vimeoOverlay = document.getElementById('vimeo-overlay');
+        const reelSection = document.getElementById('reel');
+
+        function openLightbox() {
+            vimeoIframe.src = VIMEO_EMBED;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            vimeoIframe.src = '';
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        if (reelSection) reelSection.addEventListener('click', openLightbox);
+        if (vimeoOverlay) vimeoOverlay.addEventListener('click', closeLightbox);
+        if (vimeoClose)   vimeoClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ===== STICKY HEADER =====
+        const hdr = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            hdr.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+
+        // ===== SCROLL REVEAL =====
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+    </script>
+
+</body>
+</html>
