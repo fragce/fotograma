@@ -22,7 +22,7 @@
 
         :root {
             --black:      #000000;
-            --off-black:  #060606;
+            --off-black:  #0a0a0a;
             --white:      #ffffff;
             --gray:       #777777;
             --border:     rgba(255,255,255,0.08);
@@ -58,6 +58,7 @@
 
         /* ===== ALTERNATING SECTION BACKGROUNDS ===== */
         #about      { background: var(--off-black); }
+        #standfor   { background: var(--black); }
         #services   { background: var(--black); }
         #process    { background: var(--off-black); }
         #reel       { background: var(--black); }
@@ -170,11 +171,11 @@
         }
 
         .hero-tagline {
-            font-size: 15px;
+            font-size: 13px;
             letter-spacing: 0.3em;
-            text-transform: lowercase;
+            text-transform: uppercase;
             color: rgba(255,255,255,0.5);
-            margin-top: 14px;
+            margin-top: 18px;
         }
 
         .scroll-hint {
@@ -207,9 +208,13 @@
         #about {
             padding: 140px 8vw;
             display: grid;
-            grid-template-columns: 1.4fr 1fr;
+            grid-template-columns: minmax(0, 1.4fr) 1fr;
             gap: 4vw;
-            align-items: start;
+            align-items: center;
+        }
+
+        .about-text {
+            padding-top: 8px;
         }
 
         .about-image-wrap {
@@ -245,20 +250,16 @@
             pointer-events: none;
         }
 
-        .about-text {
-            padding-top: 8px;
-        }
-
         .about-text h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
             margin-bottom: 36px;
         }
 
         .about-text p {
-            font-size: 19px;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.65);
+            font-size: 18px;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.75);
             margin-bottom: 22px;
         }
 
@@ -316,18 +317,18 @@
            FULL PRODUCTION SERVICES
         ============================================================ */
         #services {
-            padding: 130px 52px;
+            padding: 130px 40px;
             text-align: center;
         }
 
         .section-eyebrow {
             font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
-            color: var(--gray); display: block; margin-bottom: 20px;
+            color: var(--gray); display: block; margin-bottom: 16px;
         }
 
         .services-heading {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
             margin-bottom: 80px;
         }
 
@@ -337,14 +338,18 @@
             border: 1px solid var(--border);
             margin: 0 auto;
             width: 100%;
-            max-width: min(1400px, 96vw);
+            max-width: min(1800px, 96vw);
         }
 
         .svc-card {
-            padding: 72px 52px 68px;
+            padding: 64px 56px 72px;
             border-right: 1px solid var(--border);
             position: relative;
             overflow: hidden;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
         .svc-card:last-child { border-right: none; }
 
@@ -385,22 +390,25 @@
 
         .svc-icon {
             margin-bottom: 40px;
-            opacity: 0.6;
+            opacity: 0.75;
         }
-        .svc-icon svg { width: 32px; height: 32px; }
+        .svc-icon svg { width: 52px; height: 52px; }
 
         .svc-label {
-            font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
-            color: white; margin-bottom: 26px; display: block;
-            font-weight: 700;
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(36px, 3.6vw, 54px);
+            color: white;
+            margin-bottom: 28px;
+            display: block;
+            line-height: 1.1;
         }
 
         .svc-list {
             list-style: none; display: flex; flex-direction: column; gap: 13px;
         }
         .svc-list li {
-            font-size: 18px; color: rgba(255,255,255,0.5);
-            letter-spacing: 0.02em; line-height: 1.5;
+            font-size: 18px; color: rgba(255,255,255,0.65);
+            letter-spacing: 0.02em; line-height: 1.75;
         }
 
 
@@ -461,7 +469,7 @@
            STATS
         ============================================================ */
         #stats {
-            padding: 110px 52px;
+            padding: 130px 52px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
@@ -469,26 +477,26 @@
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            max-width: 900px; margin: 0 auto;
+            max-width: 1100px; margin: 0 auto;
         }
 
         .stat {
             text-align: center;
-            padding: 20px 32px;
+            padding: 40px 32px;
             border-right: 1px solid var(--border);
         }
         .stat:last-child { border-right: none; }
 
         .stat-num {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(52px, 7vw, 88px);
+            font-size: clamp(80px, 11vw, 148px);
             line-height: 1;
             display: block;
-            margin-bottom: 14px;
+            margin-bottom: 20px;
         }
 
         .stat-lbl {
-            font-size: 11px; letter-spacing: 0.16em;
+            font-size: 12px; letter-spacing: 0.2em;
             text-transform: uppercase; color: var(--gray);
         }
 
@@ -515,7 +523,7 @@
         }
         .trusted-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
         }
 
         .client-grid {
@@ -617,7 +625,7 @@
 
         #reel { cursor: pointer; }
         #testimonials {
-            padding: 130px 52px;
+            padding: 150px 52px;
         }
 
         .testimonials-head {
@@ -625,21 +633,22 @@
         }
         .testimonials-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            max-width: min(960px, 96vw); margin: 0 auto;
+            max-width: min(1800px, 96vw); margin: 0 auto;
             border: 1px solid var(--border);
         }
 
         .tcard {
-            padding: 68px 52px;
+            padding: 64px 56px 72px;
             display: flex; flex-direction: column; justify-content: space-between;
-            gap: 40px;
+            gap: 52px;
+            min-height: 480px;
             border-right: 1px solid var(--border);
             transition: background 0.3s;
         }
@@ -647,29 +656,29 @@
         .tcard:hover { background: rgba(255,255,255,0.02); }
 
         .tcard-quote {
-            font-size: 19px; line-height: 1.8;
-            color: rgba(255,255,255,0.72);
+            font-size: 20px; line-height: 1.8;
+            color: rgba(255,255,255,0.82);
             font-style: italic;
             position: relative;
-            padding-top: 44px;
+            padding-top: 52px;
         }
         .tcard-quote::before {
             content: '"';
             font-family: 'Pagkaki', sans-serif;
-            font-size: 60px; line-height: 1;
+            font-size: 72px; line-height: 1;
             color: rgba(255,255,255,0.15);
             position: absolute; top: 0; left: 0;
         }
 
         .tcard-author {
-            display: flex; flex-direction: column; gap: 4px;
+            display: flex; flex-direction: column; gap: 6px;
         }
         .tcard-name {
-            font-size: 14px; font-weight: 500;
+            font-size: 15px; font-weight: 500;
             letter-spacing: 0.04em;
         }
         .tcard-role {
-            font-size: 12px; color: var(--gray);
+            font-size: 13px; color: var(--gray);
             letter-spacing: 0.04em;
         }
 
@@ -686,7 +695,7 @@
         }
         .process-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
         }
 
         .pipeline {
@@ -763,7 +772,7 @@
         }
         .bts-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
         }
 
         .bts-frame {
@@ -818,14 +827,15 @@
 
         .contact-heading {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(42px, 5.2vw, 68px);
+            font-size: clamp(46px, 5.6vw, 78px);
             margin-bottom: 28px;
+            line-height: 1.1;
         }
 
         .contact-body {
-            font-size: 19px;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.5);
+            font-size: 18px;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.65);
             margin-bottom: 48px;
         }
 
@@ -990,6 +1000,95 @@
 
 
         /* ============================================================
+           WHAT WE STAND FOR
+        ============================================================ */
+        #standfor {
+            padding: 110px 52px;
+            overflow: hidden;
+        }
+
+        .standfor-head {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .standfor-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(46px, 5.6vw, 78px);
+        }
+
+        .standfor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            width: 100%;
+            max-width: min(1800px, 96vw);
+            margin: 0 auto;
+            border: 1px solid var(--border);
+        }
+
+        .standfor-card {
+            padding: 64px 56px 72px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-right: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            min-height: 480px;
+            transition: background 0.3s;
+        }
+        .standfor-card:last-child { border-right: none; }
+        .standfor-card:hover { background: rgba(255,255,255,0.015); }
+
+        /* White top line on hover */
+        .standfor-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: white;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.45s ease;
+            z-index: 3;
+        }
+        .standfor-card:hover::before { transform: scaleX(1); }
+
+        /* Background render image — pre-cropped by Francisco, simply anchored bottom-right */
+        .standfor-bg-img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 100%;
+            width: auto;
+            opacity: 0.12;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .standfor-card h3 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(36px, 3.6vw, 54px);
+            color: white;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            line-height: 1;
+        }
+
+        .standfor-card p {
+            font-size: 18px;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.55);
+            position: relative;
+            z-index: 2;
+            max-width: 220px;
+        }
+
+
+        /* ============================================================
            MOBILE — TABLET (≤ 900px)
         ============================================================ */
         @media (max-width: 900px) {
@@ -1009,14 +1108,21 @@
                 padding: 80px 24px;
             }
 
+            /* What We Stand For */
+            #standfor { padding: 80px 20px; }
+            .standfor-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .standfor-card { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 28px 64px; min-height: 360px; }
+            .standfor-card:last-child { border-bottom: none; }
+            .standfor-bg-img { opacity: 0.09; }
+
             /* Social strip — on mobile show center crop (3240/5400 = 60% of width) */
             #social-strip { height: clamp(200px, 56vw, 380px); }
             .social-strip-video { object-position: center center; }
 
-            #services { padding: 80px 24px; }
-            .services-heading { margin-bottom: 52px; }
+            #services { padding: 80px 0; }
+            .services-heading { margin-bottom: 52px; padding: 0 24px; }
             .services-grid { grid-template-columns: 1fr; }
-            .svc-card { border-right: none; border-bottom: 1px solid var(--border); }
+            .svc-card { border-right: none; border-bottom: 1px solid var(--border); min-height: auto; }
             .svc-card:last-child { border-bottom: none; }
 
             #reel { height: 52vw; min-height: 260px; }
@@ -1031,7 +1137,7 @@
 
             #testimonials { padding: 80px 24px; }
             .testimonials-grid { grid-template-columns: 1fr; }
-            .tcard { border-right: none; border-bottom: 1px solid var(--border); }
+            .tcard { border-right: none; border-bottom: 1px solid var(--border); min-height: auto; }
             .tcard:last-child { border-bottom: none; }
 
             .film-img { width: 440px; height: 248px; }
@@ -1072,7 +1178,7 @@
 
             .hero-logo { width: 90vw; }
 
-            #about { padding: 64px 20px; gap: 36px; }
+            #about { padding: 64px 20px; gap: 36px; grid-template-columns: 1fr; }
             .about-image-wrap::before, .about-image-wrap::after { display: none; }
 
             #social-strip { height: clamp(180px, 65vw, 340px); }
@@ -1107,16 +1213,15 @@
     ============================================================ -->
     <header id="header">
         <nav class="hdr-nav">
-            <a href="#services">services</a>
-            <a href="#reel">our work</a>
-            <a href="#process">process</a>
+            <a href="#about">about</a>
+            <a href="#services">our work</a>
             <a href="#contact">contact</a>
         </nav>
 
-        <!-- F Icon — center of header -->
-        <div class="hdr-icon">
+        <!-- F Icon — center of header, clicks to hero -->
+        <a href="#hero" class="hdr-icon" aria-label="Back to top">
             <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio">
-        </div>
+        </a>
 
         <div class="hdr-socials">
             <!-- LinkedIn -->
@@ -1149,13 +1254,9 @@
 
         <div class="hero-content">
             <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio">
-            <p class="hero-tagline">roblox cinematic productions</p>
+            <p class="hero-tagline">roblox animated productions</p>
         </div>
 
-        <div class="scroll-hint">
-            <span>scroll</span>
-            <div class="scroll-line"></div>
-        </div>
     </section>
 
 
@@ -1168,12 +1269,47 @@
         </div>
 
         <div class="about-text reveal d1">
+            <span class="section-eyebrow">who we are</span>
             <h2>
                 <span class="pk outlined">about</span> <span class="pk filled">us</span>
             </h2>
-            <p><strong>Fotograma Studio</strong> is a Roblox-native animation and content studio based in British Columbia, Canada.</p>
-            <p>Fotograma means <em>frame</em> in Spanish — and just like how frames are all the individual pieces that put together a video, we provide you with all the pieces you need to build your presence in the Roblox metaverse.</p>
-            <p>Our focus is on 3D animation, social media, and visual storytelling. Whether it's Roblox game trailers, promotional content, or short-form content — come to us with your idea, and we will bring it to life.</p> <!-- PLACEHOLDER: Update this copy -->
+            <p><strong>Fotograma Studio</strong> is a full production house led by Francisco Garcia, based in British Columbia, Canada. With over five years of experience creating cinematic animations for Roblox, we bring premium visual storytelling to every project.</p>
+            <p>Fotograma means <em>frame</em> in Spanish. Just as frames are the building blocks of film, we provide the building blocks you need to stand out in the Roblox metaverse.</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         WHAT WE STAND FOR
+    ============================================================ -->
+    <section id="standfor">
+        <div class="standfor-head reveal">
+            <span class="section-eyebrow">how we work</span>
+            <h2>
+                <span class="pk outlined">our</span> <span class="pk filled">philosophy</span>
+            </h2>
+        </div>
+
+        <div class="standfor-grid">
+
+            <div class="standfor-card reveal">
+                <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-1.png" alt="" aria-hidden="true">
+                <h3>Craft</h3>
+                <p>Every project is treated like a film production. Cinematography, visual storytelling, and artistic direction are our main priorities. 100% human made art. Always.</p>
+            </div>
+
+            <div class="standfor-card reveal d1">
+                <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-2.png" alt="" aria-hidden="true">
+                <h3>Quality</h3>
+                <p>We hold ourselves to industry animation standards. Every deliverable is polished, intentional, and built with meticulous attention to detail.</p>
+            </div>
+
+            <div class="standfor-card reveal d2">
+                <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-3.png" alt="" aria-hidden="true">
+                <h3>Collaboration</h3>
+                <p>The best work comes from genuine collaboration and open creative dialogue. We always welcome diverse perspectives and fresh ideas to every project. Let your vision shape ours.</p>
+            </div>
+
         </div>
     </section>
 
@@ -1185,7 +1321,7 @@
         <video class="social-strip-video" autoplay muted loop playsinline src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-media.mp4"></video>
         <div class="social-strip-dark"></div>
         <div class="social-strip-label">
-            <p>elevate your social media</p>
+            <p>roblox deserves premium filmmaking</p>
         </div>
     </section>
 
@@ -1208,7 +1344,7 @@
                 <div class="svc-card-overlay"></div>
                 <div class="svc-card-line"></div>
                 <div class="svc-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
                         <line x1="16" y1="13" x2="8" y2="13"/>
@@ -1216,12 +1352,12 @@
                         <polyline points="10 9 9 9 8 9"/>
                     </svg>
                 </div>
-                <span class="svc-label">Pre-Production</span>
+                <span class="svc-label">pre-production</span>
                 <ul class="svc-list">
-                    <li>concept development</li>
-                    <li>script writing</li>
-                    <li>storyboarding</li>
-                    <li>asset planning</li>
+                    <li>Concept Development</li>
+                    <li>Script Writing</li>
+                    <li>Storyboarding</li>
+                    <li>Asset Planning</li>
                 </ul>
             </div>
 
@@ -1231,18 +1367,18 @@
                 <div class="svc-card-overlay"></div>
                 <div class="svc-card-line"></div>
                 <div class="svc-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 10-3-3z"/>
                         <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/>
                         <path d="M14.5 17.5L4.5 15"/>
                     </svg>
                 </div>
-                <span class="svc-label">Production</span>
+                <span class="svc-label">production</span>
                 <ul class="svc-list">
-                    <li>CGI & 3D animation</li>
-                    <li>motion graphics</li>
-                    <li>gameplay capture</li>
-                    <li>rendering</li>
+                    <li>CGI & 3D Animation</li>
+                    <li>Motion Graphics</li>
+                    <li>Gameplay Capture</li>
+                    <li>Rendering</li>
                 </ul>
             </div>
 
@@ -1252,16 +1388,16 @@
                 <div class="svc-card-overlay"></div>
                 <div class="svc-card-line"></div>
                 <div class="svc-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                     </svg>
                 </div>
-                <span class="svc-label">Post-Production</span>
+                <span class="svc-label">post-production</span>
                 <ul class="svc-list">
-                    <li>video editing</li>
-                    <li>compositing & color grading</li>
-                    <li>sound design & music composition</li>
-                    <li>dubbing</li>
+                    <li>Video Editing</li>
+                    <li>Compositing & Color Grading</li>
+                    <li>Sound Design & Music Composition</li>
+                    <li>Dubbing</li>
                 </ul>
             </div>
         </div>
@@ -1327,9 +1463,9 @@
     ============================================================ -->
     <section id="trusted">
         <div class="trusted-head reveal">
-            <span class="section-eyebrow">our clients</span>
+            <span class="section-eyebrow">featured by</span>
             <h2>
-                <span class="pk outlined">trusted by</span> <span class="pk filled">studios &amp; creators</span>
+                <span class="pk outlined">studios</span> <span class="pk filled">&amp; creators</span>
             </h2>
         </div>
 
@@ -1350,15 +1486,15 @@
             </div>
             <div class="client-item">
                 <div class="client-visual">
-                    <img src="assets/images/logos/vector3-logo.svg" alt="Vector3">
-                </div>
-                <span class="client-name">Vector3</span>
-            </div>
-            <div class="client-item">
-                <div class="client-visual">
                     <img src="assets/images/logos/mockbyrd-logo.svg" alt="Mockbyrd">
                 </div>
                 <span class="client-name">Mockbyrd</span>
+            </div>
+            <div class="client-item">
+                <div class="client-visual">
+                    <img src="assets/images/logos/vector3-logo.svg" alt="Vector3">
+                </div>
+                <span class="client-name">Vector3</span>
             </div>
             <div class="client-item">
                 <div class="client-visual">
@@ -1409,20 +1545,6 @@
                 <span class="client-name">Lumexx</span>
                 <span class="client-subs">1.2M+</span>
             </a>
-            <a href="https://www.youtube.com/@zaryee" class="client-item" target="_blank" rel="noopener">
-                <div class="client-visual circle">
-                    <img src="https://yt3.googleusercontent.com/f0DyjBYXon-zQW9F54e8hFm60VKv06VdFvz5AlR5daYuGSVFNGm-9vOXoWHHdnp_FauzELAu=s200-c-k-c0x00ffffff-no-rj" alt="Zaryee">
-                </div>
-                <span class="client-name">Zaryee</span>
-                <span class="client-subs">1.1M+</span>
-            </a>
-            <a href="https://www.youtube.com/@ukri-mc" class="client-item" target="_blank" rel="noopener">
-                <div class="client-visual circle">
-                    <img src="https://yt3.googleusercontent.com/m13C4AvYme5fTwef67EdK7eVWJqTkK0-pB6ztBKSUx-z0QFRil86nl8drkSSDUaesn2dCZKiNwg=s200-c-k-c0x00ffffff-no-rj" alt="Ukri">
-                </div>
-                <span class="client-name">Ukri</span>
-                <span class="client-subs">542K+</span>
-            </a>
             <a href="https://www.youtube.com/@sheismara" class="client-item" target="_blank" rel="noopener">
                 <div class="client-visual circle">
                     <img src="https://yt3.googleusercontent.com/NnjKENsUl0qWUXmMlG801mwO4xLBcUak3Bt_cKHDPG7Fnkht5W3r8XY4QjYHxEq-0lKsFdgtZjA=s200-c-k-c0x00ffffff-no-rj" alt="Mara">
@@ -1442,19 +1564,19 @@
         <div class="stats-row">
             <div class="stat reveal">
                 <span class="stat-num pk">
-                    <span class="filled">20</span><span class="outlined">+</span>
+                    <span class="filled">30</span><span class="outlined">+</span>
                 </span>
                 <span class="stat-lbl">projects completed</span>
             </div>
             <div class="stat reveal d1">
                 <span class="stat-num pk">
-                    <span class="filled">10</span><span class="outlined">+</span>
+                    <span class="filled">20</span><span class="outlined">+</span>
                 </span>
-                <span class="stat-lbl">happy clients</span>
+                <span class="stat-lbl">collaborations</span>
             </div>
             <div class="stat reveal d2">
                 <span class="stat-num pk">
-                    <span class="filled">18</span><span class="filled">M</span><span class="outlined">+</span>
+                    <span class="filled">20</span><span class="filled">M</span><span class="outlined">+</span>
                 </span>
                 <span class="stat-lbl">views across platforms</span>
             </div>
@@ -1467,8 +1589,9 @@
     ============================================================ -->
     <section id="testimonials">
         <div class="testimonials-head reveal">
+            <span class="section-eyebrow">testimonials</span>
             <h2>
-                <span class="pk outlined">client</span> <span class="pk filled">testimonials</span>
+                <span class="pk outlined">what our</span> <span class="pk filled">clients say</span>
             </h2>
         </div>
 
@@ -1482,6 +1605,14 @@
             </div>
 
             <div class="tcard reveal d1">
+                <p class="tcard-quote">Not only was Francisco's work phenomenal, his quick response, delivery time, and kindness make it really pleasant to work with him.</p>
+                <div class="tcard-author">
+                    <div class="tcard-name">Iraxxira</div>
+                    <div class="tcard-role">Game Developer</div>
+                </div>
+            </div>
+
+            <div class="tcard reveal d2">
                 <p class="tcard-quote">I am delighted with Francisco's work; he helped me find the perfect project plan that fit my budget.</p>
                 <div class="tcard-author">
                     <div class="tcard-name">Lovely Ela</div>
@@ -1575,7 +1706,7 @@
                     <span class="pk filled">contact</span>
                 </h2>
                 <p class="contact-body">
-                    Have a project in mind? Let's talk about it. Whether you've got a whole script or just a spark of an idea, let's chat about how we can make it happen.
+                    Have a project in mind? I'd love to hear about it. Whether you have a finished script ready for production or just the beginning of an idea, let's chat about how we can make it happen.
                 </p>
                 <div class="contact-divider"></div>
                 <a href="mailto:francisco@fotograma.ca" class="contact-email">
@@ -1750,6 +1881,46 @@
                 setWidth = computeSetWidth();
                 pos = wrap(pos); // re-clamp in case setWidth shrank
             });
+        })();
+        // ===== STATS COUNTER ANIMATION =====
+        (function() {
+            const statsSection = document.getElementById('stats');
+            if (!statsSection) return;
+
+            const counters = [
+                { selector: '.stat:nth-child(1) .stat-num', target: 30, render: n => `<span class="filled">${n}</span><span class="outlined">+</span>` },
+                { selector: '.stat:nth-child(2) .stat-num', target: 20, render: n => `<span class="filled">${n}</span><span class="outlined">+</span>` },
+                { selector: '.stat:nth-child(3) .stat-num', target: 20, render: n => `<span class="filled">${n}</span><span class="filled">M</span><span class="outlined">+</span>` }
+            ];
+
+            let fired = false;
+
+            function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+            function runCounters() {
+                const duration = 1600;
+                const start = performance.now();
+                counters.forEach(({ selector, target, render }) => {
+                    const el = statsSection.querySelector(selector);
+                    if (!el) return;
+                    function tick(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        el.innerHTML = render(Math.floor(easeOut(progress) * target));
+                        if (progress < 1) requestAnimationFrame(tick);
+                        else el.innerHTML = render(target);
+                    }
+                    requestAnimationFrame(tick);
+                });
+            }
+
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && !fired) {
+                    fired = true;
+                    runCounters();
+                }
+            }, { threshold: 0.4 });
+
+            observer.observe(statsSection);
         })();
     </script>
 
