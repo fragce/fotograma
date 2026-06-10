@@ -60,6 +60,7 @@
         #about      { background: var(--off-black); }
         #standfor   { background: var(--black); }
         #services   { background: var(--black); }
+        #featured   { background: var(--off-black); }
         #process    { background: var(--off-black); }
         #reel       { background: var(--black); }
         #trusted    { background: var(--off-black); }
@@ -206,21 +207,33 @@
            ABOUT US
         ============================================================ */
         #about {
-            padding: 140px 8vw;
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) 1fr;
-            gap: 4vw;
-            align-items: center;
+            padding: 170px 6vw;
         }
 
-        .about-text {
-            padding-top: 8px;
+        /* Centered Pagkaki header — same grammar as every other section */
+        .about-head {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .about-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(46px, 5.6vw, 78px);
+            line-height: 1.2;
+        }
+
+        /* Two-column body */
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(48px, 6vw, 100px);
+            align-items: start;
+            max-width: min(1600px, 92vw);
+            margin: 0 auto;
         }
 
         .about-image-wrap {
             position: relative;
         }
-
         .about-image-wrap img {
             width: 100%;
             aspect-ratio: 4 / 3;
@@ -229,43 +242,73 @@
             clip-path: polygon(0 0, 100% 0, 100% 92%, 94% 100%, 0 100%);
             background: #111;
         }
-
-        /* Decorative corner accent */
         .about-image-wrap::before {
             content: '';
             position: absolute;
             top: -12px; left: -12px;
-            width: 60px; height: 60px;
-            border-top: 1.5px solid rgba(255,255,255,0.35);
-            border-left: 1.5px solid rgba(255,255,255,0.35);
+            width: 56px; height: 56px;
+            border-top: 1px solid rgba(255,255,255,0.25);
+            border-left: 1px solid rgba(255,255,255,0.25);
             pointer-events: none;
         }
         .about-image-wrap::after {
             content: '';
             position: absolute;
             bottom: -12px; right: -12px;
-            width: 60px; height: 60px;
-            border-bottom: 1.5px solid rgba(255,255,255,0.35);
-            border-right: 1.5px solid rgba(255,255,255,0.35);
+            width: 56px; height: 56px;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+            border-right: 1px solid rgba(255,255,255,0.25);
             pointer-events: none;
         }
 
-        .about-text h2 {
+        /* Right column */
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* Big bold sans-serif statement — needs higher specificity than .about-text p */
+        .about-text .about-statement {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
-            margin-bottom: 36px;
+            font-size: clamp(44px, 5.2vw, 74px);
+            color: white;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 24px;
         }
 
         .about-text p {
             font-size: 18px;
             line-height: 1.75;
-            color: rgba(255,255,255,0.75);
-            margin-bottom: 22px;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 0;
         }
 
-        .about-text p:last-child { margin-bottom: 0; }
+        /* Definition — bottom of column, separated, footnote-style */
+        .about-definition {
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .about-def-word {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+        }
+        .about-def-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.45);
+            font-style: italic;
+            line-height: 1.6;
+            display: block;
+        }
 
-        .about-text strong { color: white; font-weight: 500; }
+        .about-text strong { color: white; font-weight: 600; }
 
 
         /* ============================================================
@@ -398,6 +441,7 @@
             font-family: 'Pagkaki', sans-serif;
             font-size: clamp(36px, 3.6vw, 54px);
             color: white;
+            text-transform: uppercase;
             margin-bottom: 28px;
             display: block;
             line-height: 1.1;
@@ -462,7 +506,7 @@
             transform: scale(1.1);
             box-shadow: 0 0 36px rgba(255,255,255,0.12);
         }
-        .reel-btn svg { width: 22px; height: 22px; fill: white; transform: translateX(2px); display: block; }
+        .reel-btn svg { width: 22px; height: 22px; fill: white; transform: translateX(3px); display: block; }
 
 
         /* ============================================================
@@ -1089,6 +1133,132 @@
 
 
         /* ============================================================
+           FEATURED PROJECT
+        ============================================================ */
+        #featured {
+            padding: 130px 52px;
+            text-align: center;
+        }
+
+        .featured-inner {
+            max-width: min(1100px, 96vw);
+            margin: 0 auto;
+        }
+
+        .featured-head {
+            margin-bottom: 16px;
+        }
+
+        .featured-head h2 {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(46px, 5.6vw, 78px);
+        }
+
+        .featured-title {
+            font-size: clamp(16px, 1.6vw, 22px);
+            font-weight: 400;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 52px;
+        }
+
+        .featured-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 28px;
+            margin-bottom: 48px;
+            text-align: left;
+        }
+
+        .fstat-label {
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gray);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .fstat-value {
+            font-size: 16px;
+            color: white;
+            font-weight: 500;
+            display: block;
+            line-height: 1.4;
+        }
+
+        .featured-video-wrap {
+            margin-bottom: 56px;
+        }
+
+        .featured-thumb {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .featured-thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-thumb:hover img { transform: scale(1.02); }
+
+        .featured-thumb-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .featured-thumb:hover .featured-thumb-overlay { background: rgba(0,0,0,0.45); }
+
+        .featured-play-btn {
+            width: 76px; height: 76px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .featured-thumb:hover .featured-play-btn {
+            transform: scale(1.1);
+            background: rgba(255,255,255,0.18);
+        }
+
+        .featured-play-btn svg { display: block; transform: translateX(3px); }
+
+        .featured-case {
+            padding-top: 24px;
+            text-align: center;
+        }
+
+        .featured-case .section-eyebrow {
+            display: none;
+        }
+
+        .featured-coming-soon {
+            font-size: 14px;
+            color: rgba(255,255,255,0.25);
+            font-style: italic;
+            letter-spacing: 0.06em;
+            display: block;
+        }
+
+
+        /* ============================================================
            MOBILE — TABLET (≤ 900px)
         ============================================================ */
         @media (max-width: 900px) {
@@ -1102,11 +1272,10 @@
             .hero-tagline { font-size: 11px; letter-spacing: 0.18em; }
 
             /* About Us */
-            #about {
-                grid-template-columns: 1fr;
-                gap: 48px;
-                padding: 80px 24px;
-            }
+            #about { padding: 80px 24px; }
+            .about-head { margin-bottom: 52px; }
+            .about-inner { grid-template-columns: 1fr; gap: 48px; }
+            .about-image-wrap::before, .about-image-wrap::after { display: none; }
 
             /* What We Stand For */
             #standfor { padding: 80px 20px; }
@@ -1134,6 +1303,9 @@
 
             #trusted { padding: 80px 24px; }
             .client-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; }
+
+            #featured { padding: 80px 24px; }
+            .featured-stats { grid-template-columns: 1fr 1fr; gap: 28px; }
 
             #testimonials { padding: 80px 24px; }
             .testimonials-grid { grid-template-columns: 1fr; }
@@ -1178,7 +1350,9 @@
 
             .hero-logo { width: 90vw; }
 
-            #about { padding: 64px 20px; gap: 36px; grid-template-columns: 1fr; }
+            #about { padding: 60px 20px; }
+            .about-head { margin-bottom: 40px; }
+            .about-inner { grid-template-columns: 1fr; gap: 36px; }
             .about-image-wrap::before, .about-image-wrap::after { display: none; }
 
             #social-strip { height: clamp(180px, 65vw, 340px); }
@@ -1264,18 +1438,30 @@
          ABOUT US
     ============================================================ -->
     <section id="about">
-        <div class="about-image-wrap reveal">
-            <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio — behind the scenes">
-        </div>
 
-        <div class="about-text reveal d1">
+        <div class="about-head reveal">
             <span class="section-eyebrow">who we are</span>
             <h2>
                 <span class="pk outlined">about</span> <span class="pk filled">us</span>
             </h2>
-            <p><strong>Fotograma Studio</strong> is a full production house led by Francisco Garcia, based in British Columbia, Canada. With over five years of experience creating cinematic animations for Roblox, we bring premium visual storytelling to every project.</p>
-            <p>Fotograma means <em>frame</em> in Spanish. Just as frames are the building blocks of film, we provide the building blocks you need to stand out in the Roblox metaverse.</p>
         </div>
+
+        <div class="about-inner">
+            <div class="about-image-wrap reveal">
+                <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio">
+            </div>
+
+            <div class="about-text reveal d1">
+                <p class="about-statement">A full production house for Roblox</p>
+                <p><strong>Fotograma Studio</strong>, founded by Francisco Garcia, is an animation and production house specializing in cinematic 3D content for Roblox. With over five years of experience, we bring film-level production quality, visual storytelling, and artistic direction to every project.</p>
+
+                <div class="about-definition">
+                    <span class="about-def-word">Fotograma</span>
+                    <span class="about-def-text">/ fo-to-ɣɾa-ma / n. — Spanish. A single frame of film.</span>
+                </div>
+            </div>
+        </div>
+
     </section>
 
 
@@ -1295,19 +1481,19 @@
             <div class="standfor-card reveal">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-1.png" alt="" aria-hidden="true">
                 <h3>Craft</h3>
-                <p>Every project is treated like a film production. Cinematography, visual storytelling, and artistic direction are our main priorities. 100% human made art. Always.</p>
+                <p>Every project is treated like a film production, because that's what it is. Cinematography, visual storytelling, and artistic direction are our main priorities. 100% human made art. Always.</p>
             </div>
 
             <div class="standfor-card reveal d1">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-2.png" alt="" aria-hidden="true">
                 <h3>Quality</h3>
-                <p>We hold ourselves to industry animation standards. Every deliverable is polished, intentional, and built with meticulous attention to detail.</p>
+                <p>We hold ourselves to the high standards of the animation industry. Every deliverable is polished, intentional, and built with meticulous attention to detail.</p>
             </div>
 
             <div class="standfor-card reveal d2">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-3.png" alt="" aria-hidden="true">
                 <h3>Collaboration</h3>
-                <p>The best work comes from genuine collaboration and open creative dialogue. We always welcome diverse perspectives and fresh ideas to every project. Let your vision shape ours.</p>
+                <p>We believe the best work comes from genuine collaboration and open creative dialogue. Communication is key to a great product, and we always welcome diverse perspectives and fresh ideas to every project.</p>
             </div>
 
         </div>
@@ -1357,7 +1543,7 @@
                     <li>Concept Development</li>
                     <li>Script Writing</li>
                     <li>Storyboarding</li>
-                    <li>Asset Planning</li>
+                    <li>Asset Planning & Preparation</li>
                 </ul>
             </div>
 
@@ -1378,7 +1564,7 @@
                     <li>CGI & 3D Animation</li>
                     <li>Motion Graphics</li>
                     <li>Gameplay Capture</li>
-                    <li>Rendering</li>
+                    <li>Rendering & Compositing</li>
                 </ul>
             </div>
 
@@ -1395,9 +1581,10 @@
                 <span class="svc-label">post-production</span>
                 <ul class="svc-list">
                     <li>Video Editing</li>
-                    <li>Compositing & Color Grading</li>
-                    <li>Sound Design & Music Composition</li>
+                    <li>Sound Design</li>
+                    <li>Music Composition</li>
                     <li>Dubbing</li>
+                    <li>Delivery & Distribution</li>
                 </ul>
             </div>
         </div>
@@ -1441,6 +1628,57 @@
     </section>
     </div>
     END PRODUCTION PIPELINE -->
+
+
+    <!-- ============================================================
+         FEATURED PROJECT
+    ============================================================ -->
+    <section id="featured">
+        <div class="featured-inner">
+
+            <div class="featured-head reveal">
+                <span class="section-eyebrow">spotlight</span>
+                <h2>
+                    <span class="pk outlined">featured</span> <span class="pk filled">project</span>
+                </h2>
+            </div>
+
+            <p class="featured-title reveal">Military Tower Defense Trailer</p>
+
+            <div class="featured-stats reveal">
+                <div class="fstat">
+                    <span class="fstat-label">Client</span>
+                    <span class="fstat-value">Simple Games Inc.</span>
+                </div>
+                <div class="fstat">
+                    <span class="fstat-label">Format</span>
+                    <span class="fstat-value">Animated Trailer · 2K · 24fps · 67s</span>
+                </div>
+                <div class="fstat">
+                    <span class="fstat-label">Year</span>
+                    <span class="fstat-value">2026</span>
+                </div>
+            </div>
+
+            <div class="featured-video-wrap reveal">
+                <div class="featured-thumb" id="mtd-play">
+                    <img src="assets/images/MTD_thumbnail.jpg" alt="Military Tower Defense Trailer">
+                    <div class="featured-thumb-overlay">
+                        <div class="featured-play-btn">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-case reveal">
+                <span class="featured-coming-soon">full case study coming soon</span>
+            </div>
+
+        </div>
+    </section>
 
 
     <!-- ============================================================
@@ -1572,7 +1810,7 @@
                 <span class="stat-num pk">
                     <span class="filled">20</span><span class="outlined">+</span>
                 </span>
-                <span class="stat-lbl">collaborations</span>
+                <span class="stat-lbl">happy clients</span>
             </div>
             <div class="stat reveal d2">
                 <span class="stat-num pk">
@@ -1706,7 +1944,7 @@
                     <span class="pk filled">contact</span>
                 </h2>
                 <p class="contact-body">
-                    Have a project in mind? I'd love to hear about it. Whether you have a finished script ready for production or just the beginning of an idea, let's chat about how we can make it happen.
+                    Have a project in mind? I'd love to hear about it! Whether you have a finished script ready for production or just the spark of an idea, let's chat about how we can make it happen.
                 </p>
                 <div class="contact-divider"></div>
                 <a href="mailto:francisco@fotograma.ca" class="contact-email">
@@ -1763,15 +2001,18 @@
 
     <script>
         // ===== VIMEO LIGHTBOX =====
-        const VIMEO_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+        const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+        const MTD_EMBED  = 'https://player.vimeo.com/video/1200142606?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+
         const lightbox    = document.getElementById('vimeo-lightbox');
         const vimeoIframe = document.getElementById('vimeo-iframe');
         const vimeoClose  = document.getElementById('vimeo-close');
         const vimeoOverlay = document.getElementById('vimeo-overlay');
         const reelSection = document.getElementById('reel');
+        const mtdPlay     = document.getElementById('mtd-play');
 
-        function openLightbox() {
-            vimeoIframe.src = VIMEO_EMBED;
+        function openLightbox(url) {
+            vimeoIframe.src = url;
             lightbox.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -1782,7 +2023,8 @@
             document.body.style.overflow = '';
         }
 
-        if (reelSection) reelSection.addEventListener('click', openLightbox);
+        if (reelSection) reelSection.addEventListener('click', () => openLightbox(REEL_EMBED));
+        if (mtdPlay)     mtdPlay.addEventListener('click',     () => openLightbox(MTD_EMBED));
         if (vimeoOverlay) vimeoOverlay.addEventListener('click', closeLightbox);
         if (vimeoClose)   vimeoClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
 
@@ -1923,6 +2165,7 @@
             observer.observe(statsSection);
         })();
     </script>
+
 
 </body>
 </html>
