@@ -1106,7 +1106,7 @@
             right: 0;
             height: 100%;
             width: auto;
-            opacity: 0.12;
+            opacity: 0.18;
             z-index: 0;
             pointer-events: none;
             user-select: none;
@@ -1263,10 +1263,13 @@
         ============================================================ */
         @media (max-width: 900px) {
 
-            #header { padding: 18px 24px; }
-            .hdr-nav { gap: 20px; }
-            .hdr-nav a { font-size: 11px; }
-            .hdr-socials { display: none; }
+            #header { display: none; }
+
+            /* Tighter line-height on all Pagkaki headings — too spaced on mobile */
+            h2, .about-statement, .services-heading,
+            .standfor-head h2, .featured-head h2,
+            .testimonials-head h2, .trusted-head h2,
+            .contact-heading { line-height: 1.05 !important; }
 
             .hero-logo { width: min(420px, 88vw); }
             .hero-tagline { font-size: 11px; letter-spacing: 0.18em; }
@@ -1282,7 +1285,7 @@
             .standfor-grid { grid-template-columns: 1fr; max-width: 100%; }
             .standfor-card { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 28px 64px; min-height: 360px; }
             .standfor-card:last-child { border-bottom: none; }
-            .standfor-bg-img { opacity: 0.09; }
+            .standfor-bg-img { opacity: 0.13; }
 
             /* Social strip — on mobile show center crop (3240/5400 = 60% of width) */
             #social-strip { height: clamp(200px, 56vw, 380px); }
@@ -1344,11 +1347,8 @@
         ============================================================ */
         @media (max-width: 540px) {
 
-            #header { padding: 16px 20px; }
-            .hdr-nav { display: none; }
-            .hdr-icon img { height: 30px; }
-
-            .hero-logo { width: 90vw; }
+            /* header already hidden via 900px rule */
+            .hero-logo img { width: 90vw; }
 
             #about { padding: 60px 20px; }
             .about-head { margin-bottom: 40px; }
@@ -1422,7 +1422,7 @@
          HERO
     ============================================================ -->
     <section id="hero">
-        <video class="hero-bg-video" autoplay muted loop playsinline src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-reel.mp4"></video>
+        <video class="hero-bg-video" autoplay muted loop playsinline poster="assets/images/fotograma-hero-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-reel.mp4"></video>
 
         <div class="hero-overlay"></div>
 
@@ -1504,10 +1504,10 @@
          SOCIAL MEDIA STRIP
     ============================================================ -->
     <section id="social-strip">
-        <video class="social-strip-video" autoplay muted loop playsinline src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-media.mp4"></video>
+        <video class="social-strip-video" autoplay muted loop playsinline poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4"></video>
         <div class="social-strip-dark"></div>
         <div class="social-strip-label">
-            <p>roblox deserves premium filmmaking</p>
+            <p>Roblox deserves premium filmmaking</p>
         </div>
     </section>
 
@@ -1584,7 +1584,6 @@
                     <li>Sound Design</li>
                     <li>Music Composition</li>
                     <li>Dubbing</li>
-                    <li>Delivery & Distribution</li>
                 </ul>
             </div>
         </div>
@@ -1661,15 +1660,14 @@
             </div>
 
             <div class="featured-video-wrap reveal">
-                <div class="featured-thumb" id="mtd-play">
-                    <img src="assets/images/MTD_thumbnail.jpg" alt="Military Tower Defense Trailer">
-                    <div class="featured-thumb-overlay">
-                        <div class="featured-play-btn">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </div>
-                    </div>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/5pVw5eUD3r0?origin=https://fotograma.ca"
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="Military Tower Defense Trailer">
+                    </iframe>
                 </div>
             </div>
 
@@ -1827,9 +1825,9 @@
     ============================================================ -->
     <section id="testimonials">
         <div class="testimonials-head reveal">
-            <span class="section-eyebrow">testimonials</span>
+            <span class="section-eyebrow">words from clients</span>
             <h2>
-                <span class="pk outlined">what our</span> <span class="pk filled">clients say</span>
+                <span class="pk filled">testimonials</span>
             </h2>
         </div>
 
@@ -1944,12 +1942,16 @@
                     <span class="pk filled">contact</span>
                 </h2>
                 <p class="contact-body">
-                    Have a project in mind? I'd love to hear about it! Whether you have a finished script ready for production or just the spark of an idea, let's chat about how we can make it happen.
+                    Have a project in mind? I'd love to hear about it!
+                </p>
+                <p class="contact-body" style="margin-top: -12px;">
+                    Whether you have a finished script ready for production or just the spark of an idea, let's chat about how we can make it happen.
                 </p>
                 <div class="contact-divider"></div>
                 <a href="mailto:francisco@fotograma.ca" class="contact-email">
                     francisco@fotograma.ca
                 </a>
+                <span style="display:block; font-size:12px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-top:10px; text-transform:uppercase;">Vancouver, Canada &nbsp;·&nbsp; UTC −7</span>
             </div>
 
             <div class="contact-founder-wrap reveal d1">
@@ -2000,16 +2002,30 @@
 
 
     <script>
-        // ===== VIMEO LIGHTBOX =====
-        const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
-        const MTD_EMBED  = 'https://player.vimeo.com/video/1200142606?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+        // ===== VIDEO AUTOPLAY RETRY =====
+        function retryAutoplay(video, maxMs) {
+            if (!video) return;
+            video.play().catch(() => {});
+            const iv = setInterval(() => {
+                if (video.paused) video.play().catch(() => {});
+                else clearInterval(iv);
+            }, 800);
+            setTimeout(() => clearInterval(iv), maxMs || 12000);
+        }
 
-        const lightbox    = document.getElementById('vimeo-lightbox');
-        const vimeoIframe = document.getElementById('vimeo-iframe');
-        const vimeoClose  = document.getElementById('vimeo-close');
+        const heroBgVideo    = document.querySelector('.hero-bg-video');
+        const socialBgVideo  = document.querySelector('.social-strip-video');
+        if (heroBgVideo)   { heroBgVideo.addEventListener('canplay', () => retryAutoplay(heroBgVideo, 10000));   retryAutoplay(heroBgVideo, 10000); }
+        if (socialBgVideo) { socialBgVideo.addEventListener('canplay', () => retryAutoplay(socialBgVideo, 10000)); retryAutoplay(socialBgVideo, 10000); }
+
+        // ===== VIMEO LIGHTBOX (reel only) =====
+        const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+
+        const lightbox     = document.getElementById('vimeo-lightbox');
+        const vimeoIframe  = document.getElementById('vimeo-iframe');
+        const vimeoClose   = document.getElementById('vimeo-close');
         const vimeoOverlay = document.getElementById('vimeo-overlay');
-        const reelSection = document.getElementById('reel');
-        const mtdPlay     = document.getElementById('mtd-play');
+        const reelSection  = document.getElementById('reel');
 
         function openLightbox(url) {
             vimeoIframe.src = url;
@@ -2023,14 +2039,11 @@
             document.body.style.overflow = '';
         }
 
-        if (reelSection) reelSection.addEventListener('click', () => openLightbox(REEL_EMBED));
-        if (mtdPlay)     mtdPlay.addEventListener('click',     () => openLightbox(MTD_EMBED));
+        if (reelSection)  reelSection.addEventListener('click', () => openLightbox(REEL_EMBED));
         if (vimeoOverlay) vimeoOverlay.addEventListener('click', closeLightbox);
         if (vimeoClose)   vimeoClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
         // ===== STICKY HEADER =====
         const hdr = document.getElementById('header');
