@@ -327,8 +327,14 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            /* Center the video — on mobile the sides will be cropped naturally */
             object-position: center center;
+        }
+
+        /* Compressed 1080p version has baked-in black bars (199px each).
+           Scale up by 1080/683 ≈ 1.58 from center to push bars out of frame. */
+        .social-strip-video.compressed {
+            transform: scale(1.58);
+            transform-origin: center center;
         }
 
         .social-strip-dark {
@@ -1507,7 +1513,7 @@
         <video class="social-strip-video" autoplay muted loop playsinline poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4"></video>
         <div class="social-strip-dark"></div>
         <div class="social-strip-label">
-            <p>Roblox deserves premium filmmaking</p>
+            <p>Roblox deserves cinematic quality</p>
         </div>
     </section>
 
@@ -1661,11 +1667,10 @@
 
             <div class="featured-video-wrap reveal">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-                    <iframe src="https://www.youtube-nocookie.com/embed/5pVw5eUD3r0?origin=https://fotograma.ca"
+                    <iframe src="https://www.youtube.com/embed/5pVw5eUD3r0"
                             style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen
-                            referrerpolicy="strict-origin-when-cross-origin"
                             title="Military Tower Defense Trailer">
                     </iframe>
                 </div>
@@ -2013,10 +2018,44 @@
             setTimeout(() => clearInterval(iv), maxMs || 12000);
         }
 
-        const heroBgVideo    = document.querySelector('.hero-bg-video');
-        const socialBgVideo  = document.querySelector('.social-strip-video');
-        if (heroBgVideo)   { heroBgVideo.addEventListener('canplay', () => retryAutoplay(heroBgVideo, 10000));   retryAutoplay(heroBgVideo, 10000); }
-        if (socialBgVideo) { socialBgVideo.addEventListener('canplay', () => retryAutoplay(socialBgVideo, 10000)); retryAutoplay(socialBgVideo, 10000); }
+        const heroBgVideo   = document.querySelector('.hero-bg-video');
+        const socialVideo   = document.querySelector('.social-strip-video');
+
+        // Hero — simple retry
+        if (heroBgVideo) {
+            heroBgVideo.addEventListener('canplay', () => retryAutoplay(heroBgVideo, 10000));
+            retryAutoplay(heroBgVideo, 10000);
+        }
+
+        // Social strip — adaptive: connection check + error fallback → compressed version
+        if (socialVideo) {
+            const FULL_SRC       = 'https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4';
+            const COMPRESSED_SRC = 'https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip-compressed.mp4';
+
+            function loadCompressed() {
+                if (socialVideo.src.includes('compressed')) return; // already on compressed
+                socialVideo.src = COMPRESSED_SRC;
+                socialVideo.classList.add('compressed');
+                socialVideo.load();
+                retryAutoplay(socialVideo, 10000);
+            }
+
+            // Check connection speed (not available on iOS Safari — falls back gracefully)
+            const conn   = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const isSlow = conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType));
+            const isMobileViewport = window.innerWidth < 900;
+
+            if (isSlow || isMobileViewport) {
+                // Load compressed immediately on slow/mobile
+                loadCompressed();
+            } else {
+                // Full quality first — fall back on error or stall after 7s
+                let stallTimer = setTimeout(loadCompressed, 7000);
+                socialVideo.addEventListener('playing', () => clearTimeout(stallTimer), { once: true });
+                socialVideo.addEventListener('error',   loadCompressed, { once: true });
+                retryAutoplay(socialVideo, 10000);
+            }
+        }
 
         // ===== VIMEO LIGHTBOX (reel only) =====
         const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
