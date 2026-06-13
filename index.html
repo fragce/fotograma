@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotograma Studio | Roblox Cinematic Productions</title>
-    <meta name="description" content="Fotograma Studio is a Roblox-native animation and content studio based in British Columbia, Canada. Game trailers, social media content, and full production services.">
+    <meta name="description" content="Fotograma Studio is a Roblox animation and production house specializing in cinematic 3D visuals. Game trailers, branded campaigns, and full production services.">
     <meta name="keywords" content="Roblox animation, game trailer, 3D animation, Roblox cinematic, Roblox studio, game marketing, Fotograma Studio">
     <link rel="icon" href="assets/images/logos/F_Icon.svg" type="image/svg+xml">
 
@@ -61,13 +61,11 @@
         #standfor   { background: var(--black); }
         #services   { background: var(--black); }
         #featured   { background: var(--off-black); }
-        #process    { background: var(--off-black); }
         #reel       { background: var(--black); }
         #trusted    { background: var(--off-black); }
         #stats      { background: var(--black); }
         #testimonials { background: var(--off-black); }
         #filmstrip  { background: var(--black); }
-        #bts        { background: var(--black); }
         #contact    { background: var(--black); }
 
         footer      { background: var(--off-black); }
@@ -81,10 +79,7 @@
         .reveal.d3 { transition-delay: 0.3s; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
-
-        /* ============================================================
-           HEADER
-        ============================================================ */
+        /* HEADER */
         #header {
             position: fixed; top: 0; left: 0; width: 100%;
             z-index: 1000;
@@ -151,10 +146,7 @@
             background: rgba(255,255,255,0.12);
         }
 
-
-        /* ============================================================
-           HERO
-        ============================================================ */
+        /* HERO */
         #hero {
             position: relative;
             width: 100%; height: 100vh;
@@ -232,7 +224,6 @@
 
         .hero-cta-btn:hover {
             background: rgba(255,255,255,0.08);
-            border-color: white;
         }
 
         .scroll-hint {
@@ -258,10 +249,7 @@
             100% { transform: scaleY(1); opacity: 0; }
         }
 
-
-        /* ============================================================
-           ABOUT US
-        ============================================================ */
+        /* ABOUT US */
         #about {
             padding: 170px 6vw;
         }
@@ -358,13 +346,6 @@
             pointer-events: none;
         }
 
-        /* Right column */
-        .about-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
         /* Big bold sans-serif statement — needs higher specificity than .about-text p */
         .about-text .about-statement {
             font-family: 'Pagkaki', sans-serif;
@@ -407,7 +388,6 @@
 
         .about-text strong { color: white; font-weight: 600; }
 
-
         .services-tagline {
             text-align: center;
             font-size: 16px;
@@ -417,9 +397,7 @@
             padding: 48px 8vw 0;
         }
 
-        /* ============================================================
-           SOCIAL MEDIA STRIP — single ultrawide video
-        ============================================================ */
+        /* SOCIAL MEDIA STRIP — single ultrawide video */
         #social-strip {
             position: relative;
             width: 100%;
@@ -467,10 +445,7 @@
             white-space: nowrap;
         }
 
-
-        /* ============================================================
-           FULL PRODUCTION SERVICES
-        ============================================================ */
+        /* FULL PRODUCTION SERVICES */
         #services {
             padding: 130px 40px;
             text-align: center;
@@ -567,10 +542,7 @@
             letter-spacing: 0.02em; line-height: 1.75;
         }
 
-
-        /* ============================================================
-           WATCH THE REEL
-        ============================================================ */
+        /* WATCH THE REEL */
         #reel {
             position: relative;
             width: 100%; height: 62vh; min-height: 380px;
@@ -591,7 +563,6 @@
         }
         #reel:hover .reel-overlay { background: rgba(0,0,0,0.58); }
 
-        /* PLACEHOLDER: replace href with your Vimeo URL */
         .reel-cta {
             position: absolute; inset: 0; z-index: 2;
             display: flex; flex-direction: column;
@@ -620,10 +591,7 @@
         }
         .reel-btn svg { width: 22px; height: 22px; fill: white; transform: translateX(3px); display: block; }
 
-
-        /* ============================================================
-           STATS
-        ============================================================ */
+        /* STATS */
         #stats {
             padding: 130px 52px;
             border-top: 1px solid var(--border);
@@ -656,20 +624,7 @@
             text-transform: uppercase; color: var(--gray);
         }
 
-
-        /* ============================================================
-           TRUSTED BY
-        ============================================================ */
-        #trusted {
-            padding: 110px 52px;
-        }
-
-        .trusted-head {
-            text-align: center; margin-bottom: 70px;
-        }
-        /* ============================================================
-           TRUSTED BY — unified client grid
-        ============================================================ */
+        /* trusted by */
         #trusted {
             padding: 110px 52px;
         }
@@ -738,10 +693,7 @@
             margin-top: -6px;
         }
 
-
-        /* ============================================================
-           VIMEO LIGHTBOX
-        ============================================================ */
+        /* VIMEO LIGHTBOX */
         #vimeo-lightbox {
             position: fixed; inset: 0;
             z-index: 9999;
@@ -838,128 +790,7 @@
             letter-spacing: 0.04em;
         }
 
-
-        /* ============================================================
-           PRODUCTION PIPELINE — horizontal timeline
-        ============================================================ */
-        #process {
-            padding: 130px 52px;
-        }
-
-        .process-head {
-            text-align: center; margin-bottom: 80px;
-        }
-        .process-head h2 {
-            font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
-        }
-
-        .pipeline {
-            max-width: min(1400px, 96vw);
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* Horizontal connecting line */
-        .pipeline-track {
-            position: absolute;
-            top: 28px;
-            left: calc(12.5%);
-            right: calc(12.5%);
-            height: 1px;
-            background: rgba(255,255,255,0.15);
-            z-index: 0;
-        }
-
-        .pipeline-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            position: relative;
-            z-index: 1;
-        }
-
-        .pipe-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0 28px;
-        }
-
-        .pipe-dot {
-            width: 56px; height: 56px;
-            border: 1px solid rgba(255,255,255,0.35);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--black);
-            margin-bottom: 36px;
-            flex-shrink: 0;
-            font-family: 'Pagkaki', sans-serif;
-            font-size: 20px;
-            color: rgba(255,255,255,0.7);
-            transition: border-color 0.3s, color 0.3s;
-        }
-        .pipe-step:hover .pipe-dot {
-            border-color: rgba(255,255,255,0.7);
-            color: white;
-        }
-
-        .pipe-title {
-            font-size: 13px; letter-spacing: 0.18em;
-            text-transform: uppercase; margin-bottom: 16px;
-            color: white;
-        }
-
-        .pipe-desc {
-            font-size: 18px; line-height: 1.75;
-            color: rgba(255,255,255,0.45);
-        }
-
-
-        /* ============================================================
-           CASE STUDY / BEHIND THE SCENES
-        ============================================================ */
-        #bts {
-            padding: 130px 52px;
-        }
-
-        .bts-head {
-            text-align: center; margin-bottom: 64px;
-        }
-        .bts-head h2 {
-            font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
-        }
-
-        .bts-frame {
-            max-width: 1000px; margin: 0 auto;
-            position: relative;
-            /* Diagonal frame effect */
-            clip-path: polygon(0 2%, 100% 0%, 100% 98%, 0% 100%);
-        }
-
-        .bts-frame video,
-        .bts-frame iframe,
-        .bts-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            display: block;
-            background: #111;
-            border: none;
-        }
-
-        .bts-placeholder {
-            display: flex; align-items: center; justify-content: center;
-        }
-        .bts-placeholder span {
-            font-size: 11px; letter-spacing: 0.22em;
-            text-transform: uppercase; color: rgba(255,255,255,0.18);
-        }
-
-
-        /* ============================================================
-           CONTACT
-        ============================================================ */
+        /* CONTACT */
         #contact {
             padding: 160px 52px;
         }
@@ -972,8 +803,6 @@
             max-width: min(1300px, 96vw);
             margin: 0 auto;
         }
-
-        .contact-text {}
 
         .contact-eyebrow {
             font-size: 13px; letter-spacing: 0.22em;
@@ -1060,10 +889,7 @@
             margin-top: 4px; letter-spacing: 0.05em;
         }
 
-
-        /* ============================================================
-           FOOTER
-        ============================================================ */
+        /* FOOTER */
         footer {
             padding: 36px 52px;
             border-top: 1px solid var(--border);
@@ -1083,10 +909,7 @@
         .footer-socials a:hover { opacity: 1; }
         .footer-socials svg { width: 17px; height: 17px; fill: white; }
 
-
-        /* ============================================================
-           FILMSTRIP GALLERY
-        ============================================================ */
+        /* FILMSTRIP GALLERY */
         #filmstrip {
             padding: 0;
             overflow: hidden;
@@ -1154,10 +977,7 @@
             box-shadow: inset 0 0 50px rgba(255,255,255,0.07);
         }
 
-
-        /* ============================================================
-           WHAT WE STAND FOR
-        ============================================================ */
+        /* WHAT WE STAND FOR */
         #standfor {
             padding: 110px 52px;
             overflow: hidden;
@@ -1243,10 +1063,7 @@
             max-width: 220px;
         }
 
-
-        /* ============================================================
-           FEATURED PROJECT
-        ============================================================ */
+        /* FEATURED PROJECT */
         #featured {
             padding: 130px 52px;
             text-align: center;
@@ -1305,60 +1122,9 @@
             margin-bottom: 56px;
         }
 
-        .featured-thumb {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .featured-thumb img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .featured-thumb:hover img { transform: scale(1.02); }
-
-        .featured-thumb-overlay {
-            position: absolute; inset: 0;
-            background: rgba(0,0,0,0.28);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .featured-thumb:hover .featured-thumb-overlay { background: rgba(0,0,0,0.45); }
-
-        .featured-play-btn {
-            width: 76px; height: 76px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.85);
-            background: rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s, background 0.3s;
-            backdrop-filter: blur(4px);
-        }
-
-        .featured-thumb:hover .featured-play-btn {
-            transform: scale(1.1);
-            background: rgba(255,255,255,0.18);
-        }
-
-        .featured-play-btn svg { display: block; transform: translateX(3px); }
-
         .featured-case {
             padding-top: 24px;
             text-align: center;
-        }
-
-        .featured-case .section-eyebrow {
-            display: none;
         }
 
         .featured-coming-soon {
@@ -1369,10 +1135,7 @@
             display: block;
         }
 
-
-        /* ============================================================
-           MOBILE — TABLET (≤ 900px)
-        ============================================================ */
+        /* MOBILE — TABLET (≤ 900px) */
         @media (max-width: 900px) {
 
             #header { display: none; }
@@ -1401,7 +1164,7 @@
 
             /* Social strip — on mobile show center crop (3240/5400 = 60% of width) */
             #social-strip { height: clamp(200px, 56vw, 380px); }
-            .social-strip-video { object-position: center center; }
+            .social-strip-video { object-position: center; }
 
             #services { padding: 80px 0; }
             .services-heading { margin-bottom: 52px; padding: 0 24px; }
@@ -1429,22 +1192,6 @@
 
             .film-img { width: 440px; height: 248px; }
 
-            #process { padding: 80px 24px; }
-            .pipeline-track { display: none; }
-            .pipeline-steps { grid-template-columns: 1fr; gap: 52px; }
-            .pipe-step {
-                align-items: center;
-                text-align: center;
-                flex-direction: column;
-                gap: 0;
-                padding: 0 16px;
-            }
-            .pipe-dot { margin-bottom: 20px; }
-            .pipe-title { margin-bottom: 12px; }
-
-            #bts { padding: 80px 24px; }
-            .bts-frame { clip-path: none; }
-
             #contact { padding: 100px 24px; }
             .contact-inner { grid-template-columns: 1fr; gap: 52px; }
             .contact-founder-wrap { max-width: 260px; margin: 0; }
@@ -1453,10 +1200,7 @@
             footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
         }
 
-
-        /* ============================================================
-           MOBILE — PHONE (≤ 540px)
-        ============================================================ */
+        /* MOBILE — PHONE (≤ 540px) */
         @media (max-width: 540px) {
 
             /* header already hidden via 900px rule */
@@ -1475,9 +1219,6 @@
 
             .stat-num { font-size: clamp(48px, 14vw, 80px); }
 
-            .process-steps { grid-template-columns: 1fr; }
-            .pstep { border-right: none !important; }
-
             .contact-email { font-size: clamp(18px, 6.5vw, 38px); word-break: break-all; }
 
             #testimonials { padding: 64px 20px; }
@@ -1494,10 +1235,7 @@
 </head>
 <body>
 
-
-    <!-- ============================================================
-         HEADER
-    ============================================================ -->
+    <!-- HEADER -->
     <header id="header">
         <nav class="hdr-nav">
             <a href="#about">about</a>
@@ -1532,12 +1270,9 @@
         </div>
     </header>
 
-
-    <!-- ============================================================
-         HERO
-    ============================================================ -->
+    <!-- HERO -->
     <section id="hero">
-        <video class="hero-bg-video" autoplay muted loop playsinline poster="assets/images/fotograma-hero-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-reel.mp4"></video>
+        <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-hero-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-reel.mp4"></video>
 
         <div class="hero-overlay"></div>
 
@@ -1553,10 +1288,7 @@
 
     </section>
 
-
-    <!-- ============================================================
-         ABOUT US
-    ============================================================ -->
+    <!-- ABOUT US -->
     <section id="about">
 
         <div class="about-head reveal">
@@ -1591,10 +1323,7 @@
 
     </section>
 
-
-    <!-- ============================================================
-         WHAT WE STAND FOR
-    ============================================================ -->
+    <!-- WHAT WE STAND FOR -->
     <section id="standfor">
         <div class="standfor-head reveal">
             <span class="section-eyebrow">how we work</span>
@@ -1626,22 +1355,16 @@
         </div>
     </section>
 
-
-    <!-- ============================================================
-         SOCIAL MEDIA STRIP
-    ============================================================ -->
+    <!-- SOCIAL MEDIA STRIP -->
     <section id="social-strip">
-        <video class="social-strip-video" autoplay muted loop playsinline poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4"></video>
+        <video class="social-strip-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4"></video>
         <div class="social-strip-dark"></div>
         <div class="social-strip-label">
             <p>Roblox deserves cinematic quality.</p>
         </div>
     </section>
 
-
-    <!-- ============================================================
-         FULL PRODUCTION SERVICES
-    ============================================================ -->
+    <!-- FULL PRODUCTION SERVICES -->
     <section id="services">
         <div class="reveal">
             <span class="section-eyebrow">what we offer</span>
@@ -1719,49 +1442,7 @@
 
     </section>
 
-
-    <!-- PRODUCTION PIPELINE — temporarily hidden, uncomment when ready
-    <div style="display:none">
-    <section id="process">
-        <div class="process-head reveal">
-            <span class="section-eyebrow">the pipeline</span>
-            <h2>
-                <span class="pk outlined">production</span> <span class="pk filled">pipeline</span>
-            </h2>
-        </div>
-        <div class="pipeline reveal">
-            <div class="pipeline-track"></div>
-            <div class="pipeline-steps">
-                <div class="pipe-step">
-                    <div class="pipe-dot">1</div>
-                    <div class="pipe-title">Get in Touch</div>
-                    <p class="pipe-desc">Reach out with your idea or vision — whether it's fully formed or just a spark. Don't worry if you don't have it all figured out yet. We'll workshop the concept together and make sure we're aligned before anything begins.</p>
-                </div>
-                <div class="pipe-step">
-                    <div class="pipe-dot">2</div>
-                    <div class="pipe-title">Production Plan</div>
-                    <p class="pipe-desc">Once the concept is locked in, we design a custom production timeline built around your project. You'll receive a quote, a clear scope, and a plan — so there are no surprises along the way.</p>
-                </div>
-                <div class="pipe-step">
-                    <div class="pipe-dot">3</div>
-                    <div class="pipe-title">We Create</div>
-                    <p class="pipe-desc">Our team gets to work bringing your vision to life. We work closely with you throughout the entire production, sharing regular updates every step of the way so you're always in the loop.</p>
-                </div>
-                <div class="pipe-step">
-                    <div class="pipe-dot">4</div>
-                    <div class="pipe-title">Final Delivery</div>
-                    <p class="pipe-desc">Your project is delivered broadcast-ready. Final files, promotional assets, and graphic materials — everything polished and ready to launch on your platform of choice.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    </div>
-    END PRODUCTION PIPELINE -->
-
-
-    <!-- ============================================================
-         FEATURED PROJECT
-    ============================================================ -->
+    <!-- FEATURED PROJECT -->
     <section id="featured">
         <div class="featured-inner">
 
@@ -1807,12 +1488,9 @@
         </div>
     </section>
 
-
-    <!-- ============================================================
-         WATCH THE REEL
-    ============================================================ -->
+    <!-- WATCH THE REEL -->
     <section id="reel">
-        <video class="reel-bg-video" autoplay muted loop playsinline src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-reel.mp4"></video>
+        <video class="reel-bg-video" autoplay muted loop playsinline preload="auto" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-reel.mp4"></video>
         <div class="reel-overlay"></div>
         <div class="reel-cta">
             <span class="reel-text">watch the reel</span>
@@ -1822,10 +1500,7 @@
         </div>
     </section>
 
-
-    <!-- ============================================================
-         TRUSTED BY
-    ============================================================ -->
+    <!-- TRUSTED BY -->
     <section id="trusted">
         <div class="trusted-head reveal">
             <span class="section-eyebrow">worked with</span>
@@ -1843,7 +1518,7 @@
                 </div>
                 <span class="client-name">Zag Gaming</span>
             </div>
-            <div class="client-item"> <!-- PLACEHOLDER: Wrap in <a href="URL"> when ready -->
+            <div class="client-item">
                 <div class="client-visual">
                     <img src="assets/images/logos/simple-games-logo.svg" alt="Simple Games">
                 </div>
@@ -1921,10 +1596,7 @@
         </div>
     </section>
 
-
-    <!-- ============================================================
-         STATS
-    ============================================================ -->
+    <!-- STATS -->
     <section id="stats">
         <div class="stats-row">
             <div class="stat reveal">
@@ -1948,10 +1620,7 @@
         </div>
     </section>
 
-
-    <!-- ============================================================
-         TESTIMONIALS
-    ============================================================ -->
+    <!-- TESTIMONIALS -->
     <section id="testimonials">
         <div class="testimonials-head reveal">
             <span class="section-eyebrow">words from clients</span>
@@ -1987,10 +1656,7 @@
         </div>
     </section>
 
-
-    <!-- ============================================================
-         FILMSTRIP GALLERY
-    ============================================================ -->
+    <!-- FILMSTRIP GALLERY -->
     <section id="filmstrip">
         <div class="filmstrip-viewport">
             <div class="filmstrip-track" id="filmstripTrack">
@@ -2040,29 +1706,7 @@
         </div>
     </section>
 
-
-    <!-- BEHIND THE SCENES — temporarily hidden, uncomment when ready
-    <div style="display:none">
-    <section id="bts">
-        <div class="bts-head reveal">
-            <span class="section-eyebrow">behind the scenes</span>
-            <h2>
-                <span class="pk outlined">see how we</span> <span class="pk filled">work</span>
-            </h2>
-        </div>
-        <div class="bts-frame reveal">
-            <div class="bts-placeholder">
-                <span>behind the scenes - coming soon</span>
-            </div>
-        </div>
-    </section>
-    </div>
-    END BEHIND THE SCENES -->
-
-
-    <!-- ============================================================
-         CONTACT
-    ============================================================ -->
+    <!-- CONTACT -->
     <section id="contact">
         <div class="contact-inner">
             <div class="contact-text reveal">
@@ -2081,18 +1725,14 @@
             </div>
 
             <div class="contact-founder-wrap reveal d1">
-                <!-- PLACEHOLDER: name this file fotograma-founder.jpg and put it in assets/images/ -->
                 <img src="assets/images/fotograma-founder.jpg" alt="Francisco Garcia — Founder, Fotograma Studio">
-                <div class="contact-founder-name">Francisco Garcia</div> <!-- PLACEHOLDER: Update if needed -->
-                <div class="contact-founder-role">Founder & Creative Director, Fotograma Studio</div> <!-- PLACEHOLDER -->
+                <div class="contact-founder-name">Francisco Garcia</div>
+                <div class="contact-founder-role">Founder & Creative Director, Fotograma Studio</div>
             </div>
         </div>
     </section>
 
-
-    <!-- ============================================================
-         VIMEO LIGHTBOX
-    ============================================================ -->
+    <!-- VIMEO LIGHTBOX -->
     <div id="vimeo-lightbox">
         <div id="vimeo-overlay"></div>
         <div id="vimeo-container">
@@ -2103,10 +1743,7 @@
         </div>
     </div>
 
-
-    <!-- ============================================================
-         FOOTER
-    ============================================================ -->
+    <!-- FOOTER -->
     <footer>
         <span class="footer-copy">© 2026 Fotograma Studio. All rights reserved. &nbsp;·&nbsp; Vancouver, Canada &nbsp;·&nbsp; <a href="mailto:francisco@fotograma.ca" style="color:inherit;opacity:0.6;text-decoration:none;">francisco@fotograma.ca</a></span>
 
@@ -2126,59 +1763,82 @@
         </div>
     </footer>
 
-
     <script>
-        // ===== VIDEO AUTOPLAY RETRY =====
-        function retryAutoplay(video, maxMs) {
+        // VIDEO AUTOPLAY
+        // Event-driven approach — much more reliable than interval hammering on mobile.
+        // iOS Safari requires a user gesture before play() works, so we hook into
+        // touchstart and scroll (the most common first gestures) to unlock it.
+        function setupVideo(video) {
             if (!video) return;
-            video.play().catch(() => {});
-            const iv = setInterval(() => {
+
+            // Ensure attributes are set programmatically too — some mobile browsers
+            // don't reliably pick them up from HTML alone
+            video.muted = true;
+            video.playsInline = true;
+
+            function tryPlay() {
                 if (video.paused) video.play().catch(() => {});
-                else clearInterval(iv);
-            }, 800);
-            setTimeout(() => clearInterval(iv), maxMs || 12000);
+            }
+
+            // 1. Try as soon as there's enough data
+            video.addEventListener('canplay', tryPlay, { passive: true });
+
+            // 2. First user gesture unlocks iOS autoplay — touchstart and scroll
+            //    cover basically every real-world first interaction
+            ['touchstart', 'scroll', 'click'].forEach(evt => {
+                document.addEventListener(evt, tryPlay, { passive: true, once: true });
+            });
+
+            // 3. Retry when user returns to the tab/app
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) tryPlay();
+            });
+
+            // 4. Play when in viewport, pause when scrolled away
+            //    Browsers are less aggressive about killing paused-offscreen videos
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) tryPlay();
+                else video.pause();
+            }, { threshold: 0.1 });
+            observer.observe(video);
+
+            // Initial attempt
+            tryPlay();
         }
 
-        const heroBgVideo   = document.querySelector('.hero-bg-video');
-        const socialVideo   = document.querySelector('.social-strip-video');
+        const heroBgVideo  = document.querySelector('.hero-bg-video');
+        const socialVideo  = document.querySelector('.social-strip-video');
 
-        // Hero — simple retry
-        if (heroBgVideo) {
-            heroBgVideo.addEventListener('canplay', () => retryAutoplay(heroBgVideo, 10000));
-            retryAutoplay(heroBgVideo, 10000);
-        }
+        setupVideo(heroBgVideo);
 
-        // Social strip — adaptive: connection check + error fallback → compressed version
+        // Social strip — adaptive quality: compressed on mobile/slow connection,
+        // full quality on desktop with error fallback
         if (socialVideo) {
             const FULL_SRC       = 'https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4';
             const COMPRESSED_SRC = 'https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip-compressed.mp4';
 
             function loadCompressed() {
-                if (socialVideo.src.includes('compressed')) return; // already on compressed
+                if (socialVideo.src.includes('compressed')) return;
                 socialVideo.src = COMPRESSED_SRC;
                 socialVideo.classList.add('compressed');
                 socialVideo.load();
-                retryAutoplay(socialVideo, 10000);
+                setupVideo(socialVideo);
             }
 
-            // Check connection speed (not available on iOS Safari — falls back gracefully)
-            const conn   = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
             const isSlow = conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType));
-            const isMobileViewport = window.innerWidth < 900;
 
-            if (isSlow || isMobileViewport) {
-                // Load compressed immediately on slow/mobile
+            if (isSlow || window.innerWidth < 900) {
                 loadCompressed();
             } else {
-                // Full quality first — fall back on error or stall after 7s
-                let stallTimer = setTimeout(loadCompressed, 7000);
+                const stallTimer = setTimeout(loadCompressed, 7000);
                 socialVideo.addEventListener('playing', () => clearTimeout(stallTimer), { once: true });
-                socialVideo.addEventListener('error',   loadCompressed, { once: true });
-                retryAutoplay(socialVideo, 10000);
+                socialVideo.addEventListener('error', loadCompressed, { once: true });
+                setupVideo(socialVideo);
             }
         }
 
-        // ===== VIMEO LIGHTBOX (reel only) =====
+        // VIMEO LIGHTBOX (reel only)
         const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
 
         const lightbox     = document.getElementById('vimeo-lightbox');
@@ -2205,13 +1865,13 @@
 
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-        // ===== STICKY HEADER =====
+        // STICKY HEADER
         const hdr = document.getElementById('header');
         window.addEventListener('scroll', () => {
             hdr.classList.toggle('scrolled', window.scrollY > 60);
         }, { passive: true });
 
-        // ===== SCROLL REVEAL =====
+        // SCROLL REVEAL
         const revealEls = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver(entries => {
             entries.forEach(e => {
@@ -2223,7 +1883,7 @@
         }, { threshold: 0.12 });
 
         revealEls.forEach(el => revealObserver.observe(el));
-        // ===== FILMSTRIP — infinite scroll + drag + wheel =====
+        // FILMSTRIP — infinite scroll + drag + wheel
         (function () {
             const viewport = document.querySelector('.filmstrip-viewport');
             const track    = document.getElementById('filmstripTrack');
@@ -2297,7 +1957,7 @@
                 pos = wrap(pos); // re-clamp in case setWidth shrank
             });
         })();
-        // ===== STATS COUNTER ANIMATION =====
+        // STATS COUNTER ANIMATION
         (function() {
             const statsSection = document.getElementById('stats');
             if (!statsSection) return;
@@ -2338,7 +1998,6 @@
             observer.observe(statsSection);
         })();
     </script>
-
 
 </body>
 </html>
