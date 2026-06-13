@@ -125,11 +125,31 @@
         .hdr-socials {
             display: flex; gap: 20px; align-items: center;
         }
-        .hdr-socials a {
+        .hdr-socials a:not(.hdr-cta-btn) {
             opacity: 0.55; transition: opacity 0.2s; display: flex;
         }
-        .hdr-socials a:hover { opacity: 1; }
+        .hdr-socials a:not(.hdr-cta-btn):hover { opacity: 1; }
         .hdr-socials svg { width: 17px; height: 17px; fill: white; }
+
+        .hdr-cta-btn {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 8px 18px;
+            white-space: nowrap;
+            opacity: 1;
+            margin-left: 20px;
+            transition: background 0.2s;
+        }
+
+        .hdr-cta-btn:hover {
+            background: rgba(255,255,255,0.12);
+        }
 
 
         /* ============================================================
@@ -177,6 +197,42 @@
             text-transform: uppercase;
             color: rgba(255,255,255,0.5);
             margin-top: 18px;
+        }
+
+        /* Bottom-right CTA */
+        .hero-cta {
+            position: absolute;
+            bottom: 52px; right: 52px;
+            z-index: 2;
+            max-width: 420px;
+            text-align: right;
+        }
+
+        .hero-cta-text {
+            font-size: 15px;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .hero-cta-btn {
+            display: inline-block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 1px solid white;
+            padding: 14px 32px;
+            transition: background 0.25s;
+        }
+
+        .hero-cta-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: white;
         }
 
         .scroll-hint {
@@ -231,10 +287,50 @@
             margin: 0 auto;
         }
 
+        .about-img-cta {
+            padding: 0 4px;
+        }
+
+        .about-img-cta-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .about-img-cta-email {
+            display: inline-block;
+            font-size: 17px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+            padding-bottom: 3px;
+            margin-bottom: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .about-img-cta-email:hover { border-color: white; }
+
+        .about-img-cta-name {
+            display: block;
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            font-style: italic;
+            letter-spacing: 0.04em;
+        }
+
         .about-image-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .about-img-frame {
             position: relative;
         }
-        .about-image-wrap img {
+
+        .about-img-frame img {
             width: 100%;
             aspect-ratio: 4 / 3;
             display: block;
@@ -242,7 +338,8 @@
             clip-path: polygon(0 0, 100% 0, 100% 92%, 94% 100%, 0 100%);
             background: #111;
         }
-        .about-image-wrap::before {
+
+        .about-img-frame::before {
             content: '';
             position: absolute;
             top: -12px; left: -12px;
@@ -251,7 +348,7 @@
             border-left: 1px solid rgba(255,255,255,0.25);
             pointer-events: none;
         }
-        .about-image-wrap::after {
+        .about-img-frame::after {
             content: '';
             position: absolute;
             bottom: -12px; right: -12px;
@@ -310,6 +407,15 @@
 
         .about-text strong { color: white; font-weight: 600; }
 
+
+        .services-tagline {
+            text-align: center;
+            font-size: 16px;
+            color: rgba(255,255,255,0.35);
+            font-style: italic;
+            letter-spacing: 0.03em;
+            padding: 48px 8vw 0;
+        }
 
         /* ============================================================
            SOCIAL MEDIA STRIP — single ultrawide video
@@ -1284,7 +1390,7 @@
             #about { padding: 80px 24px; }
             .about-head { margin-bottom: 52px; }
             .about-inner { grid-template-columns: 1fr; gap: 48px; }
-            .about-image-wrap::before, .about-image-wrap::after { display: none; }
+            .about-img-frame::before, .about-img-frame::after { display: none; }
 
             /* What We Stand For */
             #standfor { padding: 80px 20px; }
@@ -1355,11 +1461,12 @@
 
             /* header already hidden via 900px rule */
             .hero-logo img { width: 90vw; }
+            .hero-cta { display: none; }
 
             #about { padding: 60px 20px; }
             .about-head { margin-bottom: 40px; }
             .about-inner { grid-template-columns: 1fr; gap: 36px; }
-            .about-image-wrap::before, .about-image-wrap::after { display: none; }
+            .about-img-frame::before, .about-img-frame::after { display: none; }
 
             #social-strip { height: clamp(180px, 65vw, 340px); }
 
@@ -1420,6 +1527,8 @@
             <a href="https://www.youtube.com/@fotogramamedia" title="YouTube" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
+
+            <a href="#contact" class="hdr-cta-btn">Start a project</a>
         </div>
     </header>
 
@@ -1435,6 +1544,11 @@
         <div class="hero-content">
             <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio">
             <p class="hero-tagline">roblox animated productions</p>
+        </div>
+
+        <div class="hero-cta">
+            <span class="hero-cta-text">We produce cinematic animations for Roblox developers, brands, and creators that leave a lasting impression.</span>
+            <a href="#services" class="hero-cta-btn">Check out our work</a>
         </div>
 
     </section>
@@ -1454,12 +1568,19 @@
 
         <div class="about-inner">
             <div class="about-image-wrap reveal">
-                <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio">
+                <div class="about-img-frame">
+                    <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio">
+                </div>
+                <div class="about-img-cta">
+                    <span class="about-img-cta-label">Let's make this happen!</span>
+                    <a href="mailto:francisco@fotograma.ca" class="about-img-cta-email">francisco@fotograma.ca</a>
+                    <span class="about-img-cta-name">Francisco, Founder & Creative Director</span>
+                </div>
             </div>
 
             <div class="about-text reveal d1">
                 <p class="about-statement">A full production house for Roblox</p>
-                <p><strong>Fotograma Studio</strong>, founded by Francisco Garcia, is an animation and production house specializing in cinematic 3D content for Roblox. With over five years of experience, we bring film-level production quality, visual storytelling, and artistic direction to every project.</p>
+                <p><strong>Fotograma Studio</strong> is an animation and production house specializing in cinematic 3D visuals for Roblox. With over five years of experience, we bring film-level production quality, visual storytelling, and artistic direction to every project – <em>because quality is the first thing people notice.</em></p>
 
                 <div class="about-definition">
                     <span class="about-def-word">Fotograma</span>
@@ -1493,13 +1614,13 @@
             <div class="standfor-card reveal d1">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-2.png" alt="" aria-hidden="true">
                 <h3>Quality</h3>
-                <p>We hold ourselves to the high standards of the animation industry. Every deliverable is polished, intentional, and built with meticulous attention to detail.</p>
+                <p>First impressions are made in seconds. We hold ourselves to the high standards of the animation industry. Every deliverable is polished, intentional, and built with meticulous attention to detail.</p>
             </div>
 
             <div class="standfor-card reveal d2">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-3.png" alt="" aria-hidden="true">
                 <h3>Collaboration</h3>
-                <p>We believe the best work comes from genuine collaboration and open creative dialogue. Communication is key to a great product, and we always welcome diverse perspectives and fresh ideas to every project.</p>
+                <p>The best ideas are built together. We work closely with our clients, value open communication, and embrace new perspectives to make sure every project reaches its full creative potential.</p>
             </div>
 
         </div>
@@ -1513,7 +1634,7 @@
         <video class="social-strip-video" autoplay muted loop playsinline poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://uunsvozsjyhvvmrfghbu.supabase.co/storage/v1/object/public/Fotograma%20Web/fotograma-social-strip.mp4"></video>
         <div class="social-strip-dark"></div>
         <div class="social-strip-label">
-            <p>Roblox deserves cinematic quality</p>
+            <p>Roblox deserves cinematic quality.</p>
         </div>
     </section>
 
@@ -1593,6 +1714,9 @@
                 </ul>
             </div>
         </div>
+
+        <p class="services-tagline reveal">Perfect for launch trailers, branded campaigns, social media content, and everything in between.</p>
+
     </section>
 
 
@@ -1704,7 +1828,7 @@
     ============================================================ -->
     <section id="trusted">
         <div class="trusted-head reveal">
-            <span class="section-eyebrow">featured by</span>
+            <span class="section-eyebrow">worked with</span>
             <h2>
                 <span class="pk outlined">studios</span> <span class="pk filled">&amp; creators</span>
             </h2>
@@ -1947,16 +2071,13 @@
                     <span class="pk filled">contact</span>
                 </h2>
                 <p class="contact-body">
-                    Have a project in mind? I'd love to hear about it!
-                </p>
-                <p class="contact-body" style="margin-top: -12px;">
+                    Have a project in mind? I'd love to hear about it!<br>
                     Whether you have a finished script ready for production or just the spark of an idea, let's chat about how we can make it happen.
                 </p>
                 <div class="contact-divider"></div>
                 <a href="mailto:francisco@fotograma.ca" class="contact-email">
                     francisco@fotograma.ca
                 </a>
-                <span style="display:block; font-size:12px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-top:10px; text-transform:uppercase;">Vancouver, Canada &nbsp;·&nbsp; UTC −7</span>
             </div>
 
             <div class="contact-founder-wrap reveal d1">
@@ -1987,7 +2108,7 @@
          FOOTER
     ============================================================ -->
     <footer>
-        <span class="footer-copy">© 2026 Fotograma Studio. All rights reserved.</span>
+        <span class="footer-copy">© 2026 Fotograma Studio. All rights reserved. &nbsp;·&nbsp; Vancouver, Canada &nbsp;·&nbsp; <a href="mailto:francisco@fotograma.ca" style="color:inherit;opacity:0.6;text-decoration:none;">francisco@fotograma.ca</a></span>
 
         <div class="footer-socials">
             <a href="https://www.linkedin.com/company/fotogramastudio" title="LinkedIn" target="_blank" rel="noopener">
