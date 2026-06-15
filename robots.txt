@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fotograma.ca/sitemap.xml
