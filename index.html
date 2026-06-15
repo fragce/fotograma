@@ -78,15 +78,9 @@
 
     <!-- Browser/device meta -->
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="assets/images/logos/F_Icon.svg">
-
-    <!-- Performance: early connections to external resources -->
-    <link rel="preconnect" href="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev">
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://player.vimeo.com">
-
-    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="icon" href="assets/images/logos/F_Icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.png">
 
     <style>
         /* ===== FONT ===== */
@@ -1108,7 +1102,6 @@
         }
         .standfor-card:hover::before { transform: scaleX(1); }
 
-        /* Background render image — pre-cropped by Francisco, simply anchored bottom-right */
         .standfor-bg-img {
             position: absolute;
             bottom: 0;
@@ -1226,10 +1219,8 @@
         .svc-card.flash-hint .svc-card-bg      { animation: cardFlash 1.2s ease-in-out forwards; }
         .svc-card.flash-hint .svc-card-overlay  { animation: cardFlash 1.2s ease-in-out forwards; }
         .svc-card.flash-hint .svc-card-line     { animation: lineFlash 1.2s ease-in-out forwards; transition: none; }
-        /* Suppress transition for 2 frames during class removal to prevent bounce */
         .svc-card.flash-done .svc-card-line     { transition: none; }
 
-        /* Mobile header + nav — hidden on desktop */
         #mobile-header { display: none; }
         #mobile-nav {
             display: none;
@@ -1288,7 +1279,6 @@
             .mob-menu-btn, .mob-cta-btn { pointer-events: all; }
             #mobile-nav { display: flex; }
 
-            /* Tighter line-height on all Pagkaki headings — too spaced on mobile */
             h2, .about-statement, .services-heading,
             .standfor-head h2, .featured-head h2,
             .testimonials-head h2, .trusted-head h2,
@@ -1388,7 +1378,7 @@
 </head>
 <body>
 
-    <!-- Mobile header -->
+    <!-- mobile header -->
     <div id="mobile-header">
         <button class="mob-menu-btn" id="mob-menu-toggle" aria-label="Open menu">
             <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -1403,14 +1393,14 @@
         <a href="#contact" class="mob-cta-btn">Get Started</a>
     </div>
 
-    <!-- Mobile nav overlay -->
+    <!-- mobile nav -->
     <nav id="mobile-nav">
         <a href="#about" class="mob-nav-link">about</a>
         <a href="#services" class="mob-nav-link">our work</a>
         <a href="#contact" class="mob-nav-link">contact</a>
     </nav>
 
-    <!-- HEADER -->
+    <!-- header -->
     <header id="header">
         <nav class="hdr-nav">
             <a href="#about">about</a>
@@ -1445,7 +1435,7 @@
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- hero -->
     <section id="hero">
         <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-hero-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-reel_15MB.mp4"></video>
 
@@ -1617,7 +1607,7 @@
 
     </section>
 
-    <!-- FEATURED PROJECT -->
+    <!-- featured project -->
     <section id="featured">
         <div class="featured-inner">
 
@@ -1663,7 +1653,7 @@
         </div>
     </section>
 
-    <!-- WATCH THE REEL -->
+    <!-- reel -->
     <section id="reel">
         <video class="reel-bg-video" autoplay muted loop playsinline preload="auto" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-reel_15MB.mp4"></video>
         <div class="reel-overlay"></div>
@@ -1675,7 +1665,7 @@
         </div>
     </section>
 
-    <!-- TRUSTED BY -->
+    <!-- trusted by -->
     <section id="trusted">
         <div class="trusted-head reveal">
             <span class="section-eyebrow">worked with</span>
@@ -1771,7 +1761,7 @@
         </div>
     </section>
 
-    <!-- STATS -->
+    <!-- stats -->
     <section id="stats">
         <div class="stats-row">
             <div class="stat reveal">
@@ -1795,7 +1785,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- testimonials -->
     <section id="testimonials">
         <div class="testimonials-head reveal">
             <span class="section-eyebrow">words from clients</span>
@@ -1881,7 +1871,7 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- contact -->
     <section id="contact">
         <div class="contact-inner">
             <div class="contact-text reveal">
@@ -1907,7 +1897,7 @@
         </div>
     </section>
 
-    <!-- VIMEO LIGHTBOX -->
+    <!-- lightbox -->
     <div id="vimeo-lightbox">
         <div id="vimeo-overlay"></div>
         <div id="vimeo-container">
@@ -1939,15 +1929,14 @@
     </footer>
 
     <script>
-        // VIDEO AUTOPLAY
+        // autoplay setup
         // Event-driven approach — much more reliable than interval hammering on mobile.
         // iOS Safari requires a user gesture before play() works, so we hook into
         // touchstart and scroll (the most common first gestures) to unlock it.
         function setupVideo(video) {
             if (!video) return;
 
-            // Ensure attributes are set programmatically too — some mobile browsers
-            // don't reliably pick them up from HTML alone
+            // set programmatically — some mobile browsers ignore HTML attributes
             video.muted = true;
             video.playsInline = true;
 
@@ -1955,22 +1944,20 @@
                 if (video.paused) video.play().catch(() => {});
             }
 
-            // 1. Try as soon as there's enough data
+            // try on data ready
             video.addEventListener('canplay', tryPlay, { passive: true });
 
-            // 2. First user gesture unlocks iOS autoplay — touchstart and scroll
-            //    cover basically every real-world first interaction
+            // first gesture unlocks iOS autoplay
             ['touchstart', 'scroll', 'click'].forEach(evt => {
                 document.addEventListener(evt, tryPlay, { passive: true, once: true });
             });
 
-            // 3. Retry when user returns to the tab/app
+            // retry on tab focus
             document.addEventListener('visibilitychange', () => {
                 if (!document.hidden) tryPlay();
             });
 
-            // 4. Play when in viewport, pause when scrolled away
-            //    Browsers are less aggressive about killing paused-offscreen videos
+            // pause offscreen, play when visible
             const observer = new IntersectionObserver(entries => {
                 if (entries[0].isIntersecting) tryPlay();
                 else video.pause();
@@ -1982,9 +1969,11 @@
         }
 
         const heroBgVideo  = document.querySelector('.hero-bg-video');
+        const reelBgVideo  = document.querySelector('.reel-bg-video');
         const socialVideo  = document.querySelector('.social-strip-video');
 
         setupVideo(heroBgVideo);
+        setupVideo(reelBgVideo);
 
         // Social strip — adaptive quality: compressed on mobile/slow connection,
         // full quality on desktop with error fallback
@@ -2013,7 +2002,7 @@
             }
         }
 
-        // VIMEO LIGHTBOX (reel only)
+        // vimeo lightbox
         const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
 
         const lightbox     = document.getElementById('vimeo-lightbox');
@@ -2058,7 +2047,7 @@
         }, { threshold: 0.12 });
 
         revealEls.forEach(el => revealObserver.observe(el));
-        // FILMSTRIP — infinite scroll + drag + wheel
+        // filmstrip — infinite scroll + drag + wheel
         (function () {
             const viewport = document.querySelector('.filmstrip-viewport');
             const track    = document.getElementById('filmstripTrack');
@@ -2132,7 +2121,7 @@
                 pos = wrap(pos); // re-clamp in case setWidth shrank
             });
         })();
-        // STATS COUNTER ANIMATION
+        // stats counter ANIMATION
         (function() {
             const statsSection = document.getElementById('stats');
             if (!statsSection) return;
@@ -2173,7 +2162,7 @@
             observer.observe(statsSection);
         })();
 
-        // Services card flash — hints at background images on scroll-in
+        // flash service card bg images on scroll-in
         (function() {
             const services = document.getElementById('services');
             if (!services) return;
@@ -2186,8 +2175,7 @@
                         setTimeout(() => {
                             card.classList.add('flash-hint');
                             setTimeout(() => {
-                                // Suppress the line transition for 2 frames while
-                                // swapping classes — prevents the bounce on release
+                                                // suppress transition for 2 frames to prevent bounce on class removal
                                 card.classList.add('flash-done');
                                 card.classList.remove('flash-hint');
                                 requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -2200,7 +2188,7 @@
             }, { threshold: 0.25 }).observe(services);
         })();
 
-        // Mobile nav
+        // mobile nav toggle
         (function() {
             const toggle = document.getElementById('mob-menu-toggle');
             const nav    = document.getElementById('mobile-nav');
