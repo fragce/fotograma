@@ -67,6 +67,10 @@
     }
     </script>
 
+    <!-- Browser/device meta -->
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="assets/images/logos/F_Icon.svg">
+
     <!-- Performance: early connections to external resources -->
     <link rel="preconnect" href="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev">
     <link rel="preconnect" href="https://www.youtube.com">
@@ -484,7 +488,7 @@
         /* Compressed 1080p version has baked-in black bars (199px each).
            Scale up by 1080/683 ≈ 1.58 from center to push bars out of frame. */
         .social-strip-video.compressed {
-            transform: scale(2.81);
+            transform: scale(1.58);
             transform-origin: center center;
         }
 
@@ -506,7 +510,6 @@
             font-size: clamp(13px, 1.6vw, 22px);
             font-weight: 300;
             letter-spacing: 0.18em;
-            text-transform: lowercase;
             color: rgba(255,255,255,0.7);
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             white-space: nowrap;
@@ -1203,26 +1206,26 @@
         /* Services card flash hint */
         @keyframes cardFlash {
             0%   { opacity: 0; }
-            25%  { opacity: 1; }
-            75%  { opacity: 1; }
+            50%  { opacity: 1; }
             100% { opacity: 0; }
         }
         @keyframes lineFlash {
             0%   { transform: scaleX(0); }
-            25%  { transform: scaleX(1); }
-            75%  { transform: scaleX(1); }
+            50%  { transform: scaleX(1); }
             100% { transform: scaleX(0); }
         }
-        .svc-card.flash-hint .svc-card-bg  { animation: cardFlash 1.3s ease forwards; }
-        .svc-card.flash-hint .svc-card-overlay { animation: cardFlash 1.3s ease forwards; }
-        .svc-card.flash-hint .svc-card-line { animation: lineFlash 1.3s ease forwards; }
+        .svc-card.flash-hint .svc-card-bg      { animation: cardFlash 1.2s ease-in-out forwards; }
+        .svc-card.flash-hint .svc-card-overlay  { animation: cardFlash 1.2s ease-in-out forwards; }
+        .svc-card.flash-hint .svc-card-line     { animation: lineFlash 1.2s ease-in-out forwards; transition: none; }
+        /* Suppress transition for 2 frames during class removal to prevent bounce */
+        .svc-card.flash-done .svc-card-line     { transition: none; }
 
         /* Mobile header + nav — hidden on desktop */
         #mobile-header { display: none; }
         #mobile-nav {
             display: none;
             position: fixed;
-            top: 56px; left: 0; right: 0; bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.97);
             z-index: 999;
             flex-direction: column;
@@ -1235,15 +1238,17 @@
         #mobile-nav.open { opacity: 1; transform: translateY(0); pointer-events: all; }
         .mob-menu-btn {
             background: none; border: none; cursor: pointer;
-            padding: 4px; display: flex; align-items: center; opacity: 0.75;
+            padding: 4px; display: flex; align-items: center; opacity: 0.85;
+            filter: drop-shadow(0 1px 4px rgba(0,0,0,0.6));
         }
-        .mob-logo img { height: 26px; display: block; }
+        .mob-logo { display: none; }
         .mob-cta-btn {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-weight: 700; font-size: 9px;
             letter-spacing: 0.18em; text-transform: uppercase;
             color: white; text-decoration: none;
             border: 1px solid white; padding: 7px 12px; white-space: nowrap;
+            filter: drop-shadow(0 1px 4px rgba(0,0,0,0.6));
         }
         .mob-nav-link {
             font-family: 'Pagkaki', sans-serif;
@@ -1260,15 +1265,18 @@
             #mobile-header {
                 display: flex;
                 position: fixed;
-                top: 0; left: 0; right: 0; height: 56px;
-                background: rgba(0,0,0,0.88);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
+                top: 20px; left: 0; right: 0;
+                height: auto;
+                background: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
                 z-index: 1000;
                 align-items: center; justify-content: space-between;
                 padding: 0 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.06);
+                border: none;
+                pointer-events: none;
             }
+            .mob-menu-btn, .mob-cta-btn { pointer-events: all; }
             #mobile-nav { display: flex; }
 
             /* Tighter line-height on all Pagkaki headings — too spaced on mobile */
@@ -2168,8 +2176,16 @@
                     cards.forEach((card, i) => {
                         setTimeout(() => {
                             card.classList.add('flash-hint');
-                            setTimeout(() => card.classList.remove('flash-hint'), 1300);
-                        }, 600 + i * 1600);
+                            setTimeout(() => {
+                                // Suppress the line transition for 2 frames while
+                                // swapping classes — prevents the bounce on release
+                                card.classList.add('flash-done');
+                                card.classList.remove('flash-hint');
+                                requestAnimationFrame(() => requestAnimationFrame(() => {
+                                    card.classList.remove('flash-done');
+                                }));
+                            }, 1200);
+                        }, 500 + i * 900);
                     });
                 }
             }, { threshold: 0.25 }).observe(services);
