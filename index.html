@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary SEO -->
-    <title>Fotograma Studio | Roblox Cinematic Animation</title>
+    <title>Fotograma Studio | Roblox Animation Production Studio</title>
     <meta name="description" content="Fotograma Studio is a production house specializing in cinematic 3D animation for Roblox. We make visuals for Roblox trailers, branded campaigns, and social media content.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Francisco Garcia, Fotograma Studio">
@@ -24,7 +24,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fotograma.ca/">
     <meta property="og:site_name" content="Fotograma Studio">
-    <meta property="og:title" content="Fotograma Studio | Roblox Cinematic Animation">
+    <meta property="og:title" content="Fotograma Studio | Roblox Animation Studio">
     <meta property="og:description" content="Fotograma Studio is a production house specializing in cinematic 3D animation for Roblox. We make visuals for Roblox trailers, branded campaigns, and social media content.">
     <meta property="og:image" content="https://fotograma.ca/assets/images/og-image.jpg">
     <meta property="og:image:width" content="1200">
@@ -35,7 +35,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@fotogramamedia">
     <meta name="twitter:creator" content="@fotogramamedia">
-    <meta name="twitter:title" content="Fotograma Studio | Roblox Cinematic Animation">
+    <meta name="twitter:title" content="Fotograma Studio | Roblox Animation Studio">
     <meta name="twitter:description" content="Fotograma Studio is a production house specializing in cinematic 3D animation for Roblox. We make visuals for Roblox trailers, branded campaigns, and social media content.">
     <meta name="twitter:image" content="https://fotograma.ca/assets/images/og-image.jpg">
 
@@ -45,7 +45,7 @@
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "Fotograma Studio",
-        "description": "Fotograma Studio is a Roblox animation and production house specializing in cinematic 3D visuals — game trailers, branded campaigns, and social media content.",
+        "description": "Fotograma Studio is a Roblox animation studio specializing in cinematic 3D visuals — game trailers, branded campaigns, and social media content.",
         "url": "https://fotograma.ca",
         "logo": "https://fotograma.ca/assets/images/logos/F_Icon.svg",
         "image": "https://fotograma.ca/assets/images/og-image.jpg",
@@ -71,7 +71,7 @@
             "https://www.instagram.com/fotogramamedia",
             "https://www.youtube.com/@fotogramamedia"
         ],
-        "knowsAbout": ["Roblox animation", "3D animation", "game trailers", "cinematic production", "motion graphics"],
+        "knowsAbout": ["Roblox animation studio", "Roblox animation", "3D animation", "game trailers", "cinematic production", "motion graphics"],
         "areaServed": "Worldwide"
     }
     </script>
@@ -488,11 +488,9 @@
             object-position: center center;
         }
 
-        /* Compressed 1080p version has baked-in black bars (199px each).
-           Scale up by 1080/683 ≈ 1.58 from center to push bars out of frame. */
+        /* Compressed version has baked-in black bars — object-fit cover crops them naturally */
         .social-strip-video.compressed {
-            transform: scale(1.58);
-            transform-origin: center center;
+            object-position: center center;
         }
 
         .social-strip-dark {
@@ -1410,7 +1408,7 @@
 
         <!-- F Icon — center of header, clicks to hero -->
         <a href="#hero" class="hdr-icon" aria-label="Back to top">
-            <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio — Roblox cinematic animation and production" loading="lazy">
+            <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
         </a>
 
         <div class="hdr-socials">
@@ -1442,7 +1440,7 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio — Roblox cinematic animation and production" loading="lazy">
+            <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
             <p class="hero-tagline">roblox animated productions</p>
         </div>
 
@@ -1466,7 +1464,7 @@
         <div class="about-inner">
             <div class="about-image-wrap reveal">
                 <div class="about-img-frame">
-                    <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio — Roblox cinematic animation and production" loading="lazy">
+                    <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
                 </div>
                 <div class="about-img-cta">
                     <span class="about-img-cta-label">Let's make this happen!</span>
@@ -1477,7 +1475,7 @@
 
             <div class="about-text reveal d1">
                 <p class="about-statement">A full production house for Roblox</p>
-                <p><strong>Fotograma Studio</strong> is an animation and production house specializing in cinematic 3D visuals for Roblox. With over five years of experience, we bring film-level production quality, visual storytelling, and artistic direction to every project.</p>
+                <p><strong>Fotograma Studio</strong> is an animation and production studio specializing in cinematic 3D visuals for Roblox. With over five years of experience, we bring film-level production quality, visual storytelling, and artistic direction to every project.</p>
 
                 <div class="about-definition">
                     <span class="about-def-word">Fotograma</span>
@@ -1831,21 +1829,21 @@
 
                 <!-- Image row — 15 originals + 15 duplicates for seamless loop -->
                 <div class="filmstrip-images" id="filmstripImages">
-                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="Fotograma Studio — Roblox 3D animation render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
                     <!-- duplicates for seamless loop -->
                     <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="" loading="lazy" aria-hidden="true">
                     <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="" loading="lazy" aria-hidden="true">
