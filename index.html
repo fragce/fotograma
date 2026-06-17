@@ -72,15 +72,59 @@
             "https://www.youtube.com/@fotogramamedia"
         ],
         "knowsAbout": ["Roblox animation studio", "Roblox animation", "3D animation", "game trailers", "cinematic production", "motion graphics"],
-        "areaServed": "Worldwide"
+        "areaServed": "Worldwide",
+        "makesOffer": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Pre-Production",
+                    "description": "Concept development, script writing, storyboarding, and asset planning for Roblox animation projects."
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Production",
+                    "description": "CGI and 3D animation, motion graphics, gameplay capture, rendering and compositing for Roblox."
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Post-Production",
+                    "description": "Video editing, sound design, music composition, and dubbing for Roblox trailers and content."
+                }
+            }
+        ],
+        "review": [
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Inaba" },
+                "reviewBody": "We're very grateful for this collaboration. Extremely responsible and highly efficient. Thank you again for your great work!"
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Iraxxira" },
+                "reviewBody": "Not only was Francisco's work phenomenal, his quick response, delivery time, and kindness make it really pleasant to work with him."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Lovely Ela" },
+                "reviewBody": "I am delighted with Francisco's work; he helped me find the perfect project plan that fit my budget."
+            }
+        ]
     }
     </script>
 
     <!-- Browser/device meta -->
     <meta name="theme-color" content="#000000">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="icon" href="assets/images/logos/F_Icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <style>
         /* ===== FONT ===== */
@@ -129,6 +173,15 @@
             -webkit-text-stroke: 0.8px var(--white);
         }
         .filled { color: var(--white); }
+
+        /* Visually hidden but accessible to screen readers and crawlers — NOT display:none */
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+        }
 
         /* ===== ALTERNATING SECTION BACKGROUNDS ===== */
         #about      { background: var(--off-black); }
@@ -1298,9 +1351,18 @@
             .standfor-card:last-child { border-bottom: none; }
             .standfor-bg-img { opacity: 0.13; }
 
-            /* Social strip — on mobile show center crop (3240/5400 = 60% of width) */
+            /* Social strip — compressed video always loads here (≤900px in JS).
+               It has baked-in letterbox bars; the container is too narrow relative
+               to the 16:9 frame for object-fit:cover to crop them on its own, so we
+               zoom the video itself. Scale pushes the bars + side content off-screen,
+               leaving roughly the center 3 of 5 boxes visible. Tune --social-zoom if
+               the bars are still visible or too much gets cropped once live. */
             #social-strip { height: clamp(200px, 56vw, 380px); }
-            .social-strip-video { object-position: center; }
+            .social-strip-video {
+                object-position: center;
+                transform: scale(var(--social-zoom, 1.7));
+                transform-origin: center center;
+            }
 
             #services { padding: 80px 0; }
             .services-heading { margin-bottom: 52px; padding: 0 24px; }
@@ -1440,6 +1502,7 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
+            <h1 class="sr-only">Fotograma Studio — Roblox Animation Production Studio</h1>
             <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
             <p class="hero-tagline">roblox animated productions</p>
         </div>
