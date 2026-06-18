@@ -39,15 +39,15 @@
     <meta name="twitter:description" content="Fotograma Studio is a production studio specializing in cinematic 3D animation for Roblox. We make visuals for Roblox trailers, branded campaigns, and social media content.">
     <meta name="twitter:image" content="https://fotograma.ca/assets/images/og-image.jpg">
 
-    <!-- Structured Data (JSON-LD) — helps Google understand what this business is -->
+    <!-- Structured Data (JSON-LD) - helps Google understand what this business is -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "Fotograma Studio",
-        "description": "Fotograma Studio is a Roblox animation studio specializing in cinematic 3D visuals — game trailers, branded campaigns, and social media content.",
+        "description": "Fotograma Studio is a production studio specializing in cinematic 3D animation for Roblox. We create visuals for game trailers, branded campaigns, and social media content.",
         "url": "https://fotograma.ca",
-        "logo": "https://fotograma.ca/assets/images/logos/F_Icon.svg",
+        "logo": "https://fotograma.ca/faviconfull.png",
         "image": "https://fotograma.ca/assets/images/og-image.jpg",
         "founder": {
             "@type": "Person",
@@ -97,23 +97,6 @@
                     "name": "Post-Production",
                     "description": "Video editing, sound design, music composition, and dubbing for Roblox trailers and content."
                 }
-            }
-        ],
-        "review": [
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Inaba" },
-                "reviewBody": "We're very grateful for this collaboration. Extremely responsible and highly efficient. Thank you again for your great work!"
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Iraxxira" },
-                "reviewBody": "Not only was Francisco's work phenomenal, his quick response, delivery time, and kindness make it really pleasant to work with him."
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Lovely Ela" },
-                "reviewBody": "I am delighted with Francisco's work; he helped me find the perfect project plan that fit my budget."
             }
         ]
     }
@@ -174,7 +157,7 @@
         }
         .filled { color: var(--white); }
 
-        /* Visually hidden but accessible to screen readers and crawlers — NOT display:none */
+        /* Visually hidden but accessible to screen readers and crawlers - NOT display:none */
         .sr-only {
             position: absolute;
             width: 1px; height: 1px;
@@ -381,7 +364,7 @@
             padding: 170px 6vw;
         }
 
-        /* Centered Pagkaki header — same grammar as every other section */
+        /* Centered Pagkaki header - same grammar as every other section */
         .about-head {
             text-align: center;
             margin-bottom: 80px;
@@ -473,7 +456,7 @@
             pointer-events: none;
         }
 
-        /* Big bold sans-serif statement — needs higher specificity than .about-text p */
+        /* Big bold sans-serif statement - needs higher specificity than .about-text p */
         .about-text .about-statement {
             font-family: 'Pagkaki', sans-serif;
             font-size: clamp(44px, 5.2vw, 74px);
@@ -490,7 +473,7 @@
             margin-bottom: 0;
         }
 
-        /* Definition — bottom of column, separated, footnote-style */
+        /* Definition - bottom of column, separated, footnote-style */
         .about-definition {
             margin-top: 36px;
             padding-top: 24px;
@@ -524,7 +507,7 @@
             padding: 48px 8vw 0;
         }
 
-        /* SOCIAL MEDIA STRIP — single ultrawide video */
+        /* SOCIAL MEDIA STRIP - single ultrawide video */
         #social-strip {
             position: relative;
             width: 100%;
@@ -541,7 +524,7 @@
             object-position: center center;
         }
 
-        /* Compressed version has baked-in black bars — object-fit cover crops them naturally */
+        /* Compressed version has baked-in black bars - object-fit cover crops them naturally */
         .social-strip-video.compressed {
             object-position: center center;
         }
@@ -607,7 +590,7 @@
         }
         .svc-card:last-child { border-right: none; }
 
-        /* Background image — fades in on hover */
+        /* Background image - fades in on hover */
         .svc-card-bg {
             position: absolute; inset: 0;
             background-size: cover;
@@ -1056,7 +1039,7 @@
             width: max-content;
         }
 
-        /* Single continuous sprocket strip — spans the full track width naturally */
+        /* Single continuous sprocket strip - spans the full track width naturally */
         .sprocket-row {
             height: 28px;
             background-color: #1c1c1c;
@@ -1073,7 +1056,7 @@
             flex-shrink: 0;
         }
 
-        /* Image row — all images in one flex row */
+        /* Image row - all images in one flex row */
         .filmstrip-images {
             display: flex;
             gap: 10px;
@@ -1101,7 +1084,7 @@
 
         /* WHAT WE STAND FOR */
         #standfor {
-            padding: 110px 52px;
+            padding: 130px 52px 170px;
             overflow: hidden;
         }
 
@@ -1309,7 +1292,7 @@
         }
         .mob-nav-link:hover { color: white; }
 
-        /* MOBILE — TABLET (≤ 900px) */
+        /* MOBILE - TABLET (≤ 900px) */
         @media (max-width: 900px) {
 
             #header { display: none; }
@@ -1345,13 +1328,13 @@
             .about-img-frame::before, .about-img-frame::after { display: none; }
 
             /* What We Stand For */
-            #standfor { padding: 80px 20px; }
+            #standfor { padding: 100px 20px 130px; }
             .standfor-grid { grid-template-columns: 1fr; max-width: 100%; }
             .standfor-card { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 28px 64px; min-height: 360px; }
             .standfor-card:last-child { border-bottom: none; }
             .standfor-bg-img { opacity: 0.13; }
 
-            /* Social strip — compressed video always loads here (≤900px in JS).
+            /* Social strip - compressed video always loads here (≤900px in JS).
                It has baked-in letterbox bars; the container is too narrow relative
                to the 16:9 frame for object-fit:cover to crop them on its own, so we
                zoom the video itself. Scale pushes the bars + side content off-screen,
@@ -1398,7 +1381,7 @@
             footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
         }
 
-        /* MOBILE — PHONE (≤ 540px) */
+        /* MOBILE - PHONE (≤ 540px) */
         @media (max-width: 540px) {
 
             .hero-logo img { width: 90vw; }
@@ -1468,9 +1451,9 @@
             <a href="#contact">contact</a>
         </nav>
 
-        <!-- F Icon — center of header, clicks to hero -->
+        <!-- F Icon - center of header, clicks to hero -->
         <a href="#hero" class="hdr-icon" aria-label="Back to top">
-            <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
+            <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio - Roblox Animation Studio" loading="lazy">
         </a>
 
         <div class="hdr-socials">
@@ -1502,8 +1485,8 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1 class="sr-only">Fotograma Studio — Roblox Animation Production Studio</h1>
-            <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
+            <h1 class="sr-only">Fotograma Studio - Roblox Animation Production Studio</h1>
+            <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio - Roblox Animation Studio" loading="lazy">
             <p class="hero-tagline">roblox animated productions</p>
         </div>
 
@@ -1527,7 +1510,7 @@
         <div class="about-inner">
             <div class="about-image-wrap reveal">
                 <div class="about-img-frame">
-                    <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio — Roblox Animation Studio" loading="lazy">
+                    <img src="assets/images/fotograma-about-us.png" alt="Fotograma Studio - Roblox Animation Studio" loading="lazy">
                 </div>
                 <div class="about-img-cta">
                     <span class="about-img-cta-label">Let's make this happen!</span>
@@ -1542,7 +1525,7 @@
 
                 <div class="about-definition">
                     <span class="about-def-word">Fotograma</span>
-                    <span class="about-def-text">/ fo-to-ɣɾa-ma / n. — Spanish. A single frame of film.</span>
+                    <span class="about-def-text">/ fo-to-ɣɾa-ma / n. - Spanish. A single frame of film.</span>
                 </div>
             </div>
         </div>
@@ -1734,23 +1717,23 @@
                 <!-- Continuous top sprocket strip -->
                 <div class="sprocket-row"></div>
 
-                <!-- Image row — 15 originals + 15 duplicates for seamless loop -->
+                <!-- Image row - 15 originals + 15 duplicates for seamless loop -->
                 <div class="filmstrip-images" id="filmstripImages">
-                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="Fotograma Studio - Roblox animation studio render" loading="lazy">
                     <!-- duplicates for seamless loop -->
                     <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="" loading="lazy" aria-hidden="true">
                     <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="" loading="lazy" aria-hidden="true">
@@ -1787,7 +1770,7 @@
 
         <div class="client-grid reveal">
 
-            <!-- Studios — 6 in one row -->
+            <!-- Studios - 6 in one row -->
             <div class="client-item">
                 <div class="client-visual">
                     <img src="assets/images/logos/zag-logo.svg" alt="Zag Gaming">
@@ -1825,7 +1808,7 @@
                 <span class="client-name">Slay House Media</span>
             </div>
 
-            <!-- Creators — 8 across two rows of 6 (last row has 2 centered by grid) -->
+            <!-- Creators - 8 across two rows of 6 (last row has 2 centered by grid) -->
             <a href="https://www.youtube.com/@daniverdari" class="client-item" target="_blank" rel="noopener">
                 <div class="client-visual circle">
                     <img src="https://yt3.googleusercontent.com/0wX0nJolWCRpYeDw9NTqom3oPGPt463w3PbN2v9eyKzkAI1JlfM0geN2t6uClEAt7PmgYrtd=s200-c-k-c0x00ffffff-no-rj" alt="Dani Verdari">
@@ -1951,7 +1934,7 @@
             </div>
 
             <div class="contact-founder-wrap reveal d1">
-                <img src="assets/images/fotograma-founder.jpg" alt="Francisco Garcia — Founder &amp; Creative Director, Fotograma Studio" loading="lazy">
+                <img src="assets/images/fotograma-founder.jpg" alt="Francisco Garcia - Founder &amp; Creative Director, Fotograma Studio" loading="lazy">
                 <div class="contact-founder-name">Francisco Garcia</div>
                 <div class="contact-founder-role">Founder & Creative Director, Fotograma Studio</div>
             </div>
@@ -1991,13 +1974,13 @@
 
     <script>
         // autoplay setup
-        // Event-driven approach — much more reliable than interval hammering on mobile.
+        // Event-driven approach - much more reliable than interval hammering on mobile.
         // iOS Safari requires a user gesture before play() works, so we hook into
         // touchstart and scroll (the most common first gestures) to unlock it.
         function setupVideo(video) {
             if (!video) return;
 
-            // set programmatically — some mobile browsers ignore HTML attributes
+            // set programmatically - some mobile browsers ignore HTML attributes
             video.muted = true;
             video.playsInline = true;
 
@@ -2036,7 +2019,7 @@
         setupVideo(heroBgVideo);
         setupVideo(reelBgVideo);
 
-        // Social strip — adaptive quality: compressed on mobile/slow connection,
+        // Social strip - adaptive quality: compressed on mobile/slow connection,
         // full quality on desktop with error fallback
         if (socialVideo) {
             const FULL_SRC       = 'https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-social-strip_15MB.mp4';
@@ -2108,7 +2091,7 @@
         }, { threshold: 0.12 });
 
         revealEls.forEach(el => revealObserver.observe(el));
-        // filmstrip — infinite scroll + drag + wheel
+        // filmstrip - infinite scroll + drag + wheel
         (function () {
             const viewport = document.querySelector('.filmstrip-viewport');
             const track    = document.getElementById('filmstripTrack');
