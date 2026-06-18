@@ -1549,6 +1549,18 @@
 
     </section>
 
+    <!-- reel -->
+    <section id="reel">
+        <video class="reel-bg-video" autoplay muted loop playsinline preload="auto" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-reel_15MB.mp4"></video>
+        <div class="reel-overlay"></div>
+        <div class="reel-cta">
+            <span class="reel-text">watch the reel</span>
+            <div class="reel-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+        </div>
+    </section>
+
     <!-- WHAT WE STAND FOR -->
     <section id="standfor">
         <div class="standfor-head reveal">
@@ -1714,14 +1726,52 @@
         </div>
     </section>
 
-    <!-- reel -->
-    <section id="reel">
-        <video class="reel-bg-video" autoplay muted loop playsinline preload="auto" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-reel_15MB.mp4"></video>
-        <div class="reel-overlay"></div>
-        <div class="reel-cta">
-            <span class="reel-text">watch the reel</span>
-            <div class="reel-btn">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <!-- FILMSTRIP GALLERY -->
+    <section id="filmstrip">
+        <div class="filmstrip-viewport">
+            <div class="filmstrip-track" id="filmstripTrack">
+
+                <!-- Continuous top sprocket strip -->
+                <div class="sprocket-row"></div>
+
+                <!-- Image row — 15 originals + 15 duplicates for seamless loop -->
+                <div class="filmstrip-images" id="filmstripImages">
+                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
+                    <!-- duplicates for seamless loop -->
+                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="" loading="lazy" aria-hidden="true">
+                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="" loading="lazy" aria-hidden="true">
+                </div>
+
+                <!-- Continuous bottom sprocket strip -->
+                <div class="sprocket-row"></div>
+
             </div>
         </div>
     </section>
@@ -1878,56 +1928,6 @@
                     <div class="tcard-name">Lovely Ela</div>
                     <div class="tcard-role">Content Creator</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FILMSTRIP GALLERY -->
-    <section id="filmstrip">
-        <div class="filmstrip-viewport">
-            <div class="filmstrip-track" id="filmstripTrack">
-
-                <!-- Continuous top sprocket strip -->
-                <div class="sprocket-row"></div>
-
-                <!-- Image row — 15 originals + 15 duplicates for seamless loop -->
-                <div class="filmstrip-images" id="filmstripImages">
-                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="Fotograma Studio — Roblox animation studio render" loading="lazy">
-                    <!-- duplicates for seamless loop -->
-                    <img class="film-img" src="assets/images/fotograma-render-still-1.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-2.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-3.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-4.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-5.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-6.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-7.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-8.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-9.jpg"  alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-10.jpg" alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-11.jpg" alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-12.jpg" alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-13.jpg" alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-14.jpg" alt="" loading="lazy" aria-hidden="true">
-                    <img class="film-img" src="assets/images/fotograma-render-still-15.jpg" alt="" loading="lazy" aria-hidden="true">
-                </div>
-
-                <!-- Continuous bottom sprocket strip -->
-                <div class="sprocket-row"></div>
-
             </div>
         </div>
     </section>
