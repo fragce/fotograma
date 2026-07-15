@@ -246,7 +246,6 @@
 
         .hdr-cta-btn {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 700;
             font-size: 10px;
             letter-spacing: 0.18em;
             text-transform: uppercase;
@@ -295,18 +294,20 @@
 
         .hero-logo {
             display: block;
-            width: min(580px, 82vw);
-            max-width: 580px;
+            width: min(660px, 82vw);
+            max-width: 660px;
             margin: 0 auto;
             height: auto;
         }
 
         .hero-tagline {
-            font-size: 13px;
-            letter-spacing: 0.3em;
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(26px, 4vw, 68px);
+            line-height: 0.95;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            margin-top: 18px;
+            color: var(--white);
+            margin-bottom: 14px;
+            white-space: nowrap;
         }
 
         /* Bottom-right CTA */
@@ -314,22 +315,13 @@
             position: absolute;
             bottom: 52px; right: 52px;
             z-index: 2;
-            max-width: 420px;
+            max-width: min(64vw, 820px);
             text-align: right;
-        }
-
-        .hero-cta-text {
-            font-size: 15px;
-            line-height: 1.75;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 24px;
-            display: block;
         }
 
         .hero-cta-btn {
             display: inline-block;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 700;
             font-size: 12px;
             letter-spacing: 0.2em;
             color: white;
@@ -343,6 +335,16 @@
         .hero-cta-btn:hover {
             background: rgba(255,255,255,0.08);
         }
+
+        /* Hero entrance animation */
+        .hero-logo, .hero-tagline, .hero-cta-btn {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        #hero.hero-loaded .hero-logo     { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+        #hero.hero-loaded .hero-tagline  { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+        #hero.hero-loaded .hero-cta-btn  { opacity: 1; transform: translateY(0); transition-delay: 0.58s; }
 
         .scroll-hint {
             position: absolute; bottom: 40px; left: 50%;
@@ -370,17 +372,6 @@
         /* ABOUT US */
         #about {
             padding: 170px 6vw;
-        }
-
-        /* Centered Pagkaki header - same grammar as every other section */
-        .about-head {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        .about-head h2 {
-            font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
-            line-height: 1.2;
         }
 
         /* Two-column body */
@@ -567,6 +558,7 @@
         }
 
         .section-eyebrow {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
             color: var(--gray); display: block; margin-bottom: 16px;
         }
@@ -917,17 +909,10 @@
             margin: 0 auto;
         }
 
-        .contact-eyebrow {
-            font-size: 13px; letter-spacing: 0.22em;
-            text-transform: uppercase; color: var(--gray);
-            display: block; margin-bottom: 20px;
-        }
-
         .contact-heading {
             font-family: 'Pagkaki', sans-serif;
             font-size: clamp(46px, 5.6vw, 78px);
             margin-bottom: 28px;
-            line-height: 1.1;
         }
 
         .contact-body {
@@ -1247,22 +1232,6 @@
             display: block;
         }
 
-        /* Services card flash hint */
-        @keyframes cardFlash {
-            0%   { opacity: 0; }
-            50%  { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        @keyframes lineFlash {
-            0%   { transform: scaleX(0); }
-            50%  { transform: scaleX(1); }
-            100% { transform: scaleX(0); }
-        }
-        .svc-card.flash-hint .svc-card-bg      { animation: cardFlash 1.2s ease-in-out forwards; }
-        .svc-card.flash-hint .svc-card-overlay  { animation: cardFlash 1.2s ease-in-out forwards; }
-        .svc-card.flash-hint .svc-card-line     { animation: lineFlash 1.2s ease-in-out forwards; transition: none; }
-        .svc-card.flash-done .svc-card-line     { transition: none; }
-
         #mobile-header { display: none; }
         #mobile-nav {
             display: none;
@@ -1286,7 +1255,7 @@
         .mob-logo { display: none; }
         .mob-cta-btn {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 700; font-size: 9px;
+            font-size: 9px;
             letter-spacing: 0.18em; text-transform: uppercase;
             color: white; text-decoration: none;
             border: 1px solid white; padding: 7px 12px; white-space: nowrap;
@@ -1327,11 +1296,11 @@
             .contact-heading { line-height: 1.05 !important; }
 
             .hero-logo { width: min(420px, 88vw); }
-            .hero-tagline { font-size: 11px; letter-spacing: 0.18em; }
+            .hero-tagline { font-size: 24px; margin-bottom: 14px; white-space: normal; }
+            .hero-tagline-break { display: none; }
 
             /* About Us */
             #about { padding: 80px 24px; }
-            .about-head { margin-bottom: 52px; }
             .about-inner { grid-template-columns: 1fr; gap: 48px; }
             .about-img-frame::before, .about-img-frame::after { display: none; }
 
@@ -1395,14 +1364,13 @@
             .hero-logo img { width: 90vw; }
             .hero-cta {
                 display: block;
-                max-width: 200px;
+                max-width: 240px;
                 bottom: 90px; right: 20px;
             }
-            .hero-cta-text { font-size: 11px; line-height: 1.6; margin-bottom: 14px; }
+            .hero-tagline { font-size: 20px; margin-bottom: 14px; }
             .hero-cta-btn { font-size: 9px; padding: 10px 16px; letter-spacing: 0.15em; }
 
             #about { padding: 60px 20px; }
-            .about-head { margin-bottom: 40px; }
             .about-inner { grid-template-columns: 1fr; gap: 36px; }
             .about-img-frame::before, .about-img-frame::after { display: none; }
 
@@ -1482,38 +1450,30 @@
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
 
-            <a href="#contact" class="hdr-cta-btn">Start a project</a>
+            <a href="#contact" class="hdr-cta-btn"><b>Start a project</b></a>
         </div>
     </header>
 
     <!-- hero -->
     <section id="hero">
-        <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-hero-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-reel_15MB.mp4"></video>
+        <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-hero-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/Fotograma_Hero_Web_15MB.mp4"></video>
 
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
             <h1 class="sr-only">Fotograma Studio - Roblox Animation Production Studio</h1>
             <img class="hero-logo" src="assets/images/logos/FotogramaLogo.svg" alt="Fotograma Studio - Roblox Animation Studio" loading="lazy">
-            <p class="hero-tagline">roblox animated productions</p>
         </div>
 
         <div class="hero-cta">
-            <span class="hero-cta-text">We produce cinematic animations for Roblox developers, brands, and creators that leave a lasting impression.</span>
-            <a href="#services" class="hero-cta-btn">Check out our work</a>
+            <p class="hero-tagline">Roblox Animated <br class="hero-tagline-break">Productions</p>
+            <a href="#reel" class="hero-cta-btn"><b>Check out our work</b></a>
         </div>
 
     </section>
 
     <!-- ABOUT US -->
     <section id="about">
-
-        <div class="about-head reveal">
-            <span class="section-eyebrow">who we are</span>
-            <h2>
-                <span class="pk outlined">about</span> <span class="pk filled">us</span>
-            </h2>
-        </div>
 
         <div class="about-inner">
             <div class="about-image-wrap reveal">
@@ -1542,7 +1502,7 @@
 
     <!-- reel -->
     <section id="reel">
-        <video class="reel-bg-video" autoplay muted loop playsinline preload="auto" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-reel_15MB.mp4"></video>
+        <video class="reel-bg-video" autoplay muted loop playsinline preload="auto" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/Fotograma_Hero_Web_15MB.mp4"></video>
         <div class="reel-overlay"></div>
         <div class="reel-cta">
             <span class="reel-text">watch the reel</span>
@@ -1555,7 +1515,7 @@
     <!-- WHAT WE STAND FOR -->
     <section id="standfor">
         <div class="standfor-head reveal">
-            <span class="section-eyebrow">how we work</span>
+            <span class="section-eyebrow">core values</span>
             <h2>
                 <span class="pk outlined">our</span> <span class="pk filled">philosophy</span>
             </h2>
@@ -1906,18 +1866,18 @@
             </div>
 
             <div class="tcard reveal d1">
-                <p class="tcard-quote">We're very grateful for this collaboration. Extremely responsible and highly efficient. Thank you again for your great work!</p>
+                <p class="tcard-quote">We've been working with Francisco for over a year on continuous projects, and he's consistently proven to be a reliable and professional collaborator. He brings strong creative ideas to the table and executes them with great quality and attention to detail</p>
                 <div class="tcard-author">
-                    <div class="tcard-name">Inaba</div>
-                    <div class="tcard-role">Mockbyrd Games</div>
+                    <div class="tcard-name">Matti Levesque</div>
+                    <div class="tcard-role">Co-Founder, Slay House Media</div>
                 </div>
             </div>
 
             <div class="tcard reveal d2">
-                <p class="tcard-quote">Not only was Francisco's work phenomenal, his quick response, delivery time, and kindness make it really pleasant to work with him.</p>
+                <p class="tcard-quote">We're very grateful for this collaboration. Extremely responsible and highly efficient. Thank you again for your great work!</p>
                 <div class="tcard-author">
-                    <div class="tcard-name">Iraxxira</div>
-                    <div class="tcard-role">Game Developer</div>
+                    <div class="tcard-name">Inaba</div>
+                    <div class="tcard-role">Business Manager, Mockbyrd Games</div>
                 </div>
             </div>
         </div>
@@ -1927,7 +1887,6 @@
     <section id="contact">
         <div class="contact-inner">
             <div class="contact-text reveal">
-                <span class="contact-eyebrow">get in touch</span>
                 <h2 class="contact-heading">
                     <span class="pk filled">contact</span>
                 </h2>
@@ -1962,7 +1921,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <span class="footer-copy">© 2026 Fotograma Studio. All rights reserved. &nbsp;·&nbsp; Vancouver, Canada &nbsp;·&nbsp; <a href="mailto:francisco@fotograma.ca" style="color:inherit;opacity:0.6;text-decoration:none;">francisco@fotograma.ca</a></span>
+        <span class="footer-copy">© 2026 Fotograma Studio. All rights reserved. &nbsp;·&nbsp; BC, Canada &nbsp;·&nbsp; <a href="mailto:francisco@fotograma.ca" style="color:inherit;opacity:0.6;text-decoration:none;">francisco@fotograma.ca</a></span>
 
         <div class="footer-socials">
             <a href="https://www.linkedin.com/company/fotogramastudio" title="LinkedIn" target="_blank" rel="noopener">
@@ -2024,6 +1983,21 @@
         const reelBgVideo  = document.querySelector('.reel-bg-video');
         const socialVideo  = document.querySelector('.social-strip-video');
 
+        // Demo reel - adaptive quality: compressed on slow connection, full quality otherwise
+        // Same source is used in both the hero section and the "watch the reel" section
+        (function () {
+            const FULL_SRC       = 'https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/Fotograma_Hero_Web_15MB.mp4';
+            const COMPRESSED_SRC = 'https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/Fotograma_Hero_Web_10MB.mp4';
+
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const isSlow = conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType));
+
+            const reelSrc = isSlow ? COMPRESSED_SRC : FULL_SRC;
+
+            if (heroBgVideo) heroBgVideo.src = reelSrc;
+            if (reelBgVideo) reelBgVideo.src = reelSrc;
+        })();
+
         setupVideo(heroBgVideo);
         setupVideo(reelBgVideo);
 
@@ -2055,7 +2029,7 @@
         }
 
         // vimeo lightbox
-        const REEL_EMBED = 'https://player.vimeo.com/video/1197204231?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
+        const REEL_EMBED = 'https://player.vimeo.com/video/1209704114?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
 
         const lightbox     = document.getElementById('vimeo-lightbox');
         const vimeoIframe  = document.getElementById('vimeo-iframe');
@@ -2080,6 +2054,11 @@
         if (vimeoClose)   vimeoClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
 
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+        // HERO ENTRANCE ANIMATION
+        requestAnimationFrame(() => {
+            document.getElementById('hero').classList.add('hero-loaded');
+        });
 
         // STICKY HEADER
         const hdr = document.getElementById('header');
@@ -2212,32 +2191,6 @@
             }, { threshold: 0.4 });
 
             observer.observe(statsSection);
-        })();
-
-        // flash service card bg images on scroll-in
-        (function() {
-            const services = document.getElementById('services');
-            if (!services) return;
-            const cards = services.querySelectorAll('.svc-card');
-            let fired = false;
-            new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && !fired) {
-                    fired = true;
-                    cards.forEach((card, i) => {
-                        setTimeout(() => {
-                            card.classList.add('flash-hint');
-                            setTimeout(() => {
-                                                // suppress transition for 2 frames to prevent bounce on class removal
-                                card.classList.add('flash-done');
-                                card.classList.remove('flash-hint');
-                                requestAnimationFrame(() => requestAnimationFrame(() => {
-                                    card.classList.remove('flash-done');
-                                }));
-                            }, 1200);
-                        }, 500 + i * 900);
-                    });
-                }
-            }, { threshold: 0.25 }).observe(services);
         })();
 
         // mobile nav toggle
