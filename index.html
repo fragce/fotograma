@@ -1093,10 +1093,10 @@
 
         .standfor-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 1px;
             width: 100%;
-            max-width: min(1800px, 96vw);
+            max-width: min(1400px, 96vw);
             margin: 0 auto;
             border: 1px solid var(--border);
         }
@@ -1107,26 +1107,16 @@
             flex-direction: column;
             gap: 20px;
             border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             position: relative;
             overflow: hidden;
             min-height: 480px;
             transition: background 0.3s;
         }
-        .standfor-card:last-child { border-right: none; }
+        .standfor-card:nth-child(2n) { border-right: none; }
+        .standfor-card:nth-child(3), .standfor-card:nth-child(4) { border-bottom: none; }
         .standfor-card:hover { background: rgba(255,255,255,0.015); }
 
-        /* White top line on hover */
-        .standfor-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: white;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.45s ease;
-            z-index: 3;
-        }
         .standfor-card:hover::before { transform: scaleX(1); }
 
         .standfor-bg-img {
@@ -1157,7 +1147,7 @@
             color: rgba(255,255,255,0.55);
             position: relative;
             z-index: 2;
-            max-width: 220px;
+            max-width: 260px;
         }
 
         /* FEATURED PROJECT */
@@ -1309,6 +1299,7 @@
             #standfor { padding: 100px 20px 130px; }
             .standfor-grid { grid-template-columns: 1fr; max-width: 100%; }
             .standfor-card { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 28px 64px; min-height: 360px; }
+            .standfor-card:nth-child(3) { border-bottom: 1px solid var(--border); }
             .standfor-card:last-child { border-bottom: none; }
             .standfor-bg-img { opacity: 0.13; }
 
@@ -1500,7 +1491,7 @@
 
             <div class="about-text reveal d1">
                 <p class="about-statement">A full production house for Roblox</p>
-                <p><strong>Fotograma Studio</strong> is an animation studio and production house specializing in cinematic 3D visuals for Roblox. With over five years of experience, we bring film-level production quality, visual storytelling, and artistic direction to every project.</p>
+                <p><strong>Fotograma Studio</strong> is a full-service production house specializing in Roblox cinematic visuals. From animated trailers to graphic assets and social content, Fotograma handles the complete visual pipeline so you can stay focused on building your game. <br> <br> Every project gets real, human artistic direction and creative vision. Work built to be memorable and <strong>stand out.</strong></p>
 
                 <div class="about-definition">
                     <span class="about-def-word">Fotograma</span>
@@ -1550,6 +1541,12 @@
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-3.png" alt="" aria-hidden="true">
                 <h3>Collaboration</h3>
                 <p>The best ideas are built together. We work closely with our clients, value open communication, and embrace new perspectives to make sure every project reaches its full creative potential.</p>
+            </div>
+
+            <div class="standfor-card reveal d3">
+                <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-4.png" alt="" aria-hidden="true">
+                <h3>Impact</h3>
+                <p>Our work is designed to stick with audiences and spark curiosity. We create visuals that are not just seen, but remembered, making people engage.</p>
             </div>
 
         </div>
