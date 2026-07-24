@@ -553,7 +553,7 @@
 
         /* FULL PRODUCTION SERVICES */
         #services {
-            padding: 130px 40px;
+            padding: 150px 40px;
             text-align: center;
         }
 
@@ -569,28 +569,87 @@
             margin-bottom: 80px;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border: 1px solid var(--border);
-            margin: 0 auto;
+        /* Carousel + deliverables side-by-side layout */
+        .svc-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
             width: 100%;
             max-width: min(1800px, 96vw);
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        /* CAROUSEL (pre-production / production / post-production) */
+        .svc-carousel {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            flex: 1 1 55%;
+            min-width: 0;
+        }
+
+        .svc-carousel-track {
+            position: relative;
+            flex: 1;
+            height: 560px;
         }
 
         .svc-card {
+            position: absolute;
+            top: 0; left: 50%;
+            width: 100%;
+            max-width: 600px;
             padding: 64px 56px 72px;
-            border-right: 1px solid var(--border);
-            position: relative;
+            border: 2px solid var(--border);
+            background: var(--black);
             overflow: hidden;
             min-height: 560px;
             display: flex;
             flex-direction: column;
             text-align: left;
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            cursor: pointer;
+            z-index: 3;
+            transition: transform 0.5s ease, background 0.5s ease;
         }
-        .svc-card:last-child { border-right: none; }
+        .svc-card.is-active:hover {
+            transform: translateX(-50%) scale(1.035);
+        }
+        .svc-card.is-prev {
+            transform: translateX(calc(-50% - 170px)) scale(0.86);
+            background: #161616;
+            z-index: 1;
+            cursor: default;
+            pointer-events: none;
+        }
+        .svc-card.is-next {
+            transform: translateX(calc(-50% + 170px)) scale(0.86);
+            background: #161616;
+            z-index: 1;
+            cursor: default;
+            pointer-events: none;
+        }
+        .svc-card.is-hidden {
+            opacity: 0;
+            background: #161616;
+            transform: translateX(-50%) scale(0.7);
+            z-index: 0;
+            pointer-events: none;
+            transition: transform 0.5s ease, opacity 0.5s ease, background 0.5s ease;
+        }
 
-        /* Background image - fades in on hover */
+        /* Dim inner content on peeking cards, keep the box itself fully opaque */
+        .svc-card .svc-icon, .svc-card .svc-label, .svc-card .svc-list {
+            transition: opacity 0.5s ease;
+        }
+        .svc-card.is-prev .svc-icon, .svc-card.is-prev .svc-label, .svc-card.is-prev .svc-list,
+        .svc-card.is-next .svc-icon, .svc-card.is-next .svc-label, .svc-card.is-next .svc-list {
+            opacity: 0.55;
+        }
+
+        /* Background image - always visible on the active card */
         .svc-card-bg {
             position: absolute; inset: 0;
             background-size: cover;
@@ -599,7 +658,15 @@
             transition: opacity 0.6s ease;
             z-index: 0;
         }
-        .svc-card:hover .svc-card-bg { opacity: 1; }
+        /* Active card's render is always visible now, not just on hover */
+        .svc-card.is-active .svc-card-bg { opacity: 1; }
+        /* Pre/post-production images are a bit brighter, so dial them back slightly
+           more than production, whose render is already fairly dark */
+        .svc-card.svc-card-dim.is-active .svc-card-bg { opacity: 0.87; }
+        /* Peeking / hidden cards never reveal their render, even if hovered */
+        .svc-card.is-prev .svc-card-bg,
+        .svc-card.is-next .svc-card-bg,
+        .svc-card.is-hidden .svc-card-bg { opacity: 0 !important; }
 
         /* Dark overlay on top of image */
         .svc-card-overlay {
@@ -609,18 +676,7 @@
             transition: opacity 0.6s ease;
             z-index: 1;
         }
-        .svc-card:hover .svc-card-overlay { opacity: 1; }
-
-        /* Top white line */
-        .svc-card-line {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: white;
-            transform: scaleX(0); transform-origin: left;
-            transition: transform 0.45s ease;
-            z-index: 3;
-        }
-        .svc-card:hover .svc-card-line { transform: scaleX(1); }
+        .svc-card.is-active .svc-card-overlay { opacity: 1; }
 
         /* Keep content above image layers */
         .svc-icon, .svc-label, .svc-list { position: relative; z-index: 2; }
@@ -645,8 +701,62 @@
             list-style: none; display: flex; flex-direction: column; gap: 13px;
         }
         .svc-list li {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 18px; color: rgba(255,255,255,0.65);
             letter-spacing: 0.02em; line-height: 1.75;
+        }
+
+        /* Prev/next arrows - bare, bold chevrons, no circle */
+        .carousel-arrow {
+            width: 34px; height: 34px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: opacity 0.3s, transform 0.2s;
+            opacity: 0.85;
+        }
+        .carousel-arrow:hover { opacity: 1; transform: scale(1.08); }
+        .carousel-arrow svg { width: 34px; height: 34px; stroke-width: 3.5; }
+
+        /* DELIVERABLES - "everything you need" (primary message) */
+        .svc-usecases {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding-top: 64px;
+        }
+        .svc-usecases-heading {
+            font-family: 'Pagkaki', sans-serif;
+            font-size: clamp(46px, 5vw, 76px);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .svc-usecases-lists {
+            display: flex;
+            gap: 48px;
+        }
+        .svc-usecases-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+        .svc-usecases-list li {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px; color: rgba(255,255,255,0.65);
+            letter-spacing: 0.02em; line-height: 1.75;
+            position: relative;
+            padding-left: 20px;
+        }
+        .svc-usecases-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: rgba(255,255,255,0.65);
         }
 
         /* WATCH THE REEL */
@@ -1295,12 +1405,14 @@
             .about-inner { grid-template-columns: 1fr; gap: 48px; }
             .about-img-frame::before, .about-img-frame::after { display: none; }
 
-            /* What We Stand For */
+            /* What We Stand For - core values carousel */
             #standfor { padding: 100px 20px 130px; }
-            .standfor-grid { grid-template-columns: 1fr; max-width: 100%; }
-            .standfor-card { border-right: none; border-bottom: 1px solid var(--border); padding: 56px 28px 64px; min-height: 360px; }
-            .standfor-card:nth-child(3) { border-bottom: 1px solid var(--border); }
-            .standfor-card:last-child { border-bottom: none; }
+            .standfor-carousel { flex-direction: column; gap: 28px; max-width: 100%; }
+            .standfor-carousel .carousel-arrow { display: none; }
+            .standfor-track { width: 100%; height: 440px; }
+            .standfor-card { max-width: 78vw; padding: 48px 32px 56px; min-height: 400px; }
+            .standfor-card.is-prev { transform: translateX(calc(-50% - 48px)) scale(0.88); }
+            .standfor-card.is-next { transform: translateX(calc(-50% + 48px)) scale(0.88); }
             .standfor-bg-img { opacity: 0.13; }
 
             /* Social strip - compressed video always loads here (≤900px in JS).
@@ -1316,11 +1428,19 @@
                 transform-origin: center center;
             }
 
+            /* Production Services - carousel + deliverables */
             #services { padding: 80px 0; }
             .services-heading { margin-bottom: 52px; padding: 0 24px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .svc-card { border-right: none; border-bottom: 1px solid var(--border); min-height: auto; }
-            .svc-card:last-child { border-bottom: none; }
+            .svc-layout { flex-direction: column; gap: 56px; padding: 0 20px; }
+            .svc-carousel { width: 100%; }
+            .svc-carousel .carousel-arrow { display: none; }
+            .svc-carousel-track { height: 480px; }
+            .svc-card { max-width: 78vw; padding: 48px 32px 56px; min-height: 440px; }
+            .svc-card.is-prev { transform: translateX(calc(-50% - 48px)) scale(0.86); }
+            .svc-card.is-next { transform: translateX(calc(-50% + 48px)) scale(0.86); }
+            .svc-usecases { width: 100%; padding-top: 0; }
+            .svc-usecases-heading { font-size: clamp(34px, 8vw, 54px); }
+            .svc-usecases-lists { flex-direction: column; gap: 20px; }
 
             #reel { height: 52vw; min-height: 260px; }
 
@@ -1379,7 +1499,15 @@
             #social-strip { height: clamp(180px, 65vw, 340px); }
 
             #services { padding: 64px 20px; }
-            .svc-card { padding: 40px 28px; }
+            .svc-carousel-track { height: 460px; }
+            .svc-card { max-width: 76vw; padding: 40px 28px; min-height: 420px; }
+            .svc-card.is-prev { transform: translateX(calc(-50% - 34px)) scale(0.85); }
+            .svc-card.is-next { transform: translateX(calc(-50% + 34px)) scale(0.85); }
+
+            .standfor-track { height: 420px; }
+            .standfor-card { max-width: 76vw; padding: 40px 28px; min-height: 380px; }
+            .standfor-card.is-prev { transform: translateX(calc(-50% - 34px)) scale(0.85); }
+            .standfor-card.is-next { transform: translateX(calc(-50% + 34px)) scale(0.85); }
 
             .stat-num { font-size: clamp(48px, 14vw, 80px); }
 
@@ -1514,7 +1642,124 @@
         </div>
     </section>
 
-    <!-- WHAT WE STAND FOR -->
+    <!-- FULL PRODUCTION SERVICES -->
+    <section id="services">
+        <div class="reveal">
+            <span class="section-eyebrow">what we offer</span>
+            <h2 class="services-heading">
+                <span class="outlined pk">production</span> <span class="filled pk">services</span>
+            </h2>
+        </div>
+
+        <div class="svc-layout reveal">
+
+            <div class="svc-carousel">
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Previous stage">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+
+                <div class="svc-carousel-track">
+
+                    <!-- PRE-PRODUCTION -->
+                    <div class="svc-card svc-card-dim" data-index="0">
+                        <div class="svc-card-bg" style="background-image:url('assets/images/fotograma-preproduction.png')"></div>
+                        <div class="svc-card-overlay"></div>
+                        <div class="svc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
+                            </svg>
+                        </div>
+                        <span class="svc-label">pre-production</span>
+                        <ul class="svc-list">
+                            <li>Concept Development</li>
+                            <li>Script Writing</li>
+                            <li>Storyboarding</li>
+                            <li>Asset Planning & Preparation</li>
+                        </ul>
+                    </div>
+
+                    <!-- PRODUCTION (default active) -->
+                    <div class="svc-card" data-index="1">
+                        <div class="svc-card-bg" style="background-image:url('assets/images/fotograma-production.png')"></div>
+                        <div class="svc-card-overlay"></div>
+                        <div class="svc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 10-3-3z"/>
+                                <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/>
+                                <path d="M14.5 17.5L4.5 15"/>
+                            </svg>
+                        </div>
+                        <span class="svc-label">production</span>
+                        <ul class="svc-list">
+                            <li>CGI & 3D Animation</li>
+                            <li>Motion Graphics</li>
+                            <li>Gameplay Capture</li>
+                            <li>Rendering & Compositing</li>
+                        </ul>
+                    </div>
+
+                    <!-- POST-PRODUCTION -->
+                    <div class="svc-card svc-card-dim" data-index="2">
+                        <div class="svc-card-bg" style="background-image:url('assets/images/fotograma-postproduction.png')"></div>
+                        <div class="svc-card-overlay"></div>
+                        <div class="svc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <span class="svc-label">post-production</span>
+                        <ul class="svc-list">
+                            <li>Video Editing</li>
+                            <li>Sound Design</li>
+                            <li>Music Composition</li>
+                            <li>Dubbing</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Next stage">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+
+            <div class="svc-usecases">
+                <h3 class="svc-usecases-heading">Everything you need.<br>All in one place.</h3>
+                <div class="svc-usecases-lists">
+                    <ul class="svc-usecases-list">
+                        <li>Game trailers</li>
+                        <li>Short and long form video</li>
+                        <li>Social media content</li>
+                        <li>Character animation</li>
+                    </ul>
+                    <ul class="svc-usecases-list">
+                        <li>Promotional material</li>
+                        <li>Brand graphic assets</li>
+                        <li>Visual development & concept art</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <br><br>
+         <p class="services-tagline reveal">Perfect for launch trailers, branded campaigns, social media content, and everything in between.</p>
+
+    </section>
+
+    <!-- SOCIAL MEDIA STRIP -->
+    <section id="social-strip">
+        <video class="social-strip-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-social-strip_15MB.mp4"></video>
+        <div class="social-strip-dark"></div>
+        <div class="social-strip-label">
+            <p>Roblox deserves quality animation.</p>
+        </div>
+    </section>
+
+     <!-- WHAT WE STAND FOR -->
     <section id="standfor">
         <div class="standfor-head reveal">
             <span class="section-eyebrow">core values</span>
@@ -1550,93 +1795,6 @@
             </div>
 
         </div>
-    </section>
-
-    <!-- SOCIAL MEDIA STRIP -->
-    <section id="social-strip">
-        <video class="social-strip-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-social-strip_15MB.mp4"></video>
-        <div class="social-strip-dark"></div>
-        <div class="social-strip-label">
-            <p>Roblox deserves quality animation.</p>
-        </div>
-    </section>
-
-    <!-- FULL PRODUCTION SERVICES -->
-    <section id="services">
-        <div class="reveal">
-            <span class="section-eyebrow">what we offer</span>
-            <h2 class="services-heading">
-                <span class="outlined pk">production</span> <span class="filled pk">services</span>
-            </h2>
-        </div>
-
-        <div class="services-grid reveal">
-            <!-- PRE-PRODUCTION -->
-            <div class="svc-card">
-                <div class="svc-card-bg" style="background-image:url('assets/images/fotograma-preproduction.png')"></div>
-                <div class="svc-card-overlay"></div>
-                <div class="svc-card-line"></div>
-                <div class="svc-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <span class="svc-label">pre-production</span>
-                <ul class="svc-list">
-                    <li>Concept Development</li>
-                    <li>Script Writing</li>
-                    <li>Storyboarding</li>
-                    <li>Asset Planning & Preparation</li>
-                </ul>
-            </div>
-
-            <!-- PRODUCTION -->
-            <div class="svc-card">
-                <div class="svc-card-bg" style="background-image:url('assets/images/fotograma-production.png')"></div>
-                <div class="svc-card-overlay"></div>
-                <div class="svc-card-line"></div>
-                <div class="svc-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 10-3-3z"/>
-                        <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/>
-                        <path d="M14.5 17.5L4.5 15"/>
-                    </svg>
-                </div>
-                <span class="svc-label">production</span>
-                <ul class="svc-list">
-                    <li>CGI & 3D Animation</li>
-                    <li>Motion Graphics</li>
-                    <li>Gameplay Capture</li>
-                    <li>Rendering & Compositing</li>
-                </ul>
-            </div>
-
-            <!-- POST-PRODUCTION -->
-            <div class="svc-card">
-                <div class="svc-card-bg" style="background-image:url('assets/images/fotograma-postproduction.png')"></div>
-                <div class="svc-card-overlay"></div>
-                <div class="svc-card-line"></div>
-                <div class="svc-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                    </svg>
-                </div>
-                <span class="svc-label">post-production</span>
-                <ul class="svc-list">
-                    <li>Video Editing</li>
-                    <li>Sound Design</li>
-                    <li>Music Composition</li>
-                    <li>Dubbing</li>
-                </ul>
-            </div>
-        </div>
-
-        <p class="services-tagline reveal">Perfect for launch trailers, branded campaigns, social media content, and everything in between.</p>
-
     </section>
 
     <!-- featured project -->
@@ -2073,6 +2231,72 @@
         window.addEventListener('scroll', () => {
             hdr.classList.toggle('scrolled', window.scrollY > 60);
         }, { passive: true });
+
+        // STACKED-CARD CAROUSELS (production services + core values)
+        function initCarousel({ trackSelector, cardSelector, prevSelector, nextSelector, startIndex = 0 }) {
+            const track = document.querySelector(trackSelector);
+            if (!track) return;
+            const cards = Array.from(track.querySelectorAll(cardSelector));
+            const total = cards.length;
+            if (!total) return;
+            let current = startIndex % total;
+
+            function render() {
+                cards.forEach((card, i) => {
+                    let diff = i - current;
+                    if (diff > total / 2) diff -= total;
+                    if (diff < -total / 2) diff += total;
+
+                    card.classList.remove('is-active', 'is-prev', 'is-next', 'is-hidden');
+                    if (diff === 0) card.classList.add('is-active');
+                    else if (diff === -1) card.classList.add('is-prev');
+                    else if (diff === 1) card.classList.add('is-next');
+                    else card.classList.add('is-hidden');
+                });
+            }
+
+            function go(dir) {
+                current = (current + dir + total) % total;
+                render();
+            }
+
+            const prevBtn = document.querySelector(prevSelector);
+            const nextBtn = document.querySelector(nextSelector);
+            if (prevBtn) prevBtn.addEventListener('click', () => go(-1));
+            if (nextBtn) nextBtn.addEventListener('click', () => go(1));
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('is-active')) go(1);
+                });
+            });
+
+            // swipe support
+            let touchStartX = 0;
+            track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+            track.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+            }, { passive: true });
+
+            render();
+        }
+
+        initCarousel({
+            trackSelector: '.svc-carousel-track',
+            cardSelector: '.svc-card',
+            prevSelector: '.svc-carousel .carousel-arrow-prev',
+            nextSelector: '.svc-carousel .carousel-arrow-next',
+            startIndex: 1 // production
+        });
+
+        initCarousel({
+            trackSelector: '.standfor-track',
+            cardSelector: '.standfor-card',
+            prevSelector: '.standfor-carousel .carousel-arrow-prev',
+            nextSelector: '.standfor-carousel .carousel-arrow-next',
+            startIndex: 0 // craft
+        });
 
         // SCROLL REVEAL
         const revealEls = document.querySelectorAll('.reveal');
