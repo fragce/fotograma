@@ -283,6 +283,19 @@
             z-index: 1;
         }
 
+        /* Softens the hard edge where the source video's visible frame ends
+           near the top of the crop on tall/portrait viewports - mobile only */
+        .hero-top-fade {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 22vh;
+            min-height: 140px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
         .hero-content {
             position: relative; z-index: 2;
             text-align: center;
@@ -616,6 +629,17 @@
         }
         .svc-card.is-active:hover {
             transform: translateX(-50%) scale(1.035);
+        }
+
+        /* Subtle "you can swipe/click this" hint - nudges toward next card and back */
+        @keyframes carouselHintNudge {
+            0%   { transform: translateX(-50%) scale(1); }
+            30%  { transform: translateX(calc(-50% - 24px)) scale(0.98); }
+            55%  { transform: translateX(calc(-50% - 8px)) scale(0.99); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        .svc-card.is-active.hint-nudge {
+            animation: carouselHintNudge 1s ease;
         }
         .svc-card.is-prev {
             transform: translateX(calc(-50% - 170px)) scale(0.86);
@@ -1352,6 +1376,24 @@
             padding: 4px; display: flex; align-items: center; opacity: 0.85;
             filter: drop-shadow(0 1px 4px rgba(0,0,0,0.6));
         }
+        .mob-menu-icon {
+            position: relative;
+            width: 22px; height: 16px;
+            display: block;
+        }
+        .mob-menu-line {
+            position: absolute;
+            left: 0;
+            width: 22px; height: 1.5px;
+            background: white;
+            transition: top 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
+        }
+        .mob-menu-line-1 { top: 0; }
+        .mob-menu-line-2 { top: 7px; }
+        .mob-menu-line-3 { top: 14px; }
+        .mob-menu-btn.is-open .mob-menu-line-1 { top: 7px; transform: rotate(45deg); }
+        .mob-menu-btn.is-open .mob-menu-line-2 { opacity: 0; }
+        .mob-menu-btn.is-open .mob-menu-line-3 { top: 7px; transform: rotate(-45deg); }
         .mob-logo { display: none; }
         .mob-cta-btn {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1395,24 +1437,28 @@
             .testimonials-head h2, .trusted-head h2,
             .contact-heading { line-height: 1.05 !important; }
 
-            .hero-logo { width: min(380px, 72vw); }
+            .hero-logo { width: min(430px, 78vw); }
             .hero-cta { bottom: 45px; }
             .hero-tagline { font-size: 34px; margin-bottom: 14px; white-space: normal; }
             .hero-tagline-break { display: none; }
+            .hero-top-fade { display: block; height: 10vh; min-height: 64px; }
 
             /* About Us */
             #about { padding: 80px 24px; }
             .about-inner { grid-template-columns: 1fr; gap: 48px; }
             .about-img-frame::before, .about-img-frame::after { display: none; }
 
-            /* What We Stand For - core values carousel */
+            /* What We Stand For - core values grid, stacked to a single column on mobile */
             #standfor { padding: 100px 20px 130px; }
-            .standfor-carousel { flex-direction: column; gap: 28px; max-width: 100%; }
-            .standfor-carousel .carousel-arrow { display: none; }
-            .standfor-track { width: 100%; height: 440px; }
-            .standfor-card { max-width: 78vw; padding: 48px 32px 56px; min-height: 400px; }
-            .standfor-card.is-prev { transform: translateX(calc(-50% - 48px)) scale(0.88); }
-            .standfor-card.is-next { transform: translateX(calc(-50% + 48px)) scale(0.88); }
+            .standfor-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .standfor-card {
+                border-right: none !important;
+                border-bottom: 1px solid var(--border);
+                padding: 56px 32px 64px;
+                min-height: 340px;
+            }
+            .standfor-card:nth-child(3), .standfor-card:nth-child(4) { border-bottom: 1px solid var(--border); }
+            .standfor-card:last-child { border-bottom: none; }
             .standfor-bg-img { opacity: 0.13; }
 
             /* Social strip - compressed video always loads here (≤900px in JS).
@@ -1432,14 +1478,15 @@
             #services { padding: 80px 0; }
             .services-heading { margin-bottom: 52px; padding: 0 24px; }
             .svc-layout { flex-direction: column; gap: 56px; padding: 0 20px; }
-            .svc-carousel { width: 100%; }
-            .svc-carousel .carousel-arrow { display: none; }
+            .svc-carousel { width: 100%; gap: 14px; }
+            .svc-carousel .carousel-arrow { width: 28px; height: 28px; }
+            .svc-carousel .carousel-arrow svg { width: 28px; height: 28px; stroke-width: 3.5; }
             .svc-carousel-track { height: 480px; }
             .svc-card { max-width: 78vw; padding: 48px 32px 56px; min-height: 440px; }
             .svc-card.is-prev { transform: translateX(calc(-50% - 48px)) scale(0.86); }
             .svc-card.is-next { transform: translateX(calc(-50% + 48px)) scale(0.86); }
             .svc-usecases { width: 100%; padding-top: 0; }
-            .svc-usecases-heading { font-size: clamp(34px, 8vw, 54px); }
+            .svc-usecases-heading { font-size: clamp(41px, 9.6vw, 65px); line-height: 1.02; }
             .svc-usecases-lists { flex-direction: column; gap: 20px; }
 
             #reel { height: 52vw; min-height: 260px; }
@@ -1483,7 +1530,7 @@
         /* MOBILE - PHONE (≤ 540px) */
         @media (max-width: 540px) {
 
-            .hero-logo { width: min(300px, 66vw); }
+            .hero-logo { width: min(340px, 72vw); }
             .hero-cta {
                 display: block;
                 max-width: 260px;
@@ -1499,15 +1546,13 @@
             #social-strip { height: clamp(180px, 65vw, 340px); }
 
             #services { padding: 64px 20px; }
+            .svc-carousel { gap: 10px; }
             .svc-carousel-track { height: 460px; }
             .svc-card { max-width: 76vw; padding: 40px 28px; min-height: 420px; }
             .svc-card.is-prev { transform: translateX(calc(-50% - 34px)) scale(0.85); }
             .svc-card.is-next { transform: translateX(calc(-50% + 34px)) scale(0.85); }
 
-            .standfor-track { height: 420px; }
-            .standfor-card { max-width: 76vw; padding: 40px 28px; min-height: 380px; }
-            .standfor-card.is-prev { transform: translateX(calc(-50% - 34px)) scale(0.85); }
-            .standfor-card.is-next { transform: translateX(calc(-50% + 34px)) scale(0.85); }
+            .standfor-card { padding: 48px 24px 56px; min-height: 300px; }
 
             .stat-num { font-size: clamp(48px, 14vw, 80px); }
 
@@ -1530,11 +1575,11 @@
     <!-- mobile header -->
     <div id="mobile-header">
         <button class="mob-menu-btn" id="mob-menu-toggle" aria-label="Open menu">
-            <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
-                <rect width="22" height="1.5" fill="white"/>
-                <rect y="7" width="22" height="1.5" fill="white"/>
-                <rect y="14" width="22" height="1.5" fill="white"/>
-            </svg>
+            <span class="mob-menu-icon">
+                <span class="mob-menu-line mob-menu-line-1"></span>
+                <span class="mob-menu-line mob-menu-line-2"></span>
+                <span class="mob-menu-line mob-menu-line-3"></span>
+            </span>
         </button>
         <a href="#hero" class="mob-logo">
             <img src="assets/images/logos/F_Icon.svg" alt="Fotograma Studio">
@@ -1589,6 +1634,7 @@
         <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-hero-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/Fotograma_Hero_Web_15MB.mp4"></video>
 
         <div class="hero-overlay"></div>
+        <div class="hero-top-fade"></div>
 
         <div class="hero-content">
             <h1 class="sr-only">Fotograma Studio - Roblox Animation Production Studio</h1>
@@ -2232,14 +2278,15 @@
             hdr.classList.toggle('scrolled', window.scrollY > 60);
         }, { passive: true });
 
-        // STACKED-CARD CAROUSELS (production services + core values)
+        // STACKED-CARD CAROUSELS (production services)
         function initCarousel({ trackSelector, cardSelector, prevSelector, nextSelector, startIndex = 0 }) {
             const track = document.querySelector(trackSelector);
-            if (!track) return;
+            if (!track) return null;
             const cards = Array.from(track.querySelectorAll(cardSelector));
             const total = cards.length;
-            if (!total) return;
+            if (!total) return null;
             let current = startIndex % total;
+            let interacted = false;
 
             function render() {
                 cards.forEach((card, i) => {
@@ -2255,7 +2302,8 @@
                 });
             }
 
-            function go(dir) {
+            function go(dir, isUserAction = true) {
+                if (isUserAction) interacted = true;
                 current = (current + dir + total) % total;
                 render();
             }
@@ -2280,9 +2328,22 @@
             }, { passive: true });
 
             render();
+
+            // Subtle "this is swipeable" nudge - plays only until the person interacts
+            function playHint() {
+                if (interacted) return;
+                const activeCard = track.querySelector('.svc-card.is-active');
+                if (!activeCard) return;
+                activeCard.classList.add('hint-nudge');
+                activeCard.addEventListener('animationend', () => {
+                    activeCard.classList.remove('hint-nudge');
+                }, { once: true });
+            }
+
+            return { hasInteracted: () => interacted, playHint };
         }
 
-        initCarousel({
+        const svcCarouselApi = initCarousel({
             trackSelector: '.svc-carousel-track',
             cardSelector: '.svc-card',
             prevSelector: '.svc-carousel .carousel-arrow-prev',
@@ -2290,13 +2351,26 @@
             startIndex: 1 // production
         });
 
-        initCarousel({
-            trackSelector: '.standfor-track',
-            cardSelector: '.standfor-card',
-            prevSelector: '.standfor-carousel .carousel-arrow-prev',
-            nextSelector: '.standfor-carousel .carousel-arrow-next',
-            startIndex: 0 // craft
-        });
+        // Idle hint: once the services section is in view, nudge the active card
+        // toward "next" and back a couple times to suggest it's swipeable/clickable,
+        // but only if the person hasn't already interacted with it.
+        if (svcCarouselApi) {
+            const servicesSection = document.getElementById('services');
+            let hintPlays = 0;
+            const hintObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !svcCarouselApi.hasInteracted() && hintPlays < 3) {
+                        setTimeout(() => {
+                            if (!svcCarouselApi.hasInteracted() && hintPlays < 3) {
+                                svcCarouselApi.playHint();
+                                hintPlays++;
+                            }
+                        }, 1000 + hintPlays * 4200);
+                    }
+                });
+            }, { threshold: 0.4 });
+            if (servicesSection) hintObserver.observe(servicesSection);
+        }
 
         // SCROLL REVEAL
         const revealEls = document.querySelectorAll('.reveal');
@@ -2432,11 +2506,15 @@
             if (!toggle || !nav) return;
             toggle.addEventListener('click', () => {
                 const open = nav.classList.toggle('open');
+                toggle.classList.toggle('is-open', open);
+                toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
                 document.body.style.overflow = open ? 'hidden' : '';
             });
             nav.querySelectorAll('.mob-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     nav.classList.remove('open');
+                    toggle.classList.remove('is-open');
+                    toggle.setAttribute('aria-label', 'Open menu');
                     document.body.style.overflow = '';
                 });
             });
