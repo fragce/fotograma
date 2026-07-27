@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary SEO -->
-    <title>Fotograma Studio | Roblox Animation Production Studio</title>
+    <title>Fotograma Studio | Roblox Animation Productions</title>
     <meta name="description" content="Fotograma Studio is a production studio specializing in cinematic 3D animation for Roblox. We make visuals for Roblox trailers, branded campaigns, and social media content.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Francisco Garcia, Fotograma Studio">
@@ -630,26 +630,15 @@
         .svc-card.is-active:hover {
             transform: translateX(-50%) scale(1.035);
         }
-
-        /* Subtle "you can swipe/click this" hint - nudges toward next card and back */
-        @keyframes carouselHintNudge {
-            0%   { transform: translateX(-50%) scale(1); }
-            30%  { transform: translateX(calc(-50% - 24px)) scale(0.98); }
-            55%  { transform: translateX(calc(-50% - 8px)) scale(0.99); }
-            100% { transform: translateX(-50%) scale(1); }
-        }
-        .svc-card.is-active.hint-nudge {
-            animation: carouselHintNudge 1s ease;
-        }
         .svc-card.is-prev {
-            transform: translateX(calc(-50% - 170px)) scale(0.86);
+            transform: translateX(calc(-50% - min(170px, 9vw))) scale(0.86);
             background: #161616;
             z-index: 1;
             cursor: default;
             pointer-events: none;
         }
         .svc-card.is-next {
-            transform: translateX(calc(-50% + 170px)) scale(0.86);
+            transform: translateX(calc(-50% + min(170px, 9vw))) scale(0.86);
             background: #161616;
             z-index: 1;
             cursor: default;
@@ -673,7 +662,7 @@
             opacity: 0.55;
         }
 
-        /* Background image - always visible on the active card */
+        /* Background image - only shows on hover / tap-and-hold */
         .svc-card-bg {
             position: absolute; inset: 0;
             background-size: cover;
@@ -682,11 +671,12 @@
             transition: opacity 0.6s ease;
             z-index: 0;
         }
-        /* Active card's render is always visible now, not just on hover */
-        .svc-card.is-active .svc-card-bg { opacity: 1; }
+        .svc-card.is-active:hover .svc-card-bg,
+        .svc-card.is-active:active .svc-card-bg { opacity: 1; }
         /* Pre/post-production images are a bit brighter, so dial them back slightly
            more than production, whose render is already fairly dark */
-        .svc-card.svc-card-dim.is-active .svc-card-bg { opacity: 0.87; }
+        .svc-card.svc-card-dim.is-active:hover .svc-card-bg,
+        .svc-card.svc-card-dim.is-active:active .svc-card-bg { opacity: 0.87; }
         /* Peeking / hidden cards never reveal their render, even if hovered */
         .svc-card.is-prev .svc-card-bg,
         .svc-card.is-next .svc-card-bg,
@@ -700,7 +690,8 @@
             transition: opacity 0.6s ease;
             z-index: 1;
         }
-        .svc-card.is-active .svc-card-overlay { opacity: 1; }
+        .svc-card.is-active:hover .svc-card-overlay,
+        .svc-card.is-active:active .svc-card-overlay { opacity: 1; }
 
         /* Keep content above image layers */
         .svc-icon, .svc-label, .svc-list { position: relative; z-index: 2; }
@@ -741,6 +732,8 @@
             flex-shrink: 0;
             transition: opacity 0.3s, transform 0.2s;
             opacity: 0.85;
+            position: relative;
+            z-index: 10;
         }
         .carousel-arrow:hover { opacity: 1; transform: scale(1.08); }
         .carousel-arrow svg { width: 34px; height: 34px; stroke-width: 3.5; }
@@ -781,6 +774,40 @@
             position: absolute;
             left: 0;
             color: rgba(255,255,255,0.65);
+        }
+
+        /* Mobile-only stacked cards (separate from .svc-carousel) - hidden on desktop */
+        .svc-mobile-grid { display: none; }
+        .svc-mcard {
+            position: relative;
+            overflow: hidden;
+            padding: 56px 28px 64px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            min-height: 560px;
+        }
+        .svc-mcard:last-child { border-bottom: none; }
+        .svc-mcard-bg {
+            position: absolute; inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+        .svc-mcard:hover .svc-mcard-bg, .svc-mcard:active .svc-mcard-bg { opacity: 1; }
+        .svc-mcard-dim:hover .svc-mcard-bg, .svc-mcard-dim:active .svc-mcard-bg { opacity: 0.87; }
+        .svc-mcard-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.78);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        .svc-mcard:hover .svc-mcard-overlay, .svc-mcard:active .svc-mcard-overlay { opacity: 1; }
+        .svc-mcard .svc-icon, .svc-mcard .svc-label, .svc-mcard .svc-list {
+            position: relative;
+            z-index: 2;
         }
 
         /* WATCH THE REEL */
@@ -1411,6 +1438,22 @@
         }
         .mob-nav-link:hover { color: white; }
 
+        /* IN-BETWEEN (laptop / split-screen / narrower desktop windows, ≤ 1400px) -
+           the carousel + deliverables side-by-side layout needs real width to breathe.
+           Below 1700px, stack the carousel above the text instead of squeezing both
+           into a shrinking row. Font sizes and card sizes stay the same as desktop -
+           only the arrangement changes. The peeking-card offset itself already scales
+           down continuously via min(170px, 9vw) on the base rule, so cards keep
+           tucking in further the narrower it gets, all the way into this tier.
+           .svc-carousel is capped to a max-width here (rather than left at 100%) so
+           the arrows sit close to the card instead of pinned way out at the edges
+           of a full-width row. */
+        @media (max-width: 1700px) {
+            .svc-layout { flex-direction: column; align-items: center; gap: 72px; }
+            .svc-carousel { width: 100%; max-width: 940px; margin: 0 auto; }
+            .svc-usecases { width: 100%; max-width: 760px; padding-top: 0; }
+        }
+
         /* MOBILE - TABLET (≤ 900px) */
         @media (max-width: 900px) {
 
@@ -1474,20 +1517,26 @@
                 transform-origin: center center;
             }
 
-            /* Production Services - carousel + deliverables */
+            /* Production Services - carousel hidden entirely on mobile, replaced by
+               the plain .svc-mobile-grid stacked cards defined above (desktop rules). */
             #services { padding: 80px 0; }
             .services-heading { margin-bottom: 52px; padding: 0 24px; }
-            .svc-layout { flex-direction: column; gap: 56px; padding: 0 20px; }
-            .svc-carousel { width: 100%; gap: 14px; }
-            .svc-carousel .carousel-arrow { width: 28px; height: 28px; }
-            .svc-carousel .carousel-arrow svg { width: 28px; height: 28px; stroke-width: 3.5; }
-            .svc-carousel-track { height: 480px; }
-            .svc-card { max-width: 78vw; padding: 48px 32px 56px; min-height: 440px; }
-            .svc-card.is-prev { transform: translateX(calc(-50% - 48px)) scale(0.86); }
-            .svc-card.is-next { transform: translateX(calc(-50% + 48px)) scale(0.86); }
-            .svc-usecases { width: 100%; padding-top: 0; }
+            .svc-layout { flex-direction: column; gap: 48px; padding: 0 20px; }
+
+            .svc-carousel { display: none; }
+
+            .svc-mobile-grid {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                border: 1px solid var(--border);
+            }
+
+            .svc-usecases { width: 100%; max-width: 100%; padding-top: 0; }
             .svc-usecases-heading { font-size: clamp(41px, 9.6vw, 65px); line-height: 1.02; }
             .svc-usecases-lists { flex-direction: column; gap: 20px; }
+
+            .services-tagline { text-align: left; padding: 32px 24px 0; }
 
             #reel { height: 52vw; min-height: 260px; }
 
@@ -1546,11 +1595,7 @@
             #social-strip { height: clamp(180px, 65vw, 340px); }
 
             #services { padding: 64px 20px; }
-            .svc-carousel { gap: 10px; }
-            .svc-carousel-track { height: 460px; }
-            .svc-card { max-width: 76vw; padding: 40px 28px; min-height: 420px; }
-            .svc-card.is-prev { transform: translateX(calc(-50% - 34px)) scale(0.85); }
-            .svc-card.is-next { transform: translateX(calc(-50% + 34px)) scale(0.85); }
+            .svc-mcard { padding: 40px 28px; }
 
             .standfor-card { padding: 48px 24px 56px; min-height: 300px; }
 
@@ -1818,6 +1863,68 @@
                 <button class="carousel-arrow carousel-arrow-next" aria-label="Next stage">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </button>
+            </div>
+
+            <!-- Mobile-only: simple stacked cards, no carousel. Separate markup from
+                 .svc-carousel above (distinct classes) so the carousel JS never sees
+                 these and there's no absolute-positioning/hover interplay to fight. -->
+            <div class="svc-mobile-grid">
+                <div class="svc-mcard svc-mcard-dim">
+                    <div class="svc-mcard-bg" style="background-image:url('assets/images/fotograma-preproduction.png')"></div>
+                    <div class="svc-mcard-overlay"></div>
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <span class="svc-label">pre-production</span>
+                    <ul class="svc-list">
+                        <li>Concept Development</li>
+                        <li>Script Writing</li>
+                        <li>Storyboarding</li>
+                        <li>Asset Planning & Preparation</li>
+                    </ul>
+                </div>
+
+                <div class="svc-mcard">
+                    <div class="svc-mcard-bg" style="background-image:url('assets/images/fotograma-production.png')"></div>
+                    <div class="svc-mcard-overlay"></div>
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 10-3-3z"/>
+                            <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/>
+                            <path d="M14.5 17.5L4.5 15"/>
+                        </svg>
+                    </div>
+                    <span class="svc-label">production</span>
+                    <ul class="svc-list">
+                        <li>CGI & 3D Animation</li>
+                        <li>Motion Graphics</li>
+                        <li>Gameplay Capture</li>
+                        <li>Rendering & Compositing</li>
+                    </ul>
+                </div>
+
+                <div class="svc-mcard svc-mcard-dim">
+                    <div class="svc-mcard-bg" style="background-image:url('assets/images/fotograma-postproduction.png')"></div>
+                    <div class="svc-mcard-overlay"></div>
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <span class="svc-label">post-production</span>
+                    <ul class="svc-list">
+                        <li>Video Editing</li>
+                        <li>Sound Design</li>
+                        <li>Music Composition</li>
+                        <li>Dubbing</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="svc-usecases">
@@ -2286,7 +2393,6 @@
             const total = cards.length;
             if (!total) return null;
             let current = startIndex % total;
-            let interacted = false;
 
             function render() {
                 cards.forEach((card, i) => {
@@ -2302,8 +2408,7 @@
                 });
             }
 
-            function go(dir, isUserAction = true) {
-                if (isUserAction) interacted = true;
+            function go(dir) {
                 current = (current + dir + total) % total;
                 render();
             }
@@ -2328,49 +2433,15 @@
             }, { passive: true });
 
             render();
-
-            // Subtle "this is swipeable" nudge - plays only until the person interacts
-            function playHint() {
-                if (interacted) return;
-                const activeCard = track.querySelector('.svc-card.is-active');
-                if (!activeCard) return;
-                activeCard.classList.add('hint-nudge');
-                activeCard.addEventListener('animationend', () => {
-                    activeCard.classList.remove('hint-nudge');
-                }, { once: true });
-            }
-
-            return { hasInteracted: () => interacted, playHint };
         }
 
-        const svcCarouselApi = initCarousel({
+        initCarousel({
             trackSelector: '.svc-carousel-track',
             cardSelector: '.svc-card',
             prevSelector: '.svc-carousel .carousel-arrow-prev',
             nextSelector: '.svc-carousel .carousel-arrow-next',
             startIndex: 1 // production
         });
-
-        // Idle hint: once the services section is in view, nudge the active card
-        // toward "next" and back a couple times to suggest it's swipeable/clickable,
-        // but only if the person hasn't already interacted with it.
-        if (svcCarouselApi) {
-            const servicesSection = document.getElementById('services');
-            let hintPlays = 0;
-            const hintObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !svcCarouselApi.hasInteracted() && hintPlays < 3) {
-                        setTimeout(() => {
-                            if (!svcCarouselApi.hasInteracted() && hintPlays < 3) {
-                                svcCarouselApi.playHint();
-                                hintPlays++;
-                            }
-                        }, 1000 + hintPlays * 4200);
-                    }
-                });
-            }, { threshold: 0.4 });
-            if (servicesSection) hintObserver.observe(servicesSection);
-        }
 
         // SCROLL REVEAL
         const revealEls = document.querySelectorAll('.reveal');
