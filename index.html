@@ -212,7 +212,7 @@
 
         /* ===== ALTERNATING SECTION BACKGROUNDS ===== */
         #about      { background: var(--off-black); }
-        #standfor   { background: var(--black); }
+        #standfor   { background: var(--off-black); }
         #services   { background: var(--black); }
         #featured   { background: var(--off-black); }
         #reel       { background: var(--black); }
@@ -553,51 +553,6 @@
             font-style: italic;
             letter-spacing: 0.03em;
             padding: 48px 8vw 0;
-        }
-
-        /* SOCIAL MEDIA STRIP - single ultrawide video */
-        #social-strip {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            height: clamp(250px, 42vw, 620px);
-            background: #0a0a0a;
-        }
-
-        .social-strip-video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: center center;
-        }
-
-        /* Compressed version has baked-in black bars - object-fit cover crops them naturally */
-        .social-strip-video.compressed {
-            object-position: center center;
-        }
-
-        .social-strip-dark {
-            position: absolute; inset: 0;
-            background: rgba(0,0,0,0.72);
-            z-index: 1;
-        }
-
-        .social-strip-label {
-            position: absolute; inset: 0;
-            z-index: 2;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            pointer-events: none;
-        }
-
-        .social-strip-label p {
-            font-size: clamp(13px, 1.6vw, 22px);
-            font-weight: 300;
-            letter-spacing: 0.18em;
-            color: rgba(255,255,255,0.7);
-            font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
-            white-space: nowrap;
         }
 
         /* FULL PRODUCTION SERVICES */
@@ -1540,19 +1495,6 @@
             .standfor-card:last-child { border-bottom: none; }
             .standfor-bg-img { opacity: 0.13; }
 
-            /* Social strip - compressed video always loads here (≤900px in JS).
-               It has baked-in letterbox bars; the container is too narrow relative
-               to the 16:9 frame for object-fit:cover to crop them on its own, so we
-               zoom the video itself. Scale pushes the bars + side content off-screen,
-               leaving roughly the center 3 of 5 boxes visible. Tune --social-zoom if
-               the bars are still visible or too much gets cropped once live. */
-            #social-strip { height: clamp(200px, 56vw, 380px); }
-            .social-strip-video {
-                object-position: center;
-                transform: scale(var(--social-zoom, 1.7));
-                transform-origin: center center;
-            }
-
             /* Production Services - carousel hidden entirely on mobile, replaced by
                the plain .svc-mobile-grid stacked cards defined above (desktop rules). */
             #services { padding: 80px 0; }
@@ -1627,8 +1569,6 @@
             #about { padding: 60px 20px; }
             .about-inner { grid-template-columns: 1fr; gap: 36px; }
             .about-img-frame::before, .about-img-frame::after { display: none; }
-
-            #social-strip { height: clamp(180px, 65vw, 340px); }
 
             #services { padding: 64px 20px; }
             .svc-mcard { padding: 40px 28px; min-height: 420px; }
@@ -1804,15 +1744,6 @@
                 <p>Our work is designed to stick with audiences and spark curiosity. We create visuals that are not just seen, but remembered, making people engage.</p>
             </div>
 
-        </div>
-    </section>
-
-    <!-- SOCIAL MEDIA STRIP -->
-    <section id="social-strip">
-        <video class="social-strip-video" autoplay muted loop playsinline preload="auto" poster="assets/images/fotograma-socialstrip-placeholder.jpg" src="https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-social-strip_15MB.mp4"></video>
-        <div class="social-strip-dark"></div>
-        <div class="social-strip-label">
-            <p>We make players stop scrolling and start playing.</p>
         </div>
     </section>
 
@@ -2339,7 +2270,6 @@
 
         const heroBgVideo  = document.querySelector('.hero-bg-video');
         const reelBgVideo  = document.querySelector('.reel-bg-video');
-        const socialVideo  = document.querySelector('.social-strip-video');
 
         // Demo reel - adaptive quality: compressed on slow connection, full quality otherwise
         // Same source is used in both the hero section and the "watch the reel" section
@@ -2358,33 +2288,6 @@
 
         setupVideo(heroBgVideo);
         setupVideo(reelBgVideo);
-
-        // Social strip - adaptive quality: compressed on mobile/slow connection,
-        // full quality on desktop with error fallback
-        if (socialVideo) {
-            const FULL_SRC       = 'https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-social-strip_15MB.mp4';
-            const COMPRESSED_SRC = 'https://pub-6fcdee0958e6471192bf4b68810d58b4.r2.dev/fotograma-social-strip-compressed_9MB.mp4';
-
-            function loadCompressed() {
-                if (socialVideo.src.includes('compressed')) return;
-                socialVideo.src = COMPRESSED_SRC;
-                socialVideo.classList.add('compressed');
-                socialVideo.load();
-                setupVideo(socialVideo);
-            }
-
-            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            const isSlow = conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType));
-
-            if (isSlow || window.innerWidth < 900) {
-                loadCompressed();
-            } else {
-                const stallTimer = setTimeout(loadCompressed, 7000);
-                socialVideo.addEventListener('playing', () => clearTimeout(stallTimer), { once: true });
-                socialVideo.addEventListener('error', loadCompressed, { once: true });
-                setupVideo(socialVideo);
-            }
-        }
 
         // vimeo lightbox
         const REEL_EMBED = 'https://player.vimeo.com/video/1209704114?autoplay=1&color=ffffff&title=0&byline=0&portrait=0';
