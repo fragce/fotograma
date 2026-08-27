@@ -895,8 +895,9 @@
         }
 
         .client-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 52px 32px;
             max-width: min(1200px, 96vw);
             margin: 0 auto;
@@ -907,6 +908,7 @@
             flex-direction: column;
             align-items: center;
             gap: 14px;
+            width: 152px;
             text-decoration: none;
             color: white;
             transition: opacity 0.25s;
@@ -1535,7 +1537,8 @@
             .stat-num { margin-bottom: 12px; }
 
             #trusted { padding: 80px 24px; }
-            .client-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; }
+            .client-grid { gap: 40px 24px; }
+            .client-item { width: 100px; }
 
             #featured { padding: 80px 24px; }
             .featured-stats { grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -2046,12 +2049,6 @@
             </div>
             <div class="client-item">
                 <div class="client-visual">
-                    <img src="assets/images/logos/vector3-logo.svg" alt="Vector3">
-                </div>
-                <span class="client-name">Vector3</span>
-            </div>
-            <div class="client-item">
-                <div class="client-visual">
                     <img src="assets/images/logos/cr3ate-future-logo.svg" alt="Cr3ate Future">
                 </div>
                 <span class="client-name">Cr3ate Future</span>
@@ -2145,10 +2142,10 @@
 
         <div class="testimonials-grid">
             <div class="tcard reveal">
-                <p class="tcard-quote">Francisco was a pleasure to work with. He collaborated well with our team, did what he said he would, and delivered excellent quality work. He's highly talented and definitely someone I'd recommend anyone work with!</p>
+                <p class="tcard-quote">Not only was Francisco's work phenomenal, but his quick communication and kindness made it really pleasant to work with him.</p>
                 <div class="tcard-author">
-                    <div class="tcard-name">Jake Sullivan</div>
-                    <div class="tcard-role">Founder, Vector 3</div>
+                    <div class="tcard-name">Iraxiira</div>
+                    <div class="tcard-role">Roblox Developer</div>
                 </div>
             </div>
 
