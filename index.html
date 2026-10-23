@@ -267,7 +267,7 @@
             position: absolute; left: 50%; transform: translateX(-50%);
         }
         .hdr-icon img {
-            height: 38px; width: auto;
+            height: 34px; width: auto;
             display: block;
         }
 
@@ -343,15 +343,15 @@
 
         .hero-logo {
             display: block;
-            width: min(660px, 82vw);
-            max-width: 660px;
+            width: min(clamp(380px, 40vw, 560px), 78vw);
+            max-width: 560px;
             margin: 0 auto;
             height: auto;
         }
 
         .hero-tagline {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(26px, 4vw, 68px);
+            font-size: clamp(24px, 3.3vw, 56px);
             line-height: 0.95;
             text-transform: uppercase;
             color: var(--white);
@@ -371,13 +371,13 @@
         .hero-cta-btn {
             display: inline-block;
             font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 0.2em;
             color: white;
             text-decoration: none;
             text-transform: uppercase;
             border: 1px solid white;
-            padding: 14px 32px;
+            padding: 12px 28px;
             transition: background 0.25s;
         }
 
@@ -420,7 +420,7 @@
 
         /* ABOUT US */
         #about {
-            padding: 170px 6vw;
+            padding: clamp(78px, 13.5vh, 152px) 6vw;
         }
 
         /* Two-column body */
@@ -438,7 +438,7 @@
         }
 
         .about-img-cta-label {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255,255,255,0.45);
             margin-bottom: 10px;
             display: block;
@@ -446,7 +446,7 @@
 
         .about-img-cta-email {
             display: inline-block;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             color: white;
             text-decoration: none;
@@ -507,7 +507,7 @@
         /* Big bold sans-serif statement - needs higher specificity than .about-text p */
         .about-text .about-statement {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(44px, 5.2vw, 74px);
+            font-size: clamp(38px, 3.6vw, 64px);
             color: white;
             text-transform: uppercase;
             line-height: 1.1;
@@ -515,7 +515,7 @@
         }
 
         .about-text p {
-            font-size: 18px;
+            font-size: clamp(15px, 1vw, 17px);
             line-height: 1.75;
             color: rgba(255,255,255,0.72);
             margin-bottom: 0;
@@ -537,7 +537,7 @@
             letter-spacing: 0.02em;
         }
         .about-def-text {
-            font-size: 15px;
+            font-size: 14px;
             color: rgba(255,255,255,0.45);
             font-style: italic;
             line-height: 1.6;
@@ -557,9 +557,10 @@
 
         /* FULL PRODUCTION SERVICES */
         #services {
-            padding: 150px 40px;
+            padding: clamp(70px, 12.5vh, 136px) 40px;
             text-align: center;
         }
+
 
         .section-eyebrow {
             font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
@@ -569,8 +570,8 @@
 
         .services-heading {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
-            margin-bottom: 80px;
+            font-size: clamp(40px, 3.8vw, 66px);
+            margin-bottom: clamp(36px, 6vh, 64px);
         }
 
         /* Carousel + deliverables side-by-side layout */
@@ -579,7 +580,7 @@
             align-items: flex-start;
             gap: 60px;
             width: 100%;
-            max-width: min(1800px, 96vw);
+            max-width: min(1760px, 94vw);
             margin: 0 auto;
             text-align: left;
         }
@@ -596,19 +597,19 @@
         .svc-carousel-track {
             position: relative;
             flex: 1;
-            height: 560px;
+            height: clamp(400px, 46vh, 480px);
         }
 
         .svc-card {
             position: absolute;
             top: 0; left: 50%;
             width: 100%;
-            max-width: 600px;
-            padding: 64px 56px 72px;
+            max-width: 520px;
+            padding: clamp(32px, 5vh, 52px) clamp(28px, 3vw, 44px) clamp(36px, 5.5vh, 58px);
             border: 2px solid var(--border);
             background: var(--black);
             overflow: hidden;
-            min-height: 560px;
+            min-height: clamp(400px, 46vh, 480px);
             display: flex;
             flex-direction: column;
             text-align: left;
@@ -688,17 +689,17 @@
         .svc-icon, .svc-label, .svc-list { position: relative; z-index: 2; }
 
         .svc-icon {
-            margin-bottom: 40px;
+            margin-bottom: clamp(20px, 3vh, 32px);
             opacity: 0.75;
         }
-        .svc-icon svg { width: 52px; height: 52px; }
+        .svc-icon svg { width: 44px; height: 44px; }
 
         .svc-label {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(36px, 3.6vw, 54px);
+            font-size: clamp(30px, 2.6vw, 46px);
             color: white;
             text-transform: uppercase;
-            margin-bottom: 28px;
+            margin-bottom: clamp(14px, 2.2vh, 22px);
             display: block;
             line-height: 1.1;
         }
@@ -708,7 +709,7 @@
         }
         .svc-list li {
             font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
-            font-size: 18px; color: rgba(255,255,255,0.65);
+            font-size: clamp(15px, 1vw, 17px); color: rgba(255,255,255,0.65);
             letter-spacing: 0.02em; line-height: 1.75;
         }
 
@@ -735,17 +736,17 @@
             display: flex;
             flex-direction: column;
             gap: 40px;
-            padding-top: 64px;
+            padding-top: clamp(32px, 5vh, 52px);
         }
         .svc-usecases-heading {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5vw, 76px);
+            font-size: clamp(40px, 3.7vw, 64px);
             line-height: 1.1;
             text-transform: uppercase;
         }
         .svc-usecases-lists {
             display: flex;
-            gap: 48px;
+            gap: 40px;
         }
         .svc-usecases-list {
             list-style: none;
@@ -755,7 +756,7 @@
         }
         .svc-usecases-list li {
             font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
-            font-size: 18px; color: rgba(255,255,255,0.65);
+            font-size: clamp(15px, 1vw, 17px); color: rgba(255,255,255,0.65);
             letter-spacing: 0.02em; line-height: 1.75;
             position: relative;
             padding-left: 20px;
@@ -772,10 +773,10 @@
         .svc-mcard {
             position: relative;
             overflow: hidden;
-            padding: 56px 28px 64px;
+            padding: 46px 26px 54px;
             border-bottom: 1px solid var(--border);
             text-align: left;
-            min-height: 480px;
+            min-height: 400px;
         }
         .svc-mcard:last-child { border-bottom: none; }
         .svc-mcard-bg {
@@ -804,7 +805,7 @@
         /* WATCH THE REEL */
         #reel {
             position: relative;
-            width: 100%; height: 62vh; min-height: 380px;
+            width: 100%; height: 54vh; min-height: 340px;
             overflow: hidden;
         }
 
@@ -842,7 +843,7 @@
         }
         #reel:hover .reel-btn { transform: scale(1.08); }
         .reel-btn svg {
-            width: 56px; height: 56px; fill: white; display: block;
+            width: 48px; height: 48px; fill: white; display: block;
             filter: drop-shadow(0 0 24px rgba(255,255,255,0.35));
             transition: filter 0.3s;
         }
@@ -850,7 +851,7 @@
 
         /* STATS */
         #stats {
-            padding: 130px 52px;
+            padding: clamp(62px, 10.5vh, 114px) 52px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
@@ -870,7 +871,7 @@
 
         .stat-num {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(80px, 11vw, 148px);
+            font-size: clamp(68px, 7vw, 120px);
             line-height: 1;
             display: block;
             margin-bottom: 20px;
@@ -883,23 +884,23 @@
 
         /* trusted by */
         #trusted {
-            padding: 110px 52px;
+            padding: clamp(62px, 9.5vh, 100px) 52px;
         }
 
         .trusted-head {
-            text-align: center; margin-bottom: 70px;
+            text-align: center; margin-bottom: clamp(32px, 5.5vh, 56px);
         }
         .trusted-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
+            font-size: clamp(40px, 3.8vw, 66px);
         }
 
         .client-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 52px 32px;
-            max-width: min(1200px, 96vw);
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            justify-items: center;
+            gap: 44px 28px;
+            max-width: min(1240px, 92vw);
             margin: 0 auto;
         }
 
@@ -908,7 +909,8 @@
             flex-direction: column;
             align-items: center;
             gap: 14px;
-            width: 152px;
+            width: 100%;
+            max-width: 156px;
             text-decoration: none;
             color: white;
             transition: opacity 0.25s;
@@ -917,18 +919,18 @@
 
         /* unified 72px image area for both logos and circles */
         .client-visual {
-            width: 72px; height: 72px;
+            width: 68px; height: 68px;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
         .client-visual img {
-            max-width: 72px; max-height: 72px;
+            max-width: 68px; max-height: 68px;
             object-fit: contain;
             filter: brightness(0) invert(1);
             display: block;
         }
         .client-visual.circle img {
-            width: 72px; height: 72px;
+            width: 68px; height: 68px;
             border-radius: 50%;
             object-fit: cover;
             filter: none;
@@ -939,7 +941,7 @@
             font-size: 14px;
             letter-spacing: 0.07em;
             text-align: center;
-            max-width: 120px;
+            max-width: 130px;
             line-height: 1.4;
             color: white;
         }
@@ -992,30 +994,30 @@
 
         #reel { cursor: pointer; }
         #testimonials {
-            padding: 150px 52px;
+            padding: clamp(70px, 12.5vh, 136px) 52px;
         }
 
         .testimonials-head {
-            text-align: center; margin-bottom: 80px;
+            text-align: center; margin-bottom: clamp(36px, 6vh, 64px);
         }
         .testimonials-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
+            font-size: clamp(40px, 3.8vw, 66px);
         }
 
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            max-width: min(1800px, 96vw); margin: 0 auto;
+            max-width: min(1760px, 94vw); margin: 0 auto;
             border: 1px solid var(--border);
         }
 
         .tcard {
-            padding: 64px 56px 72px;
+            padding: clamp(32px, 5vh, 52px) clamp(28px, 3vw, 44px) clamp(36px, 5.5vh, 58px);
             display: flex; flex-direction: column; justify-content: space-between;
-            gap: 52px;
-            min-height: 480px;
+            gap: clamp(28px, 4vh, 44px);
+            min-height: clamp(320px, 38vh, 400px);
             border-right: 1px solid var(--border);
             transition: background 0.3s;
         }
@@ -1023,16 +1025,16 @@
         .tcard:hover { background: rgba(255,255,255,0.02); }
 
         .tcard-quote {
-            font-size: 20px; line-height: 1.8;
+            font-size: clamp(16px, 1.2vw, 18px); line-height: 1.8;
             color: rgba(255,255,255,0.82);
             font-style: italic;
             position: relative;
-            padding-top: 52px;
+            padding-top: 44px;
         }
         .tcard-quote::before {
             content: '"';
             font-family: 'Pagkaki', sans-serif;
-            font-size: 72px; line-height: 1;
+            font-size: 60px; line-height: 1;
             color: rgba(255,255,255,0.15);
             position: absolute; top: 0; left: 0;
         }
@@ -1051,42 +1053,42 @@
 
         /* CONTACT */
         #contact {
-            padding: 160px 52px;
+            padding: clamp(74px, 13vh, 142px) 6vw;
         }
 
         .contact-inner {
             display: grid;
             grid-template-columns: 1.3fr 0.6fr;
-            gap: 80px;
+            gap: 64px;
             align-items: center;
-            max-width: min(1300px, 96vw);
+            max-width: min(1600px, 92vw);
             margin: 0 auto;
         }
 
         .contact-heading {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
+            font-size: clamp(40px, 3.8vw, 66px);
             margin-bottom: 28px;
         }
 
         .contact-body {
-            font-size: 18px;
+            font-size: clamp(15px, 1vw, 17px);
             line-height: 1.75;
             color: rgba(255,255,255,0.65);
-            margin-bottom: 48px;
+            margin-bottom: 36px;
         }
 
         .contact-divider {
             width: 40px; height: 1px;
             background: rgba(255,255,255,0.2);
-            margin-bottom: 48px;
+            margin-bottom: 36px;
         }
 
         .contact-email {
             display: inline-block;
             font-family: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
             font-weight: 900;
-            font-size: clamp(18px, 2.5vw, 38px);
+            font-size: clamp(18px, 2.1vw, 32px);
             color: white;
             text-decoration: none;
             letter-spacing: -0.02em;
@@ -1212,8 +1214,8 @@
         }
 
         .film-img {
-            width: 620px;
-            height: 349px;
+            width: clamp(440px, 32vw, 540px);
+            aspect-ratio: 620 / 349;
             object-fit: cover;
             display: block;
             flex-shrink: 0;
@@ -1231,45 +1233,45 @@
 
         /* WHAT WE STAND FOR */
         #standfor {
-            padding: 130px 52px 170px;
+            padding: clamp(62px, 10.5vh, 114px) 52px clamp(78px, 13.5vh, 152px);
             overflow: hidden;
         }
 
         .standfor-head {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: clamp(36px, 6vh, 64px);
         }
 
         .standfor-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
+            font-size: clamp(40px, 3.8vw, 66px);
         }
 
         .standfor-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1px;
             width: 100%;
-            max-width: min(1400px, 96vw);
+            max-width: min(1500px, 90vw);
             margin: 0 auto;
             border: 1px solid var(--border);
         }
 
         .standfor-card {
-            padding: 64px 56px 72px;
+            padding: clamp(40px, 6vh, 64px) clamp(32px, 3.6vw, 56px) clamp(44px, 6.7vh, 72px);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 28px;
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             position: relative;
             overflow: hidden;
-            min-height: 480px;
+            min-height: clamp(400px, 46vh, 480px);
             background: var(--black);
             transition: background 0.3s;
         }
-        .standfor-card:nth-child(2n) { border-right: none; }
-        .standfor-card:nth-child(3), .standfor-card:nth-child(4) { border-bottom: none; }
+        .standfor-card { border-bottom: none; }
+        .standfor-card:nth-child(3n) { border-right: none; }
         .standfor-card:hover { background: #141414; }
 
         .standfor-card:hover::before { transform: scaleX(1); }
@@ -1280,7 +1282,7 @@
             right: 0;
             height: 100%;
             width: auto;
-            opacity: 0.18;
+            opacity: 0.2;
             z-index: 0;
             pointer-events: none;
             user-select: none;
@@ -1288,7 +1290,8 @@
 
         .standfor-card h3 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(36px, 3.6vw, 54px);
+            font-size: clamp(30px, 2.6vw, 46px);
+            -webkit-text-stroke: 0.8px white;
             color: white;
             text-transform: uppercase;
             position: relative;
@@ -1297,17 +1300,17 @@
         }
 
         .standfor-card p {
-            font-size: 18px;
+            font-size: clamp(15px, 1vw, 17px);
             line-height: 1.75;
             color: rgba(255,255,255,0.55);
             position: relative;
             z-index: 2;
-            max-width: 260px;
+            max-width: clamp(170px, 10.5vw, 215px);
         }
 
         /* FEATURED PROJECT */
         #featured {
-            padding: 130px 52px;
+            padding: clamp(62px, 10.5vh, 114px) 52px;
             text-align: center;
         }
 
@@ -1322,11 +1325,11 @@
 
         .featured-head h2 {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(46px, 5.6vw, 78px);
+            font-size: clamp(40px, 3.8vw, 66px);
         }
 
         .featured-title {
-            font-size: clamp(16px, 1.6vw, 22px);
+            font-size: clamp(14px, 1.4vw, 19px);
             font-weight: 400;
             color: rgba(255,255,255,0.45);
             letter-spacing: 0.06em;
@@ -1426,7 +1429,7 @@
         }
         .mob-nav-link {
             font-family: 'Pagkaki', sans-serif;
-            font-size: clamp(36px, 9vw, 52px);
+            font-size: clamp(32px, 8vw, 46px);
             color: rgba(255,255,255,0.85); text-decoration: none;
             transition: color 0.2s;
         }
@@ -1443,9 +1446,101 @@
            the arrows sit close to the card instead of pinned way out at the edges
            of a full-width row. */
         @media (max-width: 1700px) {
-            .svc-layout { flex-direction: column; align-items: center; gap: 72px; }
-            .svc-carousel { width: 100%; max-width: 940px; margin: 0 auto; }
-            .svc-usecases { width: 100%; max-width: 760px; padding-top: 0; }
+            .svc-layout { flex-direction: column; align-items: center; gap: clamp(36px, 5.5vh, 60px); }
+            .svc-carousel { width: 100%; max-width: 820px; margin: 0 auto; }
+            .svc-usecases { width: 100%; max-width: 680px; padding-top: 0; }
+        }
+
+        /* LAPTOP / SMALL DESKTOP (901px - 1500px wide) - tighter card widths and gaps */
+        @media (min-width: 901px) and (max-width: 1500px) {
+            .svc-card { max-width: 460px; }
+            .svc-carousel { gap: 32px; max-width: 760px; }
+            .svc-usecases-lists { gap: 36px; }
+        }
+
+        /* SHORT SCREENS (laptops, split windows) - tighten vertical spacing a bit more */
+        @media (min-width: 901px) and (max-height: 800px) {
+            .hero-content { gap: 16px; }
+            .svc-usecases { gap: 28px; }
+            .svc-list, .svc-usecases-list { gap: 8px; }
+            .about-definition { margin-top: 28px; padding-top: 18px; }
+            .stat { padding: 28px 32px; }
+            .stat-num { margin-bottom: 12px; }
+            .featured-video-wrap { margin-bottom: 40px; }
+        }
+
+        /* Philosophy cards: one per row on narrow desktops/tablets, text left + render right */
+        @media (min-width: 901px) and (max-width: 1100px) {
+            .standfor-grid { grid-template-columns: 1fr; }
+            .standfor-card { min-height: 280px; border-right: none !important; border-bottom: 1px solid var(--border); }
+            .standfor-card:last-child { border-bottom: none; }
+        }
+
+        /* MOBILE BASE: restore the original (larger) sizing so phones/tablets keep the bigger UI */
+        @media (max-width: 900px) {
+            .hdr-icon img { height: 38px; }
+            .hero-logo { width: min(660px, 82vw); max-width: 660px; }
+            .hero-tagline { font-size: clamp(26px, 4vw, 68px); }
+            .hero-cta-btn { font-size: 12px; padding: 14px 32px; }
+            #about { padding: 170px 6vw; }
+            .about-img-cta-label { font-size: 14px; }
+            .about-img-cta-email { font-size: 17px; }
+            .about-text .about-statement { font-size: clamp(44px, 5.2vw, 74px); }
+            .about-text p { font-size: 18px; }
+            .about-def-text { font-size: 15px; }
+            #services { padding: 150px 40px; }
+            .services-heading { font-size: clamp(46px, 5.6vw, 78px); margin-bottom: 80px; }
+            .svc-layout { max-width: min(1800px, 96vw); }
+            .svc-carousel-track { height: 560px; }
+            .svc-card { max-width: 600px; padding: 64px 56px 72px; min-height: 560px; }
+            .svc-icon { margin-bottom: 40px; }
+            .svc-icon svg { width: 52px; height: 52px; }
+            .svc-label { font-size: clamp(36px, 3.6vw, 54px); margin-bottom: 28px; }
+            .svc-list li { font-size: 18px; }
+            .svc-usecases { padding-top: 64px; }
+            .svc-usecases-heading { font-size: clamp(46px, 5vw, 76px); }
+            .svc-usecases-lists { gap: 48px; }
+            .svc-usecases-list li { font-size: 18px; }
+            .svc-mcard { padding: 56px 28px 64px; min-height: 480px; }
+            #reel { height: 62vh; min-height: 380px; }
+            .reel-btn svg { width: 56px; height: 56px; }
+            #stats { padding: 130px 52px; }
+            .stat-num { font-size: clamp(80px, 11vw, 148px); }
+            #trusted { padding: 110px 52px; }
+            .trusted-head { margin-bottom: 70px; }
+            .trusted-head h2 { font-size: clamp(46px, 5.6vw, 78px); }
+            .client-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 52px 32px; max-width: min(1200px, 96vw); }
+            .client-item { width: 152px; }
+            .client-visual { width: 72px; height: 72px; }
+            .client-visual img { max-width: 72px; max-height: 72px; }
+            .client-visual.circle img { width: 72px; height: 72px; }
+            .client-name { max-width: 120px; }
+            #testimonials { padding: 150px 52px; }
+            .testimonials-head { margin-bottom: 80px; }
+            .testimonials-head h2 { font-size: clamp(46px, 5.6vw, 78px); }
+            .testimonials-grid { max-width: min(1800px, 96vw); }
+            .tcard { padding: 64px 56px 72px; gap: 52px; min-height: 480px; }
+            .tcard-quote { font-size: 20px; padding-top: 52px; }
+            .tcard-quote::before { font-size: 72px; }
+            #contact { padding: 160px 52px; }
+            .contact-inner { gap: 80px; max-width: min(1300px, 96vw); }
+            .contact-heading { font-size: clamp(46px, 5.6vw, 78px); }
+            .contact-body { font-size: 18px; margin-bottom: 48px; }
+            .contact-divider { margin-bottom: 48px; }
+            .contact-email { font-size: clamp(18px, 2.5vw, 38px); }
+            .film-img { width: 620px; height: 349px; }
+            #standfor { padding: 130px 52px 170px; }
+            .standfor-head { margin-bottom: 80px; }
+            .standfor-head h2 { font-size: clamp(46px, 5.6vw, 78px); }
+            .standfor-grid { grid-template-columns: repeat(2, 1fr); max-width: min(1400px, 96vw); }
+            .standfor-card { padding: 64px 56px 72px; gap: 20px; min-height: 480px; }
+            .standfor-bg-img { opacity: 0.18; }
+            .standfor-card h3 { font-size: clamp(36px, 3.6vw, 54px); }
+            .standfor-card p { font-size: 18px; max-width: 260px; }
+            #featured { padding: 130px 52px; }
+            .featured-head h2 { font-size: clamp(46px, 5.6vw, 78px); }
+            .featured-title { font-size: clamp(16px, 1.6vw, 22px); }
+            .mob-nav-link { font-size: clamp(36px, 9vw, 52px); }
         }
 
         /* MOBILE - TABLET (≤ 900px) */
@@ -1593,6 +1688,57 @@
             .contact-founder-wrap { max-width: 220px; }
         }
 
+        /* ===== MOBILE LAYOUT SYSTEM =====
+           One set of tokens drives every section and card, so side margins, vertical padding and card widths stay identical everywhere. */
+        @media (max-width: 900px) {
+            :root { --m-gutter: 24px; --m-sec-y: 88px; --m-card-pt: 52px; --m-card-pb: 60px; --m-card-px: 32px; }
+
+            #about, #standfor, #services, #stats, #trusted, #featured, #testimonials, #contact {
+                padding-top: var(--m-sec-y);
+                padding-bottom: var(--m-sec-y);
+                padding-left: var(--m-gutter);
+                padding-right: var(--m-gutter);
+            }
+            #stats { padding-top: 56px; padding-bottom: 56px; }
+            footer { padding: 32px var(--m-gutter); }
+
+            /* every content block fills the same width */
+            .about-inner, .contact-inner, .featured-inner, .stats-row,
+            .standfor-grid, .svc-mobile-grid, .testimonials-grid { width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
+
+            /* services: gutter now comes from the section, not from each child */
+            .services-heading { padding: 0; margin-bottom: 52px; }
+            .svc-layout { padding: 0; max-width: 100%; }
+            .services-tagline { padding: 36px 0 0; }
+
+            /* stats rows still bleed to the screen edges */
+            .stat { margin: 0 calc(-1 * var(--m-gutter)); padding: 40px var(--m-gutter); }
+
+            /* cards: identical inner spacing for philosophy, services and testimonials */
+            .standfor-card, .svc-mcard, .tcard { padding: var(--m-card-pt) var(--m-card-px) var(--m-card-pb); }
+            .standfor-card { min-height: 360px; }
+            .standfor-card p { max-width: 300px; }
+            .standfor-bg-img { opacity: 0.16; }
+
+            /* studios & creators: 3 across, 3 rows (the 10th logo is dropped so no logo sits alone) */
+            .client-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                justify-items: center;
+                gap: 44px 16px;
+                width: 100%;
+                max-width: 560px;
+                margin: 0 auto;
+            }
+            .client-item { width: 100%; max-width: 130px; }
+            .client-optional { display: none; }
+        }
+
+        @media (max-width: 540px) {
+            :root { --m-gutter: 20px; --m-sec-y: 80px; --m-card-pt: 48px; --m-card-pb: 56px; --m-card-px: 26px; }
+            #stats { padding-top: 48px; padding-bottom: 48px; }
+            .client-grid { gap: 40px 12px; max-width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -1740,12 +1886,6 @@
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-3.png" alt="" aria-hidden="true">
                 <h3>Collaboration</h3>
                 <p>The best ideas are built together. We work closely with our clients, value open communication, and embrace new perspectives to make sure every project reaches its full creative potential.</p>
-            </div>
-
-            <div class="standfor-card reveal d3">
-                <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-4.png" alt="" aria-hidden="true">
-                <h3>Impact</h3>
-                <p>Our work is designed to stick with audiences and spark curiosity. We create visuals that are not just seen, but remembered, making people engage.</p>
             </div>
 
         </div>
@@ -2028,7 +2168,7 @@
 
         <div class="client-grid reveal">
 
-            <!-- Studios - 6 in one row -->
+            <!-- Row 1: studios (5) -->
             <div class="client-item">
                 <div class="client-visual">
                     <img src="assets/images/logos/zag-logo.svg" alt="Zag Gaming">
@@ -2060,7 +2200,7 @@
                 <span class="client-name">Slay House Media</span>
             </div>
 
-            <!-- Creators - 8 across two rows of 6 (last row has 2 centered by grid) -->
+            <!-- Row 2: creators (5) -->
             <a href="https://www.youtube.com/@daniverdari" class="client-item" target="_blank" rel="noopener">
                 <div class="client-visual circle">
                     <img src="https://yt3.googleusercontent.com/0wX0nJolWCRpYeDw9NTqom3oPGPt463w3PbN2v9eyKzkAI1JlfM0geN2t6uClEAt7PmgYrtd=s200-c-k-c0x00ffffff-no-rj" alt="Dani Verdari">
@@ -2089,19 +2229,12 @@
                 <span class="client-name">Lovely Ela</span>
                 <span class="client-subs">4.2M+</span>
             </a>
-            <a href="https://www.youtube.com/@lumexx" class="client-item" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/@lumexx" class="client-item client-optional" target="_blank" rel="noopener">
                 <div class="client-visual circle">
                     <img src="https://yt3.googleusercontent.com/n76317dbECXSeTS8S9wZQniFcMIZ8HGHG4TFfMOM0mnTWBR4PVVMGf5u-GhVu1PYyCe0IaDXSp8=s200-c-k-c0x00ffffff-no-rj" alt="Lumexx">
                 </div>
                 <span class="client-name">Lumexx</span>
                 <span class="client-subs">1.2M+</span>
-            </a>
-            <a href="https://www.youtube.com/@sheismara" class="client-item" target="_blank" rel="noopener">
-                <div class="client-visual circle">
-                    <img src="https://yt3.googleusercontent.com/NnjKENsUl0qWUXmMlG801mwO4xLBcUak3Bt_cKHDPG7Fnkht5W3r8XY4QjYHxEq-0lKsFdgtZjA=s200-c-k-c0x00ffffff-no-rj" alt="Mara">
-                </div>
-                <span class="client-name">Mara</span>
-                <span class="client-subs">450K+</span>
             </a>
 
         </div>
