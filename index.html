@@ -1266,8 +1266,6 @@
             border-bottom: 1px solid var(--border);
             position: relative;
             overflow: hidden;
-            aspect-ratio: 1.2 / 1;
-            align-self: stretch;
             container-type: inline-size;
             background: var(--black);
             transition: background 0.3s;
@@ -1295,7 +1293,7 @@
             font-size: clamp(24px, 2.4vw, 44px);
             font-size: clamp(24px, 8cqw, 46px);
             margin: 56px 0 0 48px;
-            margin: 11.5cqw 0 0 10cqw;
+            margin: 11.5cqw 0 0 9cqw;
             -webkit-text-stroke: 0.8px white;
             color: white;
             text-transform: uppercase;
@@ -1312,9 +1310,9 @@
             position: relative;
             z-index: 2;
             max-width: 200px;
-            max-width: 42cqw;
+            max-width: 46cqw;
             margin: 24px 0 40px 48px;
-            margin: 5cqw 0 9cqw 10cqw;
+            margin: 5cqw 0 9cqw 9cqw;
         }
 
         /* FEATURED PROJECT */
@@ -1478,15 +1476,6 @@
             .featured-video-wrap { margin-bottom: 40px; }
         }
 
-        /* Philosophy cards: one per row on narrow desktops/tablets, text left + render right */
-        @media (min-width: 901px) and (max-width: 1200px) {
-            .standfor-grid { grid-template-columns: 1fr; }
-            .standfor-card { aspect-ratio: auto; min-height: 300px; border-right: none !important; border-bottom: 1px solid var(--border); }
-            .standfor-card:last-child { border-bottom: none; }
-            .standfor-card h3 { margin: 48px 0 0 56px; font-size: clamp(32px, 3.6vw, 42px); }
-            .standfor-card p { margin: 24px 0 56px 56px; font-size: 17px; max-width: min(46%, 400px); }
-        }
-
         /* MOBILE BASE: restore the original (larger) sizing so phones/tablets keep the bigger UI */
         @media (max-width: 900px) {
             .hdr-icon img { height: 38px; }
@@ -1568,7 +1557,7 @@
                 -webkit-backdrop-filter: none;
                 z-index: 1000;
                 align-items: center; justify-content: space-between;
-                padding: 0 20px;
+                padding: 0 var(--side);
                 border: none;
                 pointer-events: none;
             }
@@ -1702,7 +1691,7 @@
         /* ===== MOBILE LAYOUT SYSTEM =====
            One set of tokens drives every section and card, so side margins, vertical padding and card widths stay identical everywhere. */
         @media (max-width: 900px) {
-            :root { --m-gutter: 24px; --m-sec-y: 88px; --m-card-pt: 52px; --m-card-pb: 60px; --m-card-px: 32px; }
+            :root { --m-gutter: var(--side); --m-sec-y: 88px; --m-card-pt: var(--card-pt); --m-card-pb: var(--card-pb); --m-card-px: var(--card-px); }
 
             #about, #standfor, #services, #stats, #trusted, #featured, #testimonials, #contact {
                 padding-top: var(--m-sec-y);
@@ -1747,9 +1736,79 @@
         }
 
         @media (max-width: 540px) {
-            :root { --m-gutter: 20px; --m-sec-y: 80px; --m-card-pt: 48px; --m-card-pb: 56px; --m-card-px: 26px; }
+            :root { --m-sec-y: 80px; }
             #stats { padding-top: 48px; padding-bottom: 48px; }
             .client-grid { gap: 40px 12px; max-width: 100%; }
+        }
+
+        /* ===== SHARED TOKENS: one source of truth for side margins, card padding and type ===== */
+        :root {
+            --side: clamp(26px, 5.6vw, 64px);          /* page side margin when the window gets narrow (<= 1200px) */
+            --card-px: clamp(30px, 5vw, 56px);         /* card inner padding, left/right */
+            --card-pt: clamp(44px, 5.5vw, 60px);       /* card inner padding, top */
+            --card-pb: clamp(52px, 6.4vw, 70px);       /* card inner padding, bottom */
+
+            --fs-h2: clamp(46px, 3.8vw, 66px);         /* section headings */
+            --fs-h3: clamp(28px, 2.3vw, 42px);         /* card titles (philosophy, services) */
+            --fs-body: clamp(16px, calc(0.7vw + 7px), 17px);   /* all body copy */
+        }
+        @media (max-width: 1200px) {
+            :root {
+                /* below 1200px type grows slowly as the window shrinks, reaching the larger mobile sizes by ~700px */
+                --fs-h3: clamp(28px, calc(28px + (1200px - 100vw) * 0.006), 36px);
+                --fs-body: clamp(16px, calc(16px + (1200px - 100vw) * 0.004), 18px);
+            }
+        }
+
+        /* ===== TYPE SYSTEM: every heading, card title and piece of copy reads from the tokens above ===== */
+        .services-heading, .standfor-head h2, .featured-head h2, .testimonials-head h2, .trusted-head h2, .contact-heading { font-size: var(--fs-h2); }
+        .about-text .about-statement, .svc-usecases-heading { font-size: calc(var(--fs-h2) * 0.95); }
+        .standfor-card h3, .svc-label { font-size: var(--fs-h3); }
+        .about-text p, .svc-list li, .svc-usecases-list li, .contact-body, .standfor-card p { font-size: var(--fs-body); }
+        .tcard-quote { font-size: calc(var(--fs-body) * 1.1); }
+        .about-def-text, .services-tagline { font-size: calc(var(--fs-body) * 0.9); }
+
+
+
+        /* ===== NARROW WINDOWS (<= 1200px): consistent side margins and card layout ===== */
+        @media (max-width: 1200px) {
+            #about, #standfor, #services, #stats, #trusted, #featured, #testimonials, #contact,
+            footer, #header { padding-left: var(--side); padding-right: var(--side); }
+
+            .standfor-grid { max-width: 100%; }
+        }
+
+        /* ===== PHILOSOPHY CARDS =====
+           3 across down to 1100px. Spacing and the render scale with the card, but font sizes never do: title and copy
+           always use the shared site tokens, so a narrower card simply grows taller.
+           At 1100px and below the cards stack as centered cards (max 600px, 4:3 minimum) and only
+           reach edge to edge once the window itself is narrower than that. */
+        .standfor-card { padding: 0; min-height: 0; gap: 0; aspect-ratio: auto; display: flex; flex-direction: column; container-type: inline-size; }
+        .standfor-card .sf-in {
+            position: relative; flex: 1 1 auto;
+            display: flex; flex-direction: column;
+            gap: 5cqw;
+            padding: 10cqw 8cqw 8cqw 9cqw;
+            min-height: 75cqw;                                  /* 4:3, grows if the copy needs more room */
+        }
+        .standfor-card .sf-in h3, .standfor-card .sf-in p { margin: 0; }
+        .standfor-card .sf-in h3 { font-size: var(--fs-h3); }
+        .standfor-card .sf-in p  { font-size: var(--fs-body); max-width: 52cqw; }
+        .standfor-card .sf-in .standfor-bg-img { height: min(108%, 90cqw); bottom: -3%; right: -3cqw; }
+
+        @media (max-width: 1100px) {
+            .standfor-grid { grid-template-columns: 1fr; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
+            .standfor-card { border-right: none !important; border-bottom: 1px solid var(--border); }
+            .standfor-card:last-child { border-bottom: none; }
+        }
+
+        /* phones only: cards narrower than 440px switch to title, copy, then the render in a band along the bottom */
+        @media (max-width: 540px) {
+            @container (max-width: 439.98px) {
+                .standfor-card .sf-in { gap: 20px; padding: clamp(28px, 11cqw, 52px) clamp(22px, 8cqw, 40px) calc(64cqw + 8px); min-height: 0; }
+                .standfor-card .sf-in p { font-size: var(--fs-body); max-width: none; }
+                .standfor-card .sf-in .standfor-bg-img { height: 76cqw; bottom: -6cqw; right: -4cqw; }
+            }
         }
     </style>
 </head>
@@ -1874,30 +1933,37 @@
      <!-- WHAT WE STAND FOR -->
     <section id="standfor">
         <div class="standfor-head reveal">
-            <span class="section-eyebrow">core values</span>
+            <!--<span class="section-eyebrow">core values</span> -->
+            <br>
             <h2>
-                <span class="pk outlined">our</span> <span class="pk filled">philosophy</span>
+                <span class="pk outlined">core</span> <span class="pk filled">values</span>
             </h2>
         </div>
 
         <div class="standfor-grid">
 
             <div class="standfor-card reveal">
+                <div class="sf-in">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-1.png" alt="" aria-hidden="true">
                 <h3>Craft</h3>
                 <p>Every project is treated like a film production, because that's what it is. Cinematography, visual storytelling, and artistic direction are our main priorities. 100% human made art. Always.</p>
+                </div>
             </div>
 
             <div class="standfor-card reveal d1">
+                <div class="sf-in">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-2.png" alt="" aria-hidden="true">
                 <h3>Quality</h3>
                 <p>First impressions are made in seconds. We hold ourselves to the high standards of the animation industry. Every deliverable is polished, intentional, and built with meticulous attention to detail.</p>
+                </div>
             </div>
 
             <div class="standfor-card reveal d2">
+                <div class="sf-in">
                 <img class="standfor-bg-img" src="assets/images/fotograma-about-render-cropped-3.png" alt="" aria-hidden="true">
                 <h3>Collaboration</h3>
                 <p>The best ideas are built together. We work closely with our clients, value open communication, and embrace new perspectives to make sure every project reaches its full creative potential.</p>
+                </div>
             </div>
 
         </div>
@@ -1906,7 +1972,7 @@
     <!-- FULL PRODUCTION SERVICES -->
     <section id="services">
         <div class="reveal">
-            <span class="section-eyebrow">what we offer</span>
+            <!--<span class="section-eyebrow">what we offer</span>-->
             <h2 class="services-heading">
                 <span class="outlined pk">production</span> <span class="filled pk">services</span>
             </h2>
@@ -2078,7 +2144,7 @@
         <div class="featured-inner">
 
             <div class="featured-head reveal">
-                <span class="section-eyebrow">spotlight</span>
+                <!--<span class="section-eyebrow">spotlight</span>-->
                 <h2>
                     <span class="pk outlined">featured</span> <span class="pk filled">project</span>
                 </h2>
@@ -2112,9 +2178,9 @@
                 </div>
             </div>
 
-            <div class="featured-case reveal">
+            <!--<div class="featured-case reveal">
                 <span class="featured-coming-soon">full case study coming soon</span>
-            </div>
+            </div> -->
 
         </div>
     </section>
@@ -2172,9 +2238,9 @@
     <!-- trusted by -->
     <section id="trusted">
         <div class="trusted-head reveal">
-            <span class="section-eyebrow">worked with</span>
+            <!-- <span class="section-eyebrow">worked with</span>-->
             <h2>
-                <span class="pk outlined">studios</span> <span class="pk filled">&amp; creators</span>
+                <span class="pk outlined">worked with</span> <span class="pk filled"> studios & creators</span>
             </h2>
         </div>
 
@@ -2279,7 +2345,7 @@
     <!-- testimonials -->
     <section id="testimonials">
         <div class="testimonials-head reveal">
-            <span class="section-eyebrow">words from clients</span>
+            <!--<span class="section-eyebrow">words from clients</span> -->
             <h2>
                 <span class="pk filled">testimonials</span>
             </h2>
