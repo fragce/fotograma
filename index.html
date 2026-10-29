@@ -1719,7 +1719,7 @@
             .standfor-card { aspect-ratio: auto; min-height: 360px; gap: 26px; }
             .standfor-card h3 { margin: 0; }
             .standfor-card p { margin: 0; max-width: min(66%, 340px); }
-            .standfor-bg-img { opacity: 0.16; height: 74%; }
+            
 
             /* studios & creators: 3 across, 3 rows (the 10th logo is dropped so no logo sits alone) */
             .client-grid {
@@ -1789,26 +1789,17 @@
             display: flex; flex-direction: column;
             gap: 5cqw;
             padding: 10cqw 8cqw 8cqw 9cqw;
-            min-height: 75cqw;                                  /* 4:3, grows if the copy needs more room */
+            min-height: 85cqw;                                  /* a bit taller than 4:3, grows if the copy needs more room */
         }
         .standfor-card .sf-in h3, .standfor-card .sf-in p { margin: 0; }
         .standfor-card .sf-in h3 { font-size: var(--fs-h3); }
-        .standfor-card .sf-in p  { font-size: var(--fs-body); max-width: 52cqw; }
-        .standfor-card .sf-in .standfor-bg-img { height: min(108%, 90cqw); bottom: -3%; right: -3cqw; }
+        .standfor-card .sf-in p  { font-size: var(--fs-body); max-width: max(45cqw, 170px); }
+        .standfor-card .sf-in .standfor-bg-img { height: min(96%, 92cqw); bottom: -3%; right: -3cqw; opacity: 0.2; }
 
         @media (max-width: 1100px) {
             .standfor-grid { grid-template-columns: 1fr; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
             .standfor-card { border-right: none !important; border-bottom: 1px solid var(--border); }
             .standfor-card:last-child { border-bottom: none; }
-        }
-
-        /* phones only: cards narrower than 440px switch to title, copy, then the render in a band along the bottom */
-        @media (max-width: 540px) {
-            @container (max-width: 439.98px) {
-                .standfor-card .sf-in { gap: 20px; padding: clamp(28px, 11cqw, 52px) clamp(22px, 8cqw, 40px) calc(64cqw + 8px); min-height: 0; }
-                .standfor-card .sf-in p { font-size: var(--fs-body); max-width: none; }
-                .standfor-card .sf-in .standfor-bg-img { height: 76cqw; bottom: -6cqw; right: -4cqw; }
-            }
         }
     </style>
 </head>
